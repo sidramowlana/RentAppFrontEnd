@@ -1,0 +1,96 @@
+<div class="container-sm mx-auto m-4">
+    <div class="card col">
+        <div class="card-body">
+            <form [formGroup]="profileForm" (ngSubmit)="onUpdateProfile()">
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="nameID">Name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input class="form-control" id="nameID" type="text" formControlName="name">
+                        </div>
+                        <span *ngIf="!profileForm.get('name').valid && profileForm.get('name').touched" class="help-block">Please enter your Name</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="nicID">NIC</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                            </div>
+                            <input class="form-control" id="nicID" type="text" formControlName="nic">
+                        </div>
+                        <span *ngIf="!profileForm.get('nic').valid && profileForm.get('nic').touched" class="help-block">Please
+                enter your NIC</span>
+                    </div>
+                </div>
+
+                <!-- <div class="form-row">
+                    <div class="col form-group">
+                        <label for="mobileNoID">Mobile Number</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input class="form-control" id="mobileNoID" type="text" formControlName="mobileNo">
+                        </div>
+                        <span *ngIf="!profileForm.get('mobileNo').valid && profileForm.get('mobileNo').touched" class="help-block">Please enter your Mobile Number</span>
+                    </div>
+                </div> -->
+
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="emailID">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@</span>
+                            </div>
+                            <input class="form-control" id="emailID" type="email" formControlName="email">
+                            <span *ngIf="!profileForm.get('email').valid && profileForm.get('email').touched" class="help-block">Please enter your Email</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="drivingLicenceNoId">Driving Licence No</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                            </div>
+                            <input class="form-control" id="drivingLicenceNoId" type="email" formControlName="drivingLicenceNo">
+                        </div>
+                        <span *ngIf="!profileForm.get('drivingLicenceNo').valid && profileForm.get('drivingLicenceNo').touched" class="help-block">Please enter your Email</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="usernameID">UserName</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input class="form-control" id="usernameID" type="text" formControlName="username">
+                        </div>
+                        <span *ngIf="!profileForm.get('username').valid && profileForm.get('username').touched" class="help-block">Please enter a valid User Name</span>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col">
+                    <app-edit-profile></app-edit-profile>
+                </div>
+                <div class="col">
+                    <app-forgot-password></app-forgot-password>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

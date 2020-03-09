@@ -1,0 +1,85 @@
+.card {
+    box-shadow: 5px 5px 10px rgb(53, 52, 52);
+}
+
+#userProfile {
+    font-size: 80px;
+    border-radius: 50%;
+    width: 40%;
+    background-color: white;
+}
+
+.container-sm {
+    width: 30%;
+}
+
+input {
+    background: transparent;
+    border-radius: 25px;
+    color: black;
+    padding: 5%;
+    border: 1px solid white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-animation: autofill 0s forwards;
+    animation: autofill 0s forwards;
+}
+
+@keyframes autofill {
+    100% {
+        background: transparent;
+        color: inherit;
+    }
+}
+
+.prepend {
+    background-color: transparent;
+}
+
+::placeholder {
+    color: rgb(5, 5, 5);
+}
+
+button {
+    border-radius: 18px;
+    background: #093637;
+    width: 100%;
+    border: #093637;
+}
+
+button[disabled] {
+    border-radius: 18px;
+    background-color: #032020;
+    width: 100%;
+}
+
+.card {
+    background: #44A08D;
+    background: -webkit-linear-gradient(to bottom, #093637, #44A08D);
+    background: linear-gradient(to bottom, #093637, #44A08D);
+}
+
+a {
+    color: black;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: auto;
+}
+
+.help-block {
+    color: white;
+}
+
+@media screen and (max-width: 992px) {
+    .container-sm {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+}

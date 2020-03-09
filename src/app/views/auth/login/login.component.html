@@ -1,0 +1,40 @@
+<div class="container-sm mx-auto m-4">
+    <div class="card col">
+        <div class="card-body">
+            <div class="row mx-auto m-3 d-flex justify-content-center" id="userProfile">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h3>Sign In</h3>
+                </div>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                    </div>
+                    <input class="form-control" id="userNameId" type="text" formControlName="username" placeholder="Username">
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i></span>
+                    </div>
+                    <input class="form-control" id="passwordId" type="password" formControlName="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Sign In</button>
+            </form>
+            <br>
+            <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
+                Invalid User Credentials !!!<br>{{errorMessage}} </div>
+            <hr>
+            <!-- <a routerLink="/forgotPassword" id="forgotPasswordID" data-toggle="modal" data-target="#exampleModal">Forgot Password &nbsp;<i class="fa fa-question"></i></a> -->
+
+            <app-forgot-password></app-forgot-password>
+            <br>
+            <a routerLink="/register" id="registerID">Create an account&nbsp;<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</div>

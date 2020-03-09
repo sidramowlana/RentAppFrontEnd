@@ -1,0 +1,109 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfile">Update User Profile</button>
+
+<!-- Modal -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfilemodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h1 class="modal-title" id="editProfilemodal">User Profile</h1>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="updateProfileForm" (ngSubmit)="onUpdateProfile()">
+
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="nameID">Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                                </div>
+                                <input class="form-control" id="nameID" type="text" formControlName="name">
+                            </div>
+                            <span *ngIf="!updateProfileForm.get('name').valid && updateProfileForm.get('name').touched" class="help-block">Please enter your Name</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="nicID">NIC</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                                </div>
+                                <input class="form-control" id="nicID" type="text" formControlName="nic">
+                            </div>
+                            <span *ngIf="!updateProfileForm.get('nic').valid && updateProfileForm.get('nic').touched" class="help-block">Please
+                                enter your NIC</span>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-row">
+                        <div class="col form-group">
+                            <label for="mobileNoID">Mobile Number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                                </div>
+                                <input class="form-control" id="mobileNoID" type="text" formControlName="mobileNo">
+                            </div>
+                            <span *ngIf="!updateProfileForm.get('mobileNo').valid && updateProfileForm.get('mobileNo').touched" class="help-block">Please enter your Mobile Number</span>
+                        </div>
+                    </div> -->
+
+
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="emailID">Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input class="form-control" id="emailID" type="email" formControlName="email">
+                                <span *ngIf="!updateProfileForm.get('email').valid && updateProfileForm.get('email').touched" class="help-block">Please enter your Email</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="drivingLicenceNoId">Driving Licence No</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-car"></i></span>
+                                </div>
+                                <input class="form-control" id="drivingLicenceNoId" type="email" formControlName="drivingLicenceNo">
+                            </div>
+                            <span *ngIf="!updateProfileForm.get('drivingLicenceNo').valid && updateProfileForm.get('drivingLicenceNo').touched" class="help-block">Please enter your Email</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="usernameID">UserName</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                                </div>
+                                <input class="form-control" id="usernameID" type="text" formControlName="username">
+                            </div>
+                            <span *ngIf="!updateProfileForm.get('username').valid && updateProfileForm.get('username').touched" class="help-block">Please enter a valid User Name</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!updateProfileForm.valid">Update
+                    Profile</button>
+                <hr>
+                <!-- <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isSubmitted">
+                    Invalid User Credentials !!!<br>{{errorMessage}} </div> -->
+            </div>
+        </div>
+    </div>
+</div>

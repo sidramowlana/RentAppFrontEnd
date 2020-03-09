@@ -1,0 +1,104 @@
+<div class="container-sm mx-auto m-4">
+    <div class="card col">
+        <div class="card-body">
+            <div class="row">
+                <div class="col mx-auto m-3">
+                    <i class="fa fa-car" aria-hidden="true" id="fontCar"></i>
+                </div>
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h2 class="font-weight-bold"> Sign Up</h2>
+                </div>
+            </div>
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input class="form-control" id="nameId" type="text" formControlName="name" placeholder="Name">
+                        </div>
+                        <span *ngIf="!registerForm.get('name').valid && registerForm.get('name').touched" class="help-block">Please enter your Name</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-id-card-o"></i></span>
+                            </div>
+                            <input class="form-control" id="nicId" type="text" formControlName="nic" placeholder="NIC">
+                        </div>
+
+                        <span *ngIf="!registerForm.get('nic').valid && registerForm.get('nic').touched" class="help-block">Please enter your NIC</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i>@</i></span>
+                            </div>
+                            <input class="form-control" id="emailId" type="email" formControlName="email" placeholder="Email">
+                        </div>
+                        <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched" class="help-block">Please enter your Email</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-car"></i></span>
+                            </div>
+                            <input class="form-control" id="drivingLicenceNoId" type="text" formControlName="drivingLicenceNo" placeholder="Driving Licence No">
+                        </div>
+                        <span *ngIf="!registerForm.get('drivingLicenceNo').valid && registerForm.get('drivingLicenceNo').touched" class="help-block">Please enter your User name</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+                            </div>
+                            <input class="form-control" id="userNameId" type="text" formControlName="username" placeholder="Username">
+                        </div>
+                        <span *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched" class="help-block">Please enter your User name</span>
+                    </div>
+                </div>
+
+                <div class="form-row" formGroupName="passwords">
+                    <div class="col-md-12 form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i></span>
+                            </div>
+                            <input class="form-control" id="passwordId" type="password" formControlName="password" placeholder="Password">
+                        </div> <span *ngIf="!registerForm.get('passwords.password').valid && 
+                            registerForm.get('passwords.password').touched" class="help-block">Please enter valid Password</span>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <div class="input-group">
+                            <input class="form-control" id="reEnterPasswordID" type="password" formControlName="reEnterPassword" placeholder="Re-enter Password">
+                            <span *ngIf="!registerForm.get('passwords.reEnterPassword').valid && 
+                                 registerForm.get('passwords.reEnterPassword').touched" class="help-block">Please enter valid Password
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <span *ngIf="checkPassword(registerForm.get('passwords')) &&  registerForm.get('passwords.reEnterPassword').touched">Password Missmatching</span><br>
+                <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Sign Up</button>
+            </form>
+            <br>
+            <div id="fail" class="alert alert-danger" role="alert" *ngIf="isFailed">
+                Registration failed!<br/>{{ errorMessage }} </div>
+            <hr>
+            <a routerLink="/login" id="loginLink">Sign In  &nbsp; 
+               <i class="fa fa-sign-in"></i>
+               </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <!-- <nav class="navbar navbar-expand-lg navbar-custom"> -->
+    <a routerLink="/home" style="cursor:pointer" class="navbar-brand">Bangers</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/home"> Home </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>
+                <a class="nav-link" routerLink="/tournament"> Rent Vehicle</a>
+            </li>
+            <!-- Only for admins -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"> Admin Panel </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/vehicle/vehicles">Vehciles</a>
+                    <a class="dropdown-item" routerLink="/vehicle/types">Vehicle Type</a>
+                    <a class="dropdown-item" routerLink="/vehicle/equipments">Equipments</a>
+                </div>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/history"> History </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" class="nav-link" routerLink="/contactUs"> Contact Us </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" class="nav-link" routerLink="/aboutUs"> About Us </a>
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav justify-content-end">
+            <li class="nav-item dropdown dropleft">
+                <a style="cursor: pointer" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
+                    <span class="fa fa-bars"></span> </a>
+                <div class="dropdown-menu">
+                    <ng-template [ngIf]="!authService.loggedIn()">
+                        <a class="dropdown-item" routerLink="/login">Login</a>
+                        <a class="dropdown-item" routerLink="/register">Register</a>
+                    </ng-template>
+                    <ng-template [ngIf]="authService.loggedIn()">
+                        <a class="dropdown-item" routerLink="/profile">Profile</a>
+                        <a class="dropdown-item" routerLink="/" style="cursor: pointer" (click)="onLogout()">Logout</a>
+                    </ng-template>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+
+
+
+
+<!--
+      *************** User***************
+    Rent Vehicle
+    History
+    Profile
+    About Us
+    Contact Us
+    
+      *************** Admin***************
+      
+    Vehicle(uNDER VEHICLE TAB)
+      Equipments
+      Vehicle Type
+     -->
