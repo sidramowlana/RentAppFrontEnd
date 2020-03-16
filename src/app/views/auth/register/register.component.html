@@ -39,6 +39,18 @@
                     <div class="col form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-id-card-o"></i></span>
+                            </div>
+                            <input class="form-control" id="dobId" type="text" formControlName="dob" placeholder="DOB">
+                        </div>
+
+                        <span *ngIf="!registerForm.get('dob').valid && registerForm.get('dob').touched" class="help-block">Please enter your DOB</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text"> <i>@</i></span>
                             </div>
                             <input class="form-control" id="emailId" type="email" formControlName="email" placeholder="Email">
@@ -50,11 +62,22 @@
                     <div class="col form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
+                                <span class="input-group-text"> <i>@</i></span>
+                            </div>
+                            <input class="form-control" id="mobileNoId" type="text" formControlName="mobileNo" placeholder="Mobile No">
+                        </div>
+                        <span *ngIf="!registerForm.get('mobileNo').valid && registerForm.get('mobileNo').touched" class="help-block">Please enter your Contact Number</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-car"></i></span>
                             </div>
-                            <input class="form-control" id="drivingLicenceNoId" type="text" formControlName="drivingLicenceNo" placeholder="Driving Licence No">
+                            <input class="form-control" id="drivingLicenceId" type="text" formControlName="drivingLicence" placeholder="Driving Licence No">
                         </div>
-                        <span *ngIf="!registerForm.get('drivingLicenceNo').valid && registerForm.get('drivingLicenceNo').touched" class="help-block">Please enter your User name</span>
+                        <span *ngIf="!registerForm.get('drivingLicence').valid && registerForm.get('drivingLicence').touched" class="help-block">Please enter your User name</span>
                     </div>
                 </div>
 

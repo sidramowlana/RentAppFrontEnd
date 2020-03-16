@@ -1,0 +1,43 @@
+<div class="container mx-auto m-4">
+    <div class="card col">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h3>Equipments</h3>
+                </div>
+                <button class="btn btn-danger" (click)="onClose()" style="float:right">X</button>
+            </div>
+            <form [formGroup]="equipmentForm" (ngSubmit)="onAddEquipment()">
+
+                <div class="form-group">
+                    <label for="equipmentNameId">Equipment Name</label>
+                    <input id="equipmentNameId" class="form-control" type="text" formControlName="equipmentName">
+                </div>
+                <div class="form-group">
+                    <label for="amountId">Amount</label>
+                    <input class="form-control" id="amountId" type="text" formControlName="amount">
+
+                </div>
+                <div class="form-group">
+                    <label for="imageURLId">Image URL</label>
+                    <input id="imageURLId" class="form-control" type="text" formControlName="imageUrl" #imageUrl>
+
+                </div>
+                <div class="form-group">
+                    <img [src]="imageUrl.value" class="img-thumbnail">
+                </div>
+                <div class="form-group">
+                    <label for="descriptionId">Description</label>
+                    <textarea id="descriptionId" class="form-control" type="text" rows="6" formControlName="description"></textarea>
+                </div>
+                <div class="container">
+                    <button type="submit" class="btn btn-primary" [disabled]="!equipmentForm.valid" *ngIf="!editMode">Add Equipment</button>
+                    <button type="button" class="btn btn-primary" [disabled]="!equipmentForm.valid" *ngIf="editMode" (click)="onUpdateEquipment()">Update Equipment</button>
+                    <button type="button" class="btn btn-danger" (click)="onClearForm()">Clear</button>
+                </div>
+            </form>
+            <br>
+            <!-- <div class="alert alert-danger" role="alert" *ngIf="isError"><br>{{message}} </div> -->
+        </div>
+    </div>
+</div>

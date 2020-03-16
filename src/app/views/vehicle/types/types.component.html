@@ -1,0 +1,42 @@
+<!-- <div class="row">
+    <div class="col">
+        <app-form></app-form>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col">
+        <app-table></app-table>
+    </div>
+</div> -->
+
+
+<div class="container-sm mx-auto m-4">
+    <div class="card col">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h3>Vehicle Type</h3>
+                </div>
+            </div>
+            <form [formGroup]="vehicleTypeForm" (ngSubmit)="onAddVehicleType()">
+                <div class="form-group">
+                    <input class="form-control" id="nameId" type="text" formControlName="name" placeholder="Vehicle Type">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="amountId" type="text" formControlName="amount" placeholder="Amount">
+                </div>
+                <div class="container">
+                    <button type="submit" class="btn btn-primary" [disabled]="!vehicleTypeForm.valid" *ngIf="!edit">Add
+                        Vehicle Type</button>
+                    <button type="button" class="btn btn-primary" [disabled]="!vehicleTypeForm.valid" *ngIf="edit" (click)="onUpdateVehicleType()">Update Vehicle Type</button>
+                    <button type="button" class="btn btn-danger" (click)="onClearForm()">Clear</button>
+                </div>
+            </form>
+            <br>
+            <div class="alert alert-danger" role="alert" *ngIf="isError"><br>{{errorMessage}} </div>
+        </div>
+    </div>
+</div>
+<hr>
+<app-table></app-table>

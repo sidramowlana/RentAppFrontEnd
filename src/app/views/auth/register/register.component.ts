@@ -27,8 +27,10 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       'name': new FormControl(null, Validators.required),
       'nic': new FormControl(null, Validators.required),
+      'dob': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'drivingLicenceNo': new FormControl(null, Validators.required),
+      'mobileNo': new FormControl(null, Validators.required),
+      'drivingLicence': new FormControl(null, Validators.required),
       'username': new FormControl(null, Validators.required),
       'passwords': new FormGroup({
         'password': new FormControl(null, Validators.required),
@@ -38,6 +40,7 @@ export class RegisterComponent implements OnInit {
   }
   onRegister() {
     this.authenticationService.onRegisterService(this.registerForm).subscribe(data=>{
+      console.log(data);
       this.isSubmitted = true;
       this.isFailed = true;      
       this.router.navigate(['/login'], {relativeTo:this.activatedRoute});
@@ -56,5 +59,4 @@ export class RegisterComponent implements OnInit {
     const { value: confirmPassword } = formGroup.get('reEnterPassword');
     return password === confirmPassword ? null : { passwordNotMatch: true };
   }
-
 }

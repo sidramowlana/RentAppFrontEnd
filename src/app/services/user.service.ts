@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
+const AUTH_API = 'http://localhost:8080/api/users/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,7 +22,12 @@ export class UserService {
         private tokenStorageService: TokenStorageService,
         private activatedRoute: ActivatedRoute) { }
 
-        onSendEmail(personalEmail){
-            return this.http.post('//localhost:8080/api/auth/forgot', personalEmail);
+        onSendEmailService(personalEmail){
+            return this.http.post(AUTH_API+"forgotPassword", personalEmail);
+        }
+
+        onResetPasswordService(newPassword){
+          this.userNameToken = this.activatedRoute.snapshot.queryParams['token'];
+          return this.http.put<String>(AUTH_API+"updatePassword/" + this.userNameToken, newPassword);
         }
 }

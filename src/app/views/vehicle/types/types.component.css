@@ -1,0 +1,21 @@
+.container-sm {
+    width: 50%;
+}
+
+button {
+    width: 50%;
+}
+
+.container {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 992px) {
+    .container-sm {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+}

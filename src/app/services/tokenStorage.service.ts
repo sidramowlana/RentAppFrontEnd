@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpHeaders } from "@angular/common/http";
 
 
 const TOKEN_KEY = "auth_token";

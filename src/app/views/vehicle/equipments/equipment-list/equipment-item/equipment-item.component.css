@@ -1,0 +1,15 @@
+/* img {
+    width: 20%;
+} */
+
+.row {
+    width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+    .row {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+}

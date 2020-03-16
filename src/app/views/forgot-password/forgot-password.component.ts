@@ -24,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSendEmail(){
-    this.userService.onSendEmail(this.forgotPasswordForm.value.email)
+    this.userService.onSendEmailService(this.forgotPasswordForm.value.email)
     .subscribe(data=>{
       console.log(data);  
       this.isSubmitted = true;

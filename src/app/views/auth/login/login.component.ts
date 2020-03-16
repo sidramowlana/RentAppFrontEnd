@@ -36,9 +36,9 @@ this.authenticationService.onLoginService(this.loginForm).subscribe(data=>{
   this.tokenStorageService.saveUser(data);
   this.isLoginFailed = false;
       this.isLoggedIn = true; 
-        this.router.navigateByUrl('/login', { skipLocationChange: false }).then(() => {   
+        // this.router.navigateByUrl('/login', { skipLocationChange: false }).then(() => {   
     this.router.navigate(['/home']);
-  });
+  // });
 },
   err => {
     console.log(err);

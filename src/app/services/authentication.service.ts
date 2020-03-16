@@ -6,9 +6,8 @@ import { Observable } from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
-
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
 @Injectable()
@@ -18,10 +17,7 @@ export class AuthenticationService {
     isLoggedIn = false;
     roles;
 
-    constructor(private http: HttpClient,
-        private tokenStorageService: TokenStorageService,
-        private router: Router,
-        private activatedRoute: ActivatedRoute) { }
+    constructor(private http: HttpClient, private tokenStorageService: TokenStorageService, private router: Router, private activatedRoute: ActivatedRoute) { }
     
       onLoginService(credentials): Observable<any> {
         return this.http.post(AUTH_API + "login", {
@@ -30,15 +26,17 @@ export class AuthenticationService {
         },
           httpOptions);
       }
-
+     
       onRegisterService(user): Observable<any> {
         return this.http.post(AUTH_API + "register", {
-          name: user.value.fName,
-          nic: user.value.lName,
-          email: user.value.nic,
-          licenceNo: user.value.mobileNo,        
-          username: user.value.username,
-          password: user.value.passwords.password
+          name: user.value.name,
+          nic: user.value.nic,
+          dob: user.value.dob,
+          email: user.value.email,        
+          mobileNo: user.value.mobileNo,
+          drivingLicence: user.value.drivingLicence,
+          username : user.value.username,
+          password : user.value.passwords.password
         }, httpOptions);
       }
     
@@ -46,11 +44,15 @@ export class AuthenticationService {
         const token = this.tokenStorageService.getToken();
         return !this.helper.isTokenExpired(token);
       }
+
       isAuthenticated() {
         if (this.loggedIn()) {
           const user = this.tokenStorageService.getUser();
+          console.log(user);
           this.roles = user.roles;
-          if ((user.roles).includes("ROLE_OWNER")) {
+          console.log("the roles is: "+this.roles);
+          if (this.roles === "ROLE_ADMIN") {
+            console.log("yes admin");
             this.isRoleAdmin = true;
             return this.isRoleAdmin;
           }

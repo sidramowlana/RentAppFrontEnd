@@ -1,0 +1,14 @@
+<a class="row" style="cursor: pointer" class="list-group-item clearfix" [routerLink]="[index]" routerLinkActive="active">
+    <div class="col-md-10 pull-left">
+        <!-- <h1>{{index}}</h1> -->
+        <h2 class="list-group-item-heading">{{equipmentElement.equipmentName}}</h2>
+        <h4 class="list-group-item-heading">{{equipmentElement.amount}}</h4>
+        <p class="list-group-item-text">{{equipmentElement.description}}</p>
+    </div>
+    <span class="col-md-2 pull-right">
+            <img                     
+                [src]="equipmentElement.imageUrl"
+                alt="{{equipmentElement.equipmentName}}" 
+                class="img-thumbnail">
+        </span>
+</a>

@@ -1,0 +1,16 @@
+/* #list {
+    width: 100%;
+    justify-content: center
+} */
+
+.container-sm {
+    width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+    .container-sm {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+}
