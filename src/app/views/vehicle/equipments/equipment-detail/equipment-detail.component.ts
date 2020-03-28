@@ -42,7 +42,7 @@ export class EquipmentDetailComponent implements OnInit {
   }
 
   onUpdateEquipment(){
-    this.router.navigate(['edit'],{relativeTo:this.activatedRoute});
+    this.router.navigate(['editEquipment'],{relativeTo:this.activatedRoute});
   }
 
   onDeleteEquipment(id) {

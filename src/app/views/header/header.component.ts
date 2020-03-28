@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/tokenStorage.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,15 +10,22 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  id;
   constructor(private authService: AuthenticationService,
-    private tokenStorage: TokenStorageService, private router: Router) { }
+    private tokenStorageService: TokenStorageService, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    const user = this.tokenStorageService.getUser();
+    this.id = user.id;
   }
   onLogout() {
 
-    this.tokenStorage.signOut();
+    this.tokenStorageService.signOut();
     this.router.navigate(['/']);
     // window.location.reload();
+  }
+  onProfile() {
+    this.router.navigate(['profile/' + this.id], { relativeTo: this.activatedRoute });
   }
 }

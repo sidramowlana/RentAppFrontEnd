@@ -42,7 +42,7 @@
                         <a class="dropdown-item" routerLink="/register">Register</a>
                     </ng-template>
                     <ng-template [ngIf]="authService.loggedIn()">
-                        <a class="dropdown-item" routerLink="/profile">Profile</a>
+                        <a class="dropdown-item" (click)="onProfile()">Profile</a>
                         <a class="dropdown-item" style="cursor: pointer" (click)="onLogout()">Logout</a>
                     </ng-template>
                 </div>

@@ -1,0 +1,84 @@
+<div class="modal-body">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="container">
+                    <img [src]="vehicleimageUrl" alt="{{vehicleName}}" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{name}}</h5>
+                    <p class="card-text">Plate No: {{vehicleplateNo}}</p>
+                    <p class="card-text">Price per rent: {{price}}</p>
+                    <p class="card-text">Quantity: {{vehicleQuantity}}</p>
+                    <p class="card-text">Description: {{vehicleDescription}}</p>
+                    <p class="card-text">Vehicle Type: {{vehicleTypeName}}</p>
+                    <p class="card-text">Image Url: {{vehicleimageUrl}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateVehicle">Edit Vehicle</button>
+    <hr>
+</div>
+
+
+
+
+<div class="modal fade" id="updateVehicle" tabindex="-1" role="dialog" aria-labelledby="updateVehiclemodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h1 class="modal-title" id="updateVehiclemodal">Update Vehicle</h1>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="vehicleUpdateForm" (ngSubmit)="onUpdateVehicle()">
+                    <div class="form-group">
+                        <label for="vehicleNameId">Vehicle Name</label>
+                        <input id="vehicleNameId" class="form-control" type="text" formControlName="vehicleName">
+                    </div>
+                    <div class="form-group">
+                        <label for="plateNoId">Plate No</label>
+                        <input id="plateNoId" class="form-control" type="text" formControlName="plateNo">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityId">Quantity</label>
+                        <input id="quantityId" class="form-control" type="number" formControlName="quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicleTypeId">Vehicle Type</label>
+                        <select id="vehicleTypeId" class="form-control" formControlName="vehicleType">
+                            <option *ngFor="let type of vehicleTypeList" value="{{type.name}}">{{type.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageURLId">Image URL</label>
+                        <input id="imageURLId" class="form-control" type="text" formControlName="imageUrl" #imageUrl>
+                    </div>
+                    <div class="form-group">
+                        <img [src]="imageUrl.value" class="img-thumbnail">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionId">Description</label>
+                        <textarea id="descriptionId" class="form-control" type="text" formControlName="description"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">Close</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="!vehicleUpdateForm.valid" (click)="onUpdateVehicle">Update Vehicle</button>
+                        <hr>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

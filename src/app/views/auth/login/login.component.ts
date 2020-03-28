@@ -39,6 +39,7 @@ this.authenticationService.onLoginService(this.loginForm).subscribe(data=>{
         // this.router.navigateByUrl('/login', { skipLocationChange: false }).then(() => {   
     this.router.navigate(['/home']);
   // });
+  console.log(data);
 },
   err => {
     console.log(err);

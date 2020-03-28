@@ -19,7 +19,6 @@ import { TypesComponent } from './views/vehicle/types/types.component';
 import { VehicleTypeService } from './services/vehicleType.service';
 import { HomeComponent } from './views/home/home.component';
 import { AuthGuardService } from './services/authgaurd.service';
-import { RentComponent } from './views/rent/rent.component';
 import { EquipmentsComponent } from './views/vehicle/equipments/equipments.component';
 import { TableComponent } from './views/vehicle/types/table/table.component';
 import { EquipmentFormComponent } from './views/vehicle/equipments/equipment-form/equipment-form.component';
@@ -28,6 +27,13 @@ import { EquipmentItemComponent } from './views/vehicle/equipments/equipment-lis
 import { EquipmentService } from './services/equipment.service';
 import { EquipmentDetailComponent } from './views/vehicle/equipments/equipment-detail/equipment-detail.component';
 import { StartEmptyComponent } from './views/vehicle/equipments/start-empty/start-empty.component';
+import { CustomerRentComponent } from './views/customer-rent/customer-rent.component';
+import { VehicleFormComponent } from './views/vehicle/vehicles/vehicle-form/vehicle-form.component';
+import { VehicleService } from './services/vehicle.service';
+import { VehicleListComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-list.component';
+import { VehicleItemComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-item/vehicle-item.component';
+import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-details/vehicle-details.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -42,15 +48,21 @@ import { StartEmptyComponent } from './views/vehicle/equipments/start-empty/star
     VehiclesComponent,
     TypesComponent,
     HomeComponent,
-    RentComponent,
     TableComponent,
     EquipmentsComponent,
     EquipmentFormComponent,
     EquipmentListComponent,
     EquipmentItemComponent,
     EquipmentDetailComponent,
-    StartEmptyComponent
+    StartEmptyComponent,
+    CustomerRentComponent,
+    VehicleFormComponent,
+    VehicleListComponent,
+    VehicleItemComponent,
+    VehicleDetailsComponent,
+    ResetPasswordComponent
   ],
+  
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -58,7 +70,13 @@ import { StartEmptyComponent } from './views/vehicle/equipments/start-empty/star
     FormsModule,
     AppRoutingModule  
   ],
-  providers: [AuthenticationService,TokenStorageService,UserService,VehicleTypeService,AuthGuardService,EquipmentService],
+  providers: [AuthenticationService,
+    TokenStorageService,
+    UserService,
+    VehicleTypeService,
+    AuthGuardService,
+    EquipmentService,
+    VehicleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

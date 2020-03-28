@@ -23,9 +23,7 @@ export class TypesComponent implements OnInit {
 
   private initForm() {
     this.vehicleTypeForm = new FormGroup({
-      'name': new FormControl(null, Validators.required),
-      'amount': new FormControl(null, Validators.required)
-    });
+      'name': new FormControl(null, Validators.required)    });
   }
   
   ngOnInit() {
@@ -38,9 +36,8 @@ export class TypesComponent implements OnInit {
       this.edit = true;
       this.id = updateList.vehicleTypeId;
       this.vehicleTypeForm.setValue({
-        name: updateList.name,
-        amount: updateList.amount
-      });
+        name: updateList.name
+            });
     });
   }
 
@@ -85,9 +82,8 @@ export class TypesComponent implements OnInit {
       this.edit = true;
       this.id = data.vehicleTypeId;
       this.vehicleTypeForm.setValue({
-        name: data.name,
-        amount: data.amount
-      });
+        name: data.name
+            });
     });
   }
 

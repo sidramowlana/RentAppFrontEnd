@@ -1,15 +1,15 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfile">Update User Profile</button>
+<!-- <button type="button" class="btn btn-primary" [routerLink]=[index]>Update User Profile</button> -->
 
 <!-- Modal -->
-<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfilemodal" aria-hidden="true">
+<div>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col mx-auto m-3 d-flex justify-content-center">
                     <h1 class="modal-title" id="editProfilemodal">User Profile</h1>
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
 
-                    <!-- <div class="form-row">
+                    <div class="form-row">
                         <div class="col form-group">
                             <label for="mobileNoID">Mobile Number</label>
                             <div class="input-group">
@@ -54,7 +54,7 @@
                             </div>
                             <span *ngIf="!updateProfileForm.get('mobileNo').valid && updateProfileForm.get('mobileNo').touched" class="help-block">Please enter your Mobile Number</span>
                         </div>
-                    </div> -->
+                    </div>
 
 
                     <div class="form-row">
@@ -71,14 +71,14 @@
                     </div>
                     <div class="form-row">
                         <div class="col form-group">
-                            <label for="drivingLicenceNoId">Driving Licence No</label>
+                            <label for="drivingLicenceId">Driving Licence No</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-car"></i></span>
                                 </div>
-                                <input class="form-control" id="drivingLicenceNoId" type="email" formControlName="drivingLicenceNo">
+                                <input class="form-control" id="drivingLicenceId" type="email" formControlName="drivingLicence">
                             </div>
-                            <span *ngIf="!updateProfileForm.get('drivingLicenceNo').valid && updateProfileForm.get('drivingLicenceNo').touched" class="help-block">Please enter your Email</span>
+                            <span *ngIf="!updateProfileForm.get('drivingLicence').valid && updateProfileForm.get('drivingLicence').touched" class="help-block">Please enter your Email</span>
                         </div>
                     </div>
 
@@ -94,16 +94,17 @@
                             <span *ngIf="!updateProfileForm.get('username').valid && updateProfileForm.get('username').touched" class="help-block">Please enter a valid User Name</span>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">Close</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="!updateProfileForm.valid">Update
+                            Profile</button>
+                        <hr>
+                        <!-- <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isSubmitted">
+                            Invalid User Credentials !!!<br>{{errorMessage}} </div> -->
+                    </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" [disabled]="!updateProfileForm.valid">Update
-                    Profile</button>
-                <hr>
-                <!-- <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isSubmitted">
-                    Invalid User Credentials !!!<br>{{errorMessage}} </div> -->
-            </div>
+
         </div>
     </div>
 </div>

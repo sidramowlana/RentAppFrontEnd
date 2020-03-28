@@ -29,6 +29,7 @@ export class EquipmentFormComponent implements OnInit {
         this.editMode = params['id'] != null;
         this.initForm();
       });       
+      
   }
 
   private initForm() {
@@ -52,34 +53,20 @@ export class EquipmentFormComponent implements OnInit {
 
   onAddEquipment() {
     this.equipmentService.onAddEquipmentService(this.equipmentForm).subscribe(data => {
-      console.log("This is the added data: " + data);
       this.isError = false;
-      this.message = "Successfully Added";
-      
+      this.message = "Successfully Added";      
       this.equipmentService.onGetAllEquipmentService().subscribe(data => {
         this.list = data;
         this.equipmentService.equipmentChange.next(this.list);
       });
-      this.equipmentForm.reset(); this.onClose();
+      this.equipmentForm.reset(); 
+      this.onClose();
     },
       err => {
         this.message = err.error.message;
         this.isError = true;
       });
   }
-  //   console.log("work");
-  //   this.equipmentService.onAddEquipmentService(this.equipmentForm).subscribe(data => {
-  //     this.message = "Successfully Added";     
-  //     this.equipmentService.onGetAllEquipmentService().subscribe(data => {
-  //       this.list = data;
-  //       this.equipmentService.equipmentChange.next(this.list);
-  //     });
-  //   },
-  //     err => {
-  //       this.message = err.error.message;
-  //     });
-  //   this.equipmentForm.reset();
-  // }
 
   onUpdateEquipment() {
     console.log("work");
@@ -89,8 +76,12 @@ export class EquipmentFormComponent implements OnInit {
         this.list = data;
         this.equipmentService.equipmentChange.next(this.list);
       });
+    },
+    err=>{
+      this.message = err.error.message;
     });
     this.equipmentForm.reset();
+    this.onClose();
   }
 
   onClose() {

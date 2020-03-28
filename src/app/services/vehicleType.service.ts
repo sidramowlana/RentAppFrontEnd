@@ -42,9 +42,8 @@ export class VehicleTypeService {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     // console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
     return this.http.post(ADMIN_API + "createVehicleType", {
-      name: vehicleTypeForm.value.name,
-      amount: vehicleTypeForm.value.amount
-    }, localHttpOptions);
+      name: vehicleTypeForm.value.name
+        }, localHttpOptions);
   }
 
   onGetAllVehicleTypes(): Observable<any>{
@@ -56,8 +55,6 @@ export class VehicleTypeService {
   {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     return this.http.put(ADMIN_API + "update/"+id, {
-      teamTypeName: vehicleTypeForm.value.teamTypeName,
-      amount: vehicleTypeForm.value.amount
-  },localHttpOptions);
+      teamTypeName: vehicleTypeForm.value.teamTypeName  },localHttpOptions);
 }
 }

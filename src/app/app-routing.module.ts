@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './views/auth/login/login.component';
@@ -10,11 +11,14 @@ import { TypesComponent } from './views/vehicle/types/types.component';
 import { VehiclesComponent } from './views/vehicle/vehicles/vehicles.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthGuardService } from './services/authgaurd.service';
-import { RentComponent } from './views/rent/rent.component';
 import { EquipmentsComponent } from './views/vehicle/equipments/equipments.component';
 import { EquipmentFormComponent } from './views/vehicle/equipments/equipment-form/equipment-form.component';
 import { EquipmentDetailComponent } from './views/vehicle/equipments/equipment-detail/equipment-detail.component';
 import { StartEmptyComponent } from './views/vehicle/equipments/start-empty/start-empty.component';
+import { CustomerRentComponent } from './views/customer-rent/customer-rent.component';
+import { VehicleFormComponent } from './views/vehicle/vehicles/vehicle-form/vehicle-form.component';
+import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-details/vehicle-details.component';
+import { VehicleListComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-list.component';
 
 const appRoutes: Routes =
     [
@@ -23,29 +27,42 @@ const appRoutes: Routes =
         { path: 'register', component: RegisterComponent },
         { path: 'login', component: LoginComponent },
         { path: 'forgotPassword', component: ForgotPasswordComponent },
+
+        { path: 'vehicle', redirectTo: 'vehicle/vehicles', pathMatch: 'full' },
         {
-            path: 'vehicle', component: VehicleComponent,
-            children: [
-                { path: 'vehicles', component: VehiclesComponent },
-                { path: 'types', component: TypesComponent },
-                {
-                    path: 'equipments', component: EquipmentsComponent,
-                    children: [
-                        { path: 'new', component: EquipmentFormComponent },
-                        { path: ':id', component: EquipmentDetailComponent },
-                        { path: ':id/edit', component: EquipmentFormComponent },
-                        { path: '', component: StartEmptyComponent }
-                    ]
-                }
-            ]
+            path: 'vehicle', component: VehiclesComponent, children:
+                [
+                    {
+                        path: 'vehicles', component: VehicleComponent, children:
+                            [
+                                {path: 'new', component: VehicleComponent},
+                                { path: '', component: VehicleListComponent },
+                                { path: ':id', component: VehicleDetailsComponent },
+                                { path: ':id/editVehicle', component: VehicleDetailsComponent },
+                            ]
+                    },
+                    { path: 'types', component: TypesComponent },
+
+                    {
+                        path: 'equipments', component: EquipmentsComponent, children:
+                            [
+                                { path: 'newEquipment', component: EquipmentFormComponent },
+                                { path: ':id', component: EquipmentDetailComponent },
+                                { path: ':id/editEquipment', component: EquipmentFormComponent },
+                                { path: '', component: StartEmptyComponent }
+                            ]
+                    }
+                ]
         },
-        {
+        // { path: 'profile', redirectTo: ':id', pathMatch: 'full' },
+        {            
             path: 'profile', component: ProfileComponent, children: [
-                { path: 'editProfile', component: EditProfileComponent }
+                { path: ':id', component: ProfileComponent },
+                // { path: ':id', component: EditProfileComponent }
             ]
         },
-        { path: 'rent', component: RentComponent },
-        { path: '**', redirectTo: '/login' }
+        { path: 'rent', component: CustomerRentComponent },
+        { path: '**', redirectTo: '/' }
     ];
 
 @NgModule({

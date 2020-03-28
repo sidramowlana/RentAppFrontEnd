@@ -29,6 +29,6 @@ export class EquipmentListComponent implements OnInit {
   }
 
   onEquipmentForm() {
-    this.router.navigate(['new'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['newEquipment'], { relativeTo: this.activatedRoute });
   }
 }
