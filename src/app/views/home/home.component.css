@@ -1,0 +1,9 @@
+#searchBar {
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.row {
+    width: 100%;
+}

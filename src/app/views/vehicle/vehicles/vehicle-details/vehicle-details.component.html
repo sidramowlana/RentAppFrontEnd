@@ -21,8 +21,18 @@
     </div>
 
     <br>
-    <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
-    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateVehicle">Edit Vehicle</button>
+    <div class="row">
+        <div class="col-md-10">
+            <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateVehicle">Edit Vehicle</button>
+
+        </div>
+        <!-- <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" id="prevId" (click)="onPrev()">Prev</button>
+            <button type="submit" class="btn btn-primary" id="nextId" (click)="onNext()">Next</button>
+            *ngIf="authService.isAuthenticated
+        </div> -->
+    </div>
     <hr>
 </div>
 

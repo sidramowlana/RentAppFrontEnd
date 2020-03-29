@@ -1,0 +1,25 @@
+.card {
+    box-shadow: 5px 5px 10px rgb(53, 52, 52);
+}
+
+.card-body {
+    background: rgb(216, 235, 231);
+}
+
+.container {
+    width: 100%;
+    height: 230px;
+    display: inline-block;
+    border: 2px solid #ccc;
+}
+
+.container img {
+    width: 100%;
+    display: block;
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    object-fit: contain;
+}

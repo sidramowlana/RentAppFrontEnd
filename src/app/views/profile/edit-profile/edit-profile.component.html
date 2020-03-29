@@ -99,9 +99,9 @@
                         <button type="submit" class="btn btn-primary" [disabled]="!updateProfileForm.valid">Update
                             Profile</button>
                         <hr>
-                        <!-- <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isSubmitted">
-                            Invalid User Credentials !!!<br>{{errorMessage}} </div> -->
                     </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="isError"><br>{{message}} </div>
+                    <div class="alert alert-success" role="alert" *ngIf="isSubmitted===true"><br>{{message}} </div>
                 </form>
             </div>
 

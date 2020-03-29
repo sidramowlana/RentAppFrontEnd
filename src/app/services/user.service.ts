@@ -2,8 +2,9 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { TokenStorageService } from "./tokenStorage.service";
 import { Router, ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { User } from "../models/user.model";
 
 const AUTH_API = 'http://localhost:8080/api/users/';
 
@@ -23,8 +24,7 @@ const getHttpOptions = (token: String) => {
 export class UserService {
   users;
   userId;
-  userNameToken;
-  // userChanged = new Subject<User[]>();
+  userChanged = new Subject<User>();
 
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService,
@@ -35,15 +35,28 @@ export class UserService {
   }
 
   onResetPasswordService(newPassword) {
-    this.userNameToken = this.activatedRoute.snapshot.queryParams['token'];
-    return this.http.put<String>(AUTH_API + "updatePassword/" + this.userNameToken, newPassword);
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+   const userNameToken = this.tokenStorageService.getUser();
+    console.log(userNameToken.token);
+    return this.http.put<String>(AUTH_API + "updatePassword/" + userNameToken.token, newPassword,localHttpOptions);
   }
   onGetUserById(id) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     return this.http.get<any>(AUTH_API + "all/" + id, localHttpOptions);
   }
-  onUpdateProfileById(id){
+  onUpdateProfileById(updateProfileForm,id){
+    console.log(id);
+    console.log(updateProfileForm);
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    return this.http.get<any>(AUTH_API + "all/" + id, localHttpOptions);
+    return this.http.put<any>(AUTH_API + "updateUser/" + id,  {
+      name: updateProfileForm.value.name,
+      nic: updateProfileForm.value.nic,
+      dob: updateProfileForm.value.dob,
+      email: updateProfileForm.value.email,        
+      mobileNo: updateProfileForm.value.mobileNo,
+      drivingLicence: updateProfileForm.value.drivingLicence,
+      username : updateProfileForm.value.username
+        }, localHttpOptions);
   }
 }
+// /updateUser/{userId}"

@@ -47,13 +47,29 @@ export class ProfileComponent implements OnInit {
         this.username = data.username;
       });
     }
-  }
+    this.userService.userChanged.subscribe(id=>{
+      this.userService.onGetUserById(id).subscribe((data: User) => {
+        console.log(data);
+        this.name = data.name;
+        this.nic = data.nic;
+        this.dob = data.dob;
+        this.email = data.email;
+        this.mobileNo = data.mobileNo;
+        this.drivingLicence = data.drivingLicence;
+        this.username = data.username;
+      });
+  });
+}
 
   onForgot() {
     this.router.navigate(['forgotPassword'], { relativeTo: this.activatedRoute });
 
   }
   onEdit(){
-    // this.router.navigate([this.id],{relativeTo:this.activatedRoute});
+    this.router.navigate(['edit'],{relativeTo:this.activatedRoute});
   }
+
+  // onResetPassword(){
+  //   this.router.navigate(['reset-password'],{relativeTo:this.activatedRoute});
+  // }
 }

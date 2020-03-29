@@ -33,7 +33,11 @@ import { VehicleService } from './services/vehicle.service';
 import { VehicleListComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-list.component';
 import { VehicleItemComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-item/vehicle-item.component';
 import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-details/vehicle-details.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordComponent } from './views/profile/reset-password/reset-password.component';
+import { CustVehicleListComponent } from './views/home/cust-vehicle-list/cust-vehicle-list.component';
+import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
+import { CustomerComponent } from './customer/customer.component';
+
 
 @NgModule({
   declarations: [
@@ -60,16 +64,19 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     VehicleListComponent,
     VehicleItemComponent,
     VehicleDetailsComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    CustVehicleListComponent,
+    CustVehicleDetailsComponent,
+    CustomerComponent
   ],
-  
+
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule  
-  ],
+    AppRoutingModule
+    ],
   providers: [AuthenticationService,
     TokenStorageService,
     UserService,

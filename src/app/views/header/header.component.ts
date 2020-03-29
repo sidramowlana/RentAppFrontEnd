@@ -26,6 +26,6 @@ export class HeaderComponent implements OnInit {
     // window.location.reload();
   }
   onProfile() {
-    this.router.navigate(['profile/' + this.id], { relativeTo: this.activatedRoute });
+    this.router.navigate(['profile/', this.id], { relativeTo: this.activatedRoute });
   }
 }

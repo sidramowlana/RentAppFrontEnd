@@ -19,11 +19,17 @@ import { CustomerRentComponent } from './views/customer-rent/customer-rent.compo
 import { VehicleFormComponent } from './views/vehicle/vehicles/vehicle-form/vehicle-form.component';
 import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-details/vehicle-details.component';
 import { VehicleListComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-list.component';
+import { ResetPasswordComponent } from './views/profile/reset-password/reset-password.component';
+import { CustVehicleListComponent } from './views/home/cust-vehicle-list/cust-vehicle-list.component';
+import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
 
 const appRoutes: Routes =
     [
         { path: '', redirectTo: '/home', pathMatch: 'full' },
-        { path: 'home', component: HomeComponent },
+        { path: 'home', component: HomeComponent, children:[
+            {path:'',component:CustVehicleListComponent},
+            {path:':id',component:CustVehicleDetailsComponent}
+        ] },
         { path: 'register', component: RegisterComponent },
         { path: 'login', component: LoginComponent },
         { path: 'forgotPassword', component: ForgotPasswordComponent },
@@ -54,13 +60,16 @@ const appRoutes: Routes =
                     }
                 ]
         },
-        // { path: 'profile', redirectTo: ':id', pathMatch: 'full' },
-        {            
-            path: 'profile', component: ProfileComponent, children: [
-                { path: ':id', component: ProfileComponent },
-                // { path: ':id', component: EditProfileComponent }
-            ]
-        },
+        { path: 'profile/:id',  component:ProfileComponent,children:[
+            {path:'edit',component:EditProfileComponent},
+            {path:'reset-password',component:ResetPasswordComponent}
+        ]},
+        // {            
+        //     path: 'profile', component: ProfileComponent, children: [
+        //         { path: ':id', component: ProfileComponent },
+        //         // { path: ':id', component: EditProfileComponent }
+        //     ]
+        // },
         { path: 'rent', component: CustomerRentComponent },
         { path: '**', redirectTo: '/' }
     ];

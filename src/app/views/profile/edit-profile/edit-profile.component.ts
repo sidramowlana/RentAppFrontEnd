@@ -11,12 +11,14 @@ import { TokenStorageService } from 'src/app/services/tokenStorage.service';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
   updateProfileForm: FormGroup;
-  isSubmitted=false;
+  isSubmitted = false;
+  isError = false;
   message;
-id;
+  id;
   editMode = false;
-  @Input() index:number;
+  @Input() index: number;
 
   name;
   nic;
@@ -29,24 +31,24 @@ id;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userService:UserService,
-    private tokenStorageService:TokenStorageService) { }
+    private userService: UserService,
+    private tokenStorageService: TokenStorageService) { }
 
-  ngOnInit() {   
+  ngOnInit() {
     const user = this.tokenStorageService.getUser();
     this.id = user.id;
-      this.userService.onGetUserById(this.id).subscribe(data => {
-        console.log(data)
-        this.updateProfileForm.setValue({
-          name:data.name,
-          nic: data.nic,
-          dob: data.dob,
-          email: data.email,
-          mobileNo: data.mobileNo,
-          drivingLicence: data.drivingLicence,
-          username: data.username
-        });
+    this.userService.onGetUserById(this.id).subscribe(data => {
+      console.log(data)
+      this.updateProfileForm.setValue({
+        name: data.name,
+        nic: data.nic,
+        dob: data.dob,
+        email: data.email,
+        mobileNo: data.mobileNo,
+        drivingLicence: data.drivingLicence,
+        username: data.username
       });
+    });
     this.updateProfileForm = new FormGroup({
       'name': new FormControl(null, Validators.required),
       'nic': new FormControl(null, Validators.required),
@@ -57,14 +59,24 @@ id;
       'username': new FormControl(null, Validators.required),
     });
   }
-  onUpdateProfile(){
+  onUpdateProfile() {
     console.log("working");
-    this.userService.onUpdateProfileById(this.id).subscribe(data=>{
-      console.log(data)
-
-    });
+    this.userService.onUpdateProfileById(this.updateProfileForm, this.id).subscribe(data => {
+      console.log(data);
+      this.isSubmitted = true;
+      this.isError = false;
+      this.message = "Successfully Updated";
+      this.userService.userChanged.next(this.id);
+    },
+      err => {
+        this.isSubmitted = false;
+        this.isError = true;
+        this.message = "Could not update"
+      });
   }
-onClose(){
-  this.router.navigate(['./'],{relativeTo:this.activatedRoute});
-}
+  onClose() {
+    this.isSubmitted = false;
+    this.isError = false;
+    this.router.navigate(['./'], { relativeTo: this.activatedRoute });
+  }
 }

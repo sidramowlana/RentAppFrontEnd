@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { VehicleTypeService } from 'src/app/services/vehicleType.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -32,7 +33,8 @@ export class VehicleDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private vehicleService: VehicleService,
     private vehicleTypeService: VehicleTypeService,
-    private router: Router) { }
+    private router: Router,
+    private authService:AuthenticationService) { }
 
   ngOnInit() {
     this.vehicleTypeService.onGetAllVehicleTypes().subscribe(data1 => {
@@ -107,7 +109,6 @@ export class VehicleDetailsComponent implements OnInit {
         }
       });
     });
-    console.log("working");
   }
   onClose() {
     this.router.navigate(['./'], { relativeTo: this.activatedRoute });
