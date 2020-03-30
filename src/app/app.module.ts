@@ -39,7 +39,8 @@ import { CustVehicleListComponent } from './views/home/cust-vehicle-list/cust-ve
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
 import { CustomerComponent } from './customer/customer.component';
 import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,10 @@ import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    NoopAnimationsModule
     ],
   providers: [AuthenticationService,
     TokenStorageService,

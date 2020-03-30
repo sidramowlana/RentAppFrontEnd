@@ -1,2 +1,7 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<!-- <app-header></app-header>
+<router-outlet></router-outlet> -->
+
+
+<input [owlDateTime]="dt2" placeholder="Date Time">
+<span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>
+<owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>

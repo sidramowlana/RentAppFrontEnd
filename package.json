@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^9.1.0",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
     "@angular/core": "^6.1.0",
@@ -23,7 +24,7 @@
     "@ng-select/ng-select": "^2.20.5",
     "core-js": "^2.5.4",
     "loglevel": "^1.6.7",
-    "ng-pick-datetime": "^5.2.6",
+    "ng-pick-datetime": "^6.0.0",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
