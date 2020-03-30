@@ -52,17 +52,24 @@
                     <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
                     <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Next</button>
                 </div>
-                <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
 
             </div>
 
-            <!-- <div class="carousel-item ">
-                <div class="col-md-2 " style="float:right ">
-                    <button type="submit " class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
-                    <button type="submit " class="btn btn-success " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Submit</button>
+            <div class="carousel-item" style="border: 1px #ede9e9 solid;">
+                <div class="row mx-auto m-3 justify-content-center" id="userProfile">
+                    <div class="col-md-7 " style="padding:2%;height: 60vh; ">
+                        <h2>Select any equipment you want</h2>
+                        <hr>
+                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindLabel="equipmentName" bindValue="equipmentName" [virtualScroll]="true" [multiple]="true" placeholder=" select ">
+                        </ng-select>
+                    </div>
                 </div>
-            </div> -->
+                <div class="col-md-2 " style="float:right ">
+                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
 
+            </div>
         </div>
     </div>
 

@@ -36,7 +36,7 @@ const appRoutes: Routes =
 
         { path: 'vehicle', redirectTo: 'vehicle/vehicles', pathMatch: 'full' },
         {
-            path: 'vehicle', component: VehiclesComponent, children:
+            path: 'vehicle', component: VehiclesComponent, canActivate:[AuthGuardService],children:
                 [
                     {
                         path: 'vehicles', component: VehicleComponent, children:

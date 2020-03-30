@@ -13,7 +13,7 @@
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>
                 <a class="nav-link" routerLink="/rent"> Rent Vehicle</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"> Admin Panel </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" routerLink="/vehicle/vehicles">Vehciles</a>

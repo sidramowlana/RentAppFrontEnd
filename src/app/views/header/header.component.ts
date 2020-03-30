@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.authService.isAuthenticated());
     const user = this.tokenStorageService.getUser();
     this.id = user.id;
   }

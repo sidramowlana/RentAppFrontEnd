@@ -51,7 +51,7 @@ export class AuthenticationService {
     if (this.loggedIn() === true) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-      if ((user.roles).includes("ROLE_ADMIN")) {
+      if (this.roles.includes("ROLE_ADMIN")) {
         this.isRoleAdmin = true;
         return this.isRoleAdmin;
       }
