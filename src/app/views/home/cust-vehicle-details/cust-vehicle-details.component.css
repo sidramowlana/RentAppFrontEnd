@@ -1,3 +1,7 @@
 #nextId {
     margin: 2%;
 }
+
+.carousel-item {
+    border: 1px #ede9e9 solid;
+}

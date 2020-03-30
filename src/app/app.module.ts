@@ -70,7 +70,7 @@ import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
     CustVehicleListComponent,
     CustVehicleDetailsComponent,
     CustomerComponent,
-    FilterVehiclePipe 
+    FilterVehiclePipe,
   ],
 
   imports: [

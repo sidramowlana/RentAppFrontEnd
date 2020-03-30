@@ -7,6 +7,7 @@ import { VehicleTypeService } from 'src/app/services/vehicleType.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { NgOption } from '@ng-select/ng-select';
+import { Equipment } from 'src/app/models/equipment.model';
 
 @Component({
   selector: 'app-cust-vehicle-details',
@@ -30,8 +31,6 @@ export class CustVehicleDetailsComponent implements OnInit {
   vehicleTypeList;
   vehicleList;
   equipmentList;
-  
-  selectedEquipments:NgOption=[];
   rentForm:FormGroup;
 
   constructor(
