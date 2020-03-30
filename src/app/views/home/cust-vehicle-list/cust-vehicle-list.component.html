@@ -14,7 +14,7 @@
 <br><br>
 <div class="row">
     <div class="container-sm">
-        <app-vehicle-item class="vehicleItem" *ngFor="let item of vehicleList | filter:searchText" [vehicleElement]="item" [index]="item.vehicleId">
+        <app-vehicle-item class="vehicleItem" *ngFor="let item of vehicleList | filterVehicle:searchText" [vehicleElement]="item" [index]="item.vehicleId">
         </app-vehicle-item>
     </div>
 </div>

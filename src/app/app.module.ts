@@ -38,7 +38,7 @@ import { ResetPasswordComponent } from './views/profile/reset-password/reset-pas
 import { CustVehicleListComponent } from './views/home/cust-vehicle-list/cust-vehicle-list.component';
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
 import { CustomerComponent } from './customer/customer.component';
-import { FilterPipe } from './pipes/filter.pipe';
+import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
 
 
 @NgModule({
@@ -70,7 +70,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     CustVehicleListComponent,
     CustVehicleDetailsComponent,
     CustomerComponent,
-    FilterPipe 
+    FilterVehiclePipe 
   ],
 
   imports: [
