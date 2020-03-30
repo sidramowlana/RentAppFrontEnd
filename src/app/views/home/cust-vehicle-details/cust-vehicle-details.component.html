@@ -1,63 +1,69 @@
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="modal-body">
-                <div class="card">
+<form [formGroup]="rentForm" (ngSubmit)="onSubmit()">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="container">
+                                    <img [src]="vehicleimageUrl" alt="{{vehicleName}}" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Name: {{name}}</h5>
+                                    <p class="card-text">Plate No: {{vehicleplateNo}}</p>
+                                    <p class="card-text">Price per rent: {{price}}</p>
+                                    <p class="card-text">Quantity: {{vehicleQuantity}}</p>
+                                    <p class="card-text">Description: {{vehicleDescription}}</p>
+                                    <p class="card-text">Vehicle Type: {{vehicleTypeName}}</p>
+                                    <p class="card-text">Image Url: {{vehicleimageUrl}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
                     <div class="row">
-                        <div class="col-md-7">
-                            <div class="container">
-                                <img [src]="vehicleimageUrl" alt="{{vehicleName}}" class="img-fluid">
-                            </div>
+                        <div class="col-md-10">
+                            <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
                         </div>
-                        <div class="col-md-5">
-                            <div class="card-body">
-                                <h5 class="card-title">Name: {{name}}</h5>
-                                <p class="card-text">Plate No: {{vehicleplateNo}}</p>
-                                <p class="card-text">Price per rent: {{price}}</p>
-                                <p class="card-text">Quantity: {{vehicleQuantity}}</p>
-                                <p class="card-text">Description: {{vehicleDescription}}</p>
-                                <p class="card-text">Vehicle Type: {{vehicleTypeName}}</p>
-                                <p class="card-text">Image Url: {{vehicleimageUrl}}</p>
-                            </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
+                            <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="nextId" data-slide="next" (click)="onNext()">Next</button>
+
                         </div>
                     </div>
-                </div>
-
-                <br>
-                <div class="row">
-                    <div class="col-md-10">
-                        <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
-                        <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="nextId" data-slide="next" (click)="onNext()">Next</button>
-
-                    </div>
-                </div>
-                <hr>
-            </div>
-        </div>
-        <div class="carousel-item" style="border: 1px #ede9e9 solid;">
-            <div class=" row ">
-                <div class="col-md-7 " style="padding:5% ">
-                    <!-- <h2>Select any equipment you want</h2>
-                    <hr> -->
-                    <!-- <div class="container " style="height:50vh "> -->
-                    <select class="selectpicker form-control" multiple data-live-search="true">
-                            <option *ngFor="let item of equipmentList ">{{item.equipmentName}}</option>
-                        </select>
-                    <!-- </div> -->
-
+                    <hr>
                 </div>
             </div>
-            <!-- <div class="col-md-2 " style="float:right ">
-                <button type="submit " class="btn btn-primary " href="#carouselExampleControls " id="prevId " data-slide="prev " (click)="onPrev() ">Prev</button>
-                <button type="submit " class="btn btn-primary " href="#carouselExampleControls " id="nextId " data-slide="next " (click)="onNext() ">Next</button>
 
+            <div class="carousel-item active" style="border: 1px #ede9e9 solid;">
+                <div class="row mx-auto m-3 justify-content-center" id="userProfile">
+                    <div class="col-md-7 " style="padding:2%;height: 60vh; ">
+                        <h2>Select any equipment you want</h2>
+                        <hr>
+                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindLabel="equipmentName" bindValue="equipmentName" [virtualScroll]="true" [multiple]="true" placeholder=" select ">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-2 " style="float:right ">
+                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
+                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Next</button>
+                </div>
+                <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+
+            </div>
+
+            <!-- <div class="carousel-item ">
+                <div class="col-md-2 " style="float:right ">
+                    <button type="submit " class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
+                    <button type="submit " class="btn btn-success " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Submit</button>
+                </div>
             </div> -->
-        </div>
-        <div class="carousel-item ">
-            <img class="d-block w-100 " src="... " alt="Third slide ">
+
         </div>
     </div>
-</div>
+
+</form>

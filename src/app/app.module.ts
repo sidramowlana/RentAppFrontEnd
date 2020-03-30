@@ -1,3 +1,4 @@
+import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +38,7 @@ import { ResetPasswordComponent } from './views/profile/reset-password/reset-pas
 import { CustVehicleListComponent } from './views/home/cust-vehicle-list/cust-vehicle-list.component';
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
 import { CustomerComponent } from './customer/customer.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -67,10 +69,12 @@ import { CustomerComponent } from './customer/customer.component';
     ResetPasswordComponent,
     CustVehicleListComponent,
     CustVehicleDetailsComponent,
-    CustomerComponent
+    CustomerComponent,
+    FilterPipe 
   ],
 
   imports: [
+    NgSelectModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,

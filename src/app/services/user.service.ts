@@ -3,8 +3,8 @@ import { Injectable } from "@angular/core";
 import { TokenStorageService } from "./tokenStorage.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Observable, Subject } from "rxjs";
-import { JwtHelperService } from "@auth0/angular-jwt";
 import { User } from "../models/user.model";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 const AUTH_API = 'http://localhost:8080/api/users/';
 
@@ -59,4 +59,3 @@ export class UserService {
         }, localHttpOptions);
   }
 }
-// /updateUser/{userId}"

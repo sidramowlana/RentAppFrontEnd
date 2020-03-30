@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -5,6 +6,7 @@ import { VehicleService } from 'src/app/services/vehicle.service';
 import { VehicleTypeService } from 'src/app/services/vehicleType.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { EquipmentService } from 'src/app/services/equipment.service';
+import { NgOption } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-cust-vehicle-details',
@@ -27,6 +29,10 @@ export class CustVehicleDetailsComponent implements OnInit {
   vehicleTypeName: String;
   vehicleTypeList;
   vehicleList;
+  equipmentList;
+  
+  selectedEquipments:NgOption=[];
+  rentForm:FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,13 +41,11 @@ export class CustVehicleDetailsComponent implements OnInit {
     private equipmentService: EquipmentService,
     private router: Router,
     private authService: AuthenticationService) { }
-  equipmentList;
-  length:number;
+
   ngOnInit() {
+    this.initForm();
     this.equipmentService.onGetAllEquipmentService().subscribe(data => {
-      console.log(data);
       this.equipmentList = data;
-      this.length = this.equipmentList.length;
     });
 
     this.activatedRoute.params.subscribe(
@@ -61,6 +65,13 @@ export class CustVehicleDetailsComponent implements OnInit {
       }
     );
   }
+
+  initForm(){
+    // this.rentForm = new FormGroup({new FormControl)
+    this.rentForm = new FormGroup({
+      'selectedEquipments': new FormControl(null, Validators.required) 
+       });
+  }
   onClose() {
     this.router.navigate(['./'], { relativeTo: this.activatedRoute });
   }
@@ -72,5 +83,8 @@ export class CustVehicleDetailsComponent implements OnInit {
   }
   onNext() {
     console.log("nexting");
+  }
+  onSubmit(){
+    console.log(this.rentForm);
   }
 }
