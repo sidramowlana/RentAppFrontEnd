@@ -5,3 +5,26 @@
 .carousel-item {
     border: 1px #ede9e9 solid;
 }
+
+.rowID {
+    width: 100%;
+}
+
+.dateFromID,
+.dateToID {
+    width: 50%;
+}
+
+@media screen and (max-width: 992px) {
+    .rowID {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .dateFromID,
+    .dateToID {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+}

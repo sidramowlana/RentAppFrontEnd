@@ -26,10 +26,10 @@
 
                     <br>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-8">
                             <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
                             <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="nextId" data-slide="next" (click)="onNext()">Next</button>
 
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="carousel-item active" style="border: 1px #ede9e9 solid;">
+            <div class="carousel-item" style="border: 1px #ede9e9 solid;">
                 <div class="row mx-auto m-3 justify-content-center">
                     <div class="col-md-7 " style="padding:2%;height: 50vh; ">
                         <h2>Select any equipment you want</h2>
@@ -48,27 +48,62 @@
                         </ng-select>
                     </div>
                 </div>
-                <div class="col-md-2 " style="float:right;margin-bottom: 2%; ">
+                <div class="col-md-4" style="float:right;margin-bottom: 2%; ">
                     <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
                     <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Next</button>
                 </div>
 
             </div>
 
-            <div class="carousel-item" style="border: 1px #ede9e9 solid;">
-                <div class="row mx-auto m-3 justify-content-center">
-                    <div class="col-md-6 " style="padding:2%;height: 60vh; ">
-                        <h2>Select any equipment you want</h2>
-                        <hr>
-                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindLabel="equipmentName" bindValue="equipmentName" [virtualScroll]="true" [multiple]="true" placeholder=" select ">
-                        </ng-select>
+            <div class="carousel-item active" style="border: 1px #ede9e9 solid;">
+                <div class="form-row mx-auto m-3 d-flex justify-content-center rowID">
+                    <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
+                        <span [owlDateTimeTrigger]="dtRange1"><i class="fa fa-calendar">&nbsp;</i></span>
+                        <input class="dateFromID" formControlName="dateFrom" placeholder="From:" [min]="todayDate" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1">
+                        <owl-date-time [pickerMode]="'dialog'" #dtRange1></owl-date-time>
+                    </div>
+                    <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
+                        <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar">&nbsp;</i></span>
+                        <input class="dateToID" formControlName="dateTo" placeholder="To" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="todayDate">
+                        <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
                     </div>
                 </div>
-                <div class="col-md-2 " style="float:right;margin-bottom: 2%; ">
-                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                <div class="form-row mx-auto m-3 d-flex justify-content-center ">
+                    <div class="col-md-9 form-group mx-auto m-3 d-flex justify-content-center">
+                        <input formControlName="file" id="file" type="file" multiple (change)="onFileChange($event)">
+
+                    </div>
+                </div>
+                <div class="form-row mx-auto m-3 d-flex justify-content-center ">
+                    <div class="col-md-9 form-group mx-auto m-3 d-flex justify-content-center">
+                        <div class="container-sm" style="display: flex;">
+                            <a *ngFor='let url of images;let i = index' style="padding: 4%;">
+                                <div class="row">
+                                    <div class="col-md-12" style="margin:0;padding:0">
+                                        <button type="button" class="btn btn-danger" (click)="onRemove(i)">Remove</button>
+                                    </div>
+                                    <div class="col-md-12" style="margin:0;padding:0">
+                                        <img [src]="url" class="ol-md-12 img-thumbnail" style="margin:0;padding:0;position: absolute;">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+
+                        <div class="form-group">
+                            <input id="file" type="file" multiple (change)="onFileChange($event)">
+                        </div>
+
+                    </div> -->
                 </div>
 
+                <div class="col-md-4" style="float:right;margin-bottom: 2%; ">
+                    <button type="submit " class="btn btn-primary " href="#carouselExampleControls " id="prevId " data-slide="prev " (click)="onPrev() ">Prev</button>
+                    <!-- <button type="submit " class="btn btn-success ">Submit</button> -->
+                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Next</button>
+
+                </div>
             </div>
         </div>
     </div>
