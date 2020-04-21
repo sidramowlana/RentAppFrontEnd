@@ -1,0 +1,31 @@
+<div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h1 class="modal-title" id="extendRentmodal">Extend Rent</h1>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="extendRentFrom" (ngSubmit)="onExtend()">
+                    <label for="rentTimeId">Customer Can extend till the next day 4 PM</label>
+
+                    <!-- <div class="form-row mx-auto m-3 d-flex justify-content-center rowID">
+                        <div class="col-md-6 d-flex justify-content-center"> -->
+                    <!-- <owl-date-time-inline formControlName="rentTime"></owl-date-time-inline> -->
+                    <!-- </div>
+                    </div> -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Extend</button>
+                        <hr>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

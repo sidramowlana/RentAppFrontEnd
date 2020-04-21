@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
                         <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar">&nbsp;</i></span>
-                        <input class="dateToID" formControlName="dateTo" placeholder="To" [disabled]="rentForm.value.dateFrom == null ? true:false" [min]="rentForm.value.dateFrom" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="todayDate">
+                        <input class="dateToID" formControlName="dateTo" placeholder="To" [min]="rentForm.value.dateFrom" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="todayDate">
                         <owl-date-time [disabled]="rentForm.value.dateFrom == null ? true:false" [pickerMode]="'dialog'" #dt2></owl-date-time>
                     </div>
                 </div>
@@ -104,7 +104,6 @@
                 <div class="col-md-4" style="float:right;margin-bottom: 2%;">
                     <button type="submit " class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()" style="background-color: #3f9c90;border:1px solid #3f9c90">Prev</button>
                     <button type="submit " class="btn btn-success">Submit</button>
-                    <!-- <button type="submit" class="btn btn-primary " href="#carouselExampleControls " data-slide="next" (click)="onNext()">Next</button> -->
                 </div>
 
             </div>

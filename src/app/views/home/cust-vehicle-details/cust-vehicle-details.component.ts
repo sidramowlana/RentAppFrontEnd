@@ -79,8 +79,8 @@ export class CustVehicleDetailsComponent implements OnInit {
       'drivingLicenceImagefile': new FormControl(null, Validators.required),
       'utilityBillImagefile': new FormControl(null, Validators.required)
     });
-  }
-
+   }
+   
   onClose() {
     this.router.navigate(['./'], { relativeTo: this.activatedRoute });
   }

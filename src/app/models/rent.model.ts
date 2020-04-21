@@ -1,6 +1,7 @@
 import { User } from "./user.model";
 import { Equipment } from "./equipment.model";
 import { Vehicle } from "./vehicle.model";
+import { vehicleRentEquipment } from "./vehicleRentEquipment.model";
 
 export class Rent{
     public id: number
@@ -11,13 +12,15 @@ export class Rent{
     public user:User;
     public equipment:Equipment[];
     public vehicle:Vehicle;
+    public vehicleRentEquipement:vehicleRentEquipment;
 
-    constructor(dateTimeFrom:Date, dateTimeTo:Date, currentDate:Date, user:User,equipment:Equipment[], vehicle:Vehicle){
+    constructor(dateTimeFrom:Date, dateTimeTo:Date, currentDate:Date, user:User,equipment:Equipment[], vehicle:Vehicle,vehicleRentEquipement:vehicleRentEquipment){
         this.dateTimeFrom = dateTimeFrom,
         this.dateTimeTo = dateTimeTo,
         this.currentDate = currentDate,
         this.user = user,
         this.equipment = equipment,
-        this.vehicle = vehicle
+        this.vehicle = vehicle,
+        this.vehicleRentEquipement = vehicleRentEquipement
     }
 }

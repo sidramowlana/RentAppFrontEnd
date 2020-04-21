@@ -40,8 +40,9 @@ import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/c
 import { CustomerComponent } from './customer/customer.component';
 import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RentService } from './services/rent.service';
+import { ExtendRentFormComponent } from './views/customer-rent/extend-rent-form/extend-rent-form.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { RentService } from './services/rent.service';
     CustVehicleDetailsComponent,
     CustomerComponent,
     FilterVehiclePipe,
+    ExtendRentFormComponent,
   ],
 
   imports: [
@@ -84,7 +86,7 @@ import { RentService } from './services/rent.service';
     AppRoutingModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    NoopAnimationsModule
+    BrowserAnimationsModule
   ],
   providers: [AuthenticationService,
     TokenStorageService,

@@ -1,0 +1,17 @@
+.row,
+.col {
+    padding: 0;
+    margin: 0;
+    width: inherit;
+}
+
+@media screen and (max-width: 992px) {
+    .container-sm {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    table {
+        font-size: 10px;
+    }
+}

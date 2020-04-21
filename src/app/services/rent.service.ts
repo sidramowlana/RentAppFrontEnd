@@ -34,12 +34,19 @@ export class RentService {
       utilityBillImagefile: rentFormData.value.utilityBillImagefile
     }, localHttpOptions);
   }
+
   onGetAllRents(){
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     const user = this.tokenStorageService.getUser();
     this.userId = user.id;
+    console.log(this.userId)
     console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
-    return this.http.get(AUTH_API + "all/"+ this.userId);    
+    return this.http.get(AUTH_API + "all/"+ this.userId,localHttpOptions);    
   }
-    
+   
+  onExtendRent(rentId){
+     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());   
+     console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
+    return this.http.put(AUTH_API + "extendRent/"+ rentId,localHttpOptions);    
+  }
 }
