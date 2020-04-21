@@ -1,13 +1,14 @@
 <form [formGroup]="rentForm" (ngSubmit)="onSubmit()">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
         <div class="carousel-inner">
-            <div class="carousel-item">
+            <!-- Vehcile Details -->
+            <div class="carousel-item active">
                 <div class="modal-body">
                     <div class="card">
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="container">
-                                    <img [src]="vehicleimageUrl" alt="{{vehicleName}}" class="img-fluid">
+                                    <img src="{{ vehicleimageUrl }}" alt="{{vehicleName}}" class="img-fluid">
                                 </div>
                             </div>
                             <div class="col-md-5">
@@ -18,63 +19,68 @@
                                     <p class="card-text">Quantity: {{vehicleQuantity}}</p>
                                     <p class="card-text">Description: {{vehicleDescription}}</p>
                                     <p class="card-text">Vehicle Type: {{vehicleTypeName}}</p>
-                                    <p class="card-text">Image Url: {{vehicleimageUrl}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <br>
+                    <hr>
                     <br>
                     <div class="row">
-                        <div class="col-md-8">
+                        <!-- <div class="col-md-8">
+                        </div> -->
+                        <div class="col-md-4 ml-auto mr-3">
                             <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
-                            <button type="submit" class="btn btn-primary" href="#carouselExampleControls" id="nextId" data-slide="next" (click)="onNext()">Next</button>
-
+                            <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" (click)="onNext()" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
                         </div>
                     </div>
-                    <hr>
                 </div>
             </div>
 
+            <!-- VehicleAddons Selecting -->
             <div class="carousel-item" style="border: 1px #ede9e9 solid;">
                 <div class="row mx-auto m-3 justify-content-center">
                     <div class="col-md-7 " style="padding:2%;height: 50vh; ">
                         <h2>Select any equipment you want</h2>
                         <hr>
-                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindLabel="equipmentName" bindValue="equipmentName" [multiple]="true" placeholder=" select ">
+                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindLabel="equipmentName" bindValue="equipmentId" [multiple]="true" placeholder=" select ">
                         </ng-select>
                     </div>
                 </div>
-                <div class="col-md-4" style="float:right;margin-bottom: 2%; ">
-                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="prevId" data-slide="prev" (click)="onPrev()">Prev</button>
-                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Next</button>
+                <br>
+                <hr>
+
+                <br>
+                <div class="col-md-4" style="float:right;margin-bottom: 2%;">
+                    <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()" style="background-color: #3f9c90;border:1px solid #3f9c90">Prev</button>
+                    <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" (click)="onNext()" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
                 </div>
 
             </div>
 
-            <div class="carousel-item active" style="border: 1px #ede9e9 solid;">
+            <!-- Time and choose file -->
+            <div class="carousel-item" style="border: 1px #ede9e9 solid;">
                 <div class="form-row mx-auto m-3 d-flex justify-content-center rowID">
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
                         <span [owlDateTimeTrigger]="dtRange1"><i class="fa fa-calendar">&nbsp;</i></span>
-                        <input class="dateFromID" formControlName="dateFrom" placeholder="From:" [min]="todayDate" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1">
+                        <input class="dateFromID" formControlName="dateFrom" placeholder="From " [min]="todayDate" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1">
                         <owl-date-time [pickerMode]="'dialog'" #dtRange1></owl-date-time>
                     </div>
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
                         <span [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar">&nbsp;</i></span>
-                        <input class="dateToID" formControlName="dateTo" placeholder="To" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="todayDate">
-                        <owl-date-time [pickerMode]="'dialog'" #dt2></owl-date-time>
+                        <input class="dateToID" formControlName="dateTo" placeholder="To" [disabled]="rentForm.value.dateFrom == null ? true:false" [min]="rentForm.value.dateFrom" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [min]="todayDate">
+                        <owl-date-time [disabled]="rentForm.value.dateFrom == null ? true:false" [pickerMode]="'dialog'" #dt2></owl-date-time>
                     </div>
                 </div>
-                <div class="form-row mx-auto m-3 d-flex justify-content-center ">
-                    <div class="col-md-9 form-group mx-auto m-3 d-flex justify-content-center">
-                        <input formControlName="file" id="file" type="file" multiple (change)="onFileChange($event)">
-
+                <div class="form-row m  x-auto m-3 d-flex justify-content-center">
+                    <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
+                        <input formControlName="drivingLicenceImagefile" id="file1" type="file" multiple (change)="onFileChange($event)">
+                    </div>
+                    <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
+                        <input formControlName="utilityBillImagefile" id="file2" type="file" multiple (change)="onFileChange($event)">
                     </div>
                 </div>
-                <div class="form-row mx-auto m-3 d-flex justify-content-center ">
+                <div class="form-row mx-auto m-3 d-flex justify-content-center">
                     <div class="col-md-9 form-group mx-auto m-3 d-flex justify-content-center">
                         <div class="container-sm" style="display: flex;">
                             <a *ngFor='let url of images;let i = index' style="padding: 4%;">
@@ -89,21 +95,18 @@
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="col-md-3">
+                </div>
+                <br>
+                <br>
+                <hr style="margin-top:5rem">
+                <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="formDisabled===false">{{message}} </div>
 
-                        <div class="form-group">
-                            <input id="file" type="file" multiple (change)="onFileChange($event)">
-                        </div>
-
-                    </div> -->
+                <div class="col-md-4" style="float:right;margin-bottom: 2%;">
+                    <button type="submit " class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()" style="background-color: #3f9c90;border:1px solid #3f9c90">Prev</button>
+                    <button type="submit " class="btn btn-success">Submit</button>
+                    <!-- <button type="submit" class="btn btn-primary " href="#carouselExampleControls " data-slide="next" (click)="onNext()">Next</button> -->
                 </div>
 
-                <div class="col-md-4" style="float:right;margin-bottom: 2%; ">
-                    <button type="submit " class="btn btn-primary " href="#carouselExampleControls " id="prevId " data-slide="prev " (click)="onPrev() ">Prev</button>
-                    <!-- <button type="submit " class="btn btn-success ">Submit</button> -->
-                    <button type="submit" class="btn btn-primary " href="#carouselExampleControls " id="nextId" data-slide="next" (click)="onNext()">Next</button>
-
-                </div>
             </div>
         </div>
     </div>

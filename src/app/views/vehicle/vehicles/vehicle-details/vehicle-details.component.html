@@ -14,7 +14,6 @@
                     <p class="card-text">Quantity: {{vehicleQuantity}}</p>
                     <p class="card-text">Description: {{vehicleDescription}}</p>
                     <p class="card-text">Vehicle Type: {{vehicleTypeName}}</p>
-                    <p class="card-text">Image Url: {{vehicleimageUrl}}</p>
                 </div>
             </div>
         </div>
@@ -25,18 +24,12 @@
         <div class="col-md-10">
             <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#updateVehicle">Edit Vehicle</button>
+            <button type="submit" class="btn btn-danger" (click)="onDeleteVehicle(vehicleId)">Delete Vehicle</button>
 
         </div>
-        <!-- <div class="col-md-2">
-            <button type="submit" class="btn btn-primary" id="prevId" (click)="onPrev()">Prev</button>
-            <button type="submit" class="btn btn-primary" id="nextId" (click)="onNext()">Next</button>
-            *ngIf="authService.isAuthenticated
-        </div> -->
     </div>
     <hr>
 </div>
-
-
 
 
 <div class="modal fade" id="updateVehicle" tabindex="-1" role="dialog" aria-labelledby="updateVehiclemodal" aria-hidden="true">

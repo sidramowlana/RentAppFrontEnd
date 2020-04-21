@@ -49,6 +49,7 @@ export class VehicleDetailsComponent implements OnInit {
 
         console.log("this is id: " + this.id);
         this.vehicleService.onGetVehicleById(this.id).subscribe(data => {        
+         this.vehicleId = data.vehicleId;
           this.name = data.vehicleName;
           this.vehicleplateNo = data.plateNo;
           this.price = data.amount;
@@ -115,5 +116,14 @@ export class VehicleDetailsComponent implements OnInit {
   }
   onCloseDetail(){
     this.router.navigate(['../'],{relativeTo:this.activatedRoute});
+  }
+  onDeleteVehicle(id){
+    this.vehicleService.onDeleteVehicleService(id).subscribe(data=>{
+      this.vehicleService.onGetAllVehicleService().subscribe(data => {
+        this.vehicleList = data;
+            this.vehicleService.vehicleChange.next(this.vehicleList);
+      });this.onCloseDetail();
+    });
+   
   }
 }

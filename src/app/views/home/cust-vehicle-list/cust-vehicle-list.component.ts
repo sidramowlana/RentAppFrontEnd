@@ -13,6 +13,7 @@ export class CustVehicleListComponent implements OnInit {
   ngOnInit() {
     this.vehicleService.onGetAllVehicleService().subscribe(data => {
       this.vehicleList = data;
+      console.log(this.vehicleList);
     });
   }
 }

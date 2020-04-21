@@ -25,7 +25,7 @@ export class TypesComponent implements OnInit {
     this.vehicleTypeForm = new FormGroup({
       'name': new FormControl(null, Validators.required)    });
   }
-  
+
   ngOnInit() {
     this.initForm();
     this.vehicleTypeService.onGetAllVehicleTypes().subscribe(typeList => {

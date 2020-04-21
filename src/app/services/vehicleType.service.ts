@@ -9,15 +9,6 @@ import { VehicleType } from "../models/vehicleType.model";
 
 const ADMIN_API = 'http://localhost:8080/api/vehicleTypes/';
                                         
-const TOKEN = localStorage.getItem('auth_user');
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${TOKEN}`
-  })
-};
-
 const getHttpOptions = (token: String) => {
   return {
     headers: new HttpHeaders({
@@ -37,10 +28,10 @@ export class VehicleTypeService {
     private activatedRoute: ActivatedRoute) {
 
   }
-  
+
   onAddVehicleTypeService(vehicleTypeForm): Observable<any> {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    // console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
+    console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
     return this.http.post(ADMIN_API + "createVehicleType", {
       name: vehicleTypeForm.value.name
         }, localHttpOptions);

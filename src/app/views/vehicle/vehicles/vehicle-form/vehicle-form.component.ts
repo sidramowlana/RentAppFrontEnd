@@ -55,6 +55,7 @@ export class VehicleFormComponent implements OnInit {
 
   onAddVehicle(){
     this.vehicleService.onAddVehicleService(this.vehicleForm).subscribe(data=>{
+      console.log(this.vehicleForm);
       this.vehicleService.onGetAllVehicleService().subscribe(data => {
         this.vehicleList = data;
         this.vehicleService.vehicleChange.next(this.vehicleList);
@@ -62,13 +63,14 @@ export class VehicleFormComponent implements OnInit {
       this.isError = false;
       this.isSubmitted = true;
       this.message = "Successfully Added";
+      this.vehicleForm.reset();
     },
     err=>{
       this.isError = true;
       this.isSubmitted = false;
       this.message = err.error.message;      
     });
-    this.vehicleForm.reset();
+    // this.vehicleForm.reset();
   }
   onClose(){
     this.router.navigate(['./'],{relativeTo:this.activatedRoute});

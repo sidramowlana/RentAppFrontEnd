@@ -40,7 +40,8 @@ import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/c
 import { CustomerComponent } from './customer/customer.component';
 import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RentService } from './services/rent.service';
 
 @NgModule({
   declarations: [
@@ -84,14 +85,15 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     NoopAnimationsModule
-    ],
+  ],
   providers: [AuthenticationService,
     TokenStorageService,
     UserService,
     VehicleTypeService,
     AuthGuardService,
     EquipmentService,
-    VehicleService],
+    VehicleService,
+    RentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

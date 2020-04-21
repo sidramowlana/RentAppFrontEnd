@@ -11,14 +11,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   id;
+  userLoggedIn;
+
   constructor(private authService: AuthenticationService,
     private tokenStorageService: TokenStorageService, private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.authService.isAuthenticated());
+    this.userLoggedIn = !!this.tokenStorageService.getToken(); //checking if the token is not null
+    if (this.userLoggedIn) {
     const user = this.tokenStorageService.getUser();
     this.id = user.id;
+    }
   }
   onLogout() {
 

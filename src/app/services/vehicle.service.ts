@@ -71,8 +71,9 @@ export class VehicleService {
         }, localHttpOptions);
     }
 
-    onDeleteVehicleService(id: number) {
+    onDeleteVehicleService(id) {
         const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
         return this.http.delete(ADMIN_API + "delete/" + id, localHttpOptions);
     }
+   
 }

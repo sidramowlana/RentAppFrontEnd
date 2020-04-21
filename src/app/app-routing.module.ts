@@ -25,7 +25,8 @@ import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/c
 
 const appRoutes: Routes =
     [
-        { path: '', redirectTo: '/home', pathMatch: 'full' },
+        { path: '', redirectTo: '/login', pathMatch: 'full' },
+        { path: 'http://localhost:4200/null', redirectTo: '/login', pathMatch: 'full' },
         { path: 'home', component: HomeComponent, children:[
             {path:'',component:CustVehicleListComponent},
             {path:':id',component:CustVehicleDetailsComponent}
