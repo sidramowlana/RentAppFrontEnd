@@ -1,9 +1,10 @@
-import { HttpHeaders, HttpClient } from "@angular/common/http";import { Injectable } from "@angular/core";import { TokenStorageService } from "./tokenStorage.service";import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
+import { HttpHeaders, HttpClient } from "@angular/common/http"; import { Injectable } from "@angular/core"; import { TokenStorageService } from "./tokenStorage.service"; import { ActivatedRoute } from "@angular/router";
+import { Observable, Subject } from "rxjs";
+import { Rent } from "../models/rent.model";
 
 
 const AUTH_API = 'http://localhost:8080/api/rent/';
-                                        
+
 const getHttpOptions = (token: String) => {
   return {
     headers: new HttpHeaders({
@@ -14,19 +15,21 @@ const getHttpOptions = (token: String) => {
 }
 
 @Injectable()
-export class RentService {  
-  
+export class RentService {
+
   userId;
+  rentTimeChanged = new Subject<Rent>();
+
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService,
     private activatedRoute: ActivatedRoute) {
 
   }
 
-  onCreateRentService(id, rentFormData):Observable<any> {   
+  onCreateRentService(id, rentFormData): Observable<any> {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
-    return this.http.post(AUTH_API + "createRent/"+ id,{
+    return this.http.post(AUTH_API + "createRent/" + id, {
       dateTimeFrom: rentFormData.value.dateFrom,
       dateTimeTo: rentFormData.value.dateTo,
       list: rentFormData.value.selectedEquipments,
@@ -35,18 +38,23 @@ export class RentService {
     }, localHttpOptions);
   }
 
-  onGetAllRents(){
+  onGetAllRents() {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     const user = this.tokenStorageService.getUser();
     this.userId = user.id;
-    console.log(this.userId)
-    console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
-    return this.http.get(AUTH_API + "all/"+ this.userId,localHttpOptions);    
+    console.log('[LOCALHTTPOPTIONS]' + localHttpOptions);
+    return this.http.get(AUTH_API + "all/user/" + this.userId, localHttpOptions);
   }
-   
-  onExtendRent(rentId){
-     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());   
-     console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
-    return this.http.put(AUTH_API + "extendRent/"+ rentId,localHttpOptions);    
+
+  onGetRent(id) {
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    const user = this.tokenStorageService.getUser();
+    console.log('[LOCALHTTPOPTIONS]' + localHttpOptions);
+    return this.http.get(AUTH_API + "all/rent/" + id, localHttpOptions);
   }
+
+  onExtendRentById(id,rentId) {
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+      return this.http.put(AUTH_API + "extendRent/" + id,rentId, localHttpOptions);
+    }
 }

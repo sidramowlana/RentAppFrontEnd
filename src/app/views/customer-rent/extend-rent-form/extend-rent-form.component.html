@@ -1,3 +1,8 @@
+<!-- <button class="btn btn-success" type="button" data-toggle="modal" data-target="#extendRent" [disabled]="(greaterThan(currentDate, rent.dateTimeTo)) ? true : false">
+    <span class="fa fa-clock-o "></span>
+</button>
+
+<div class="modal fade" [rentId]="rent.rentId" id="extendRent"> -->
 <div>
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -10,14 +15,9 @@
               </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="extendRentFrom" (ngSubmit)="onExtend()">
+                <form [formGroup]="extendRentFrom" (ngSubmit)="onExtend(id)">
                     <label for="rentTimeId">Customer Can extend till the next day 4 PM</label>
-
-                    <!-- <div class="form-row mx-auto m-3 d-flex justify-content-center rowID">
-                        <div class="col-md-6 d-flex justify-content-center"> -->
-                    <!-- <owl-date-time-inline formControlName="rentTime"></owl-date-time-inline> -->
-                    <!-- </div>
-                    </div> -->
+                    <p>{{id}}</p>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Extend</button>

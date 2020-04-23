@@ -14,6 +14,7 @@ export class Rent{
     public vehicle:Vehicle;
     public vehicleRentEquipement:vehicleRentEquipment;
 
+
     constructor(dateTimeFrom:Date, dateTimeTo:Date, currentDate:Date, user:User,equipment:Equipment[], vehicle:Vehicle,vehicleRentEquipement:vehicleRentEquipment){
         this.dateTimeFrom = dateTimeFrom,
         this.dateTimeTo = dateTimeTo,

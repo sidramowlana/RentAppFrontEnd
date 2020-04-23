@@ -9,6 +9,7 @@ import { RentService } from 'src/app/services/rent.service';
 })
 export class ExtendRentFormComponent implements OnInit {
   extendRentFrom: FormGroup;
+  id;
   @Input() rentId: number;
   constructor(private rentService:RentService) { }
 
@@ -21,10 +22,11 @@ export class ExtendRentFormComponent implements OnInit {
       'rentTime': new FormControl(null, Validators.required)
     });
   }
-  onExtend() {
-    console.log("extended "+this.rentId);
-    this.rentService.onExtendRent(this.rentId).subscribe(data => {
-      console.log(data);
-    });
+
+  onExtend(rentId) {
+      console.log("the id is: "+rentId);    // this.rentService.onExtendRent(this.rentId).subscribe(data => {
+    //   // console.log("here: "+data);
+    //   // this.rentService.rentTimeChanged.next(this.rentId);
+    // });
   }
 }

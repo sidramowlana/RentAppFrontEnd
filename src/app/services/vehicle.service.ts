@@ -8,14 +8,6 @@ import { VehicleType } from "../models/vehicleType.model";
 
 const ADMIN_API = 'http://localhost:8080/api/vehicles/';
 
-const TOKEN = localStorage.getItem('auth_user');
-
-const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${TOKEN}`
-    })
-};
 
 const getHttpOptions = (token: String) => {
     return {
@@ -50,6 +42,7 @@ export class VehicleService {
 
     onGetAllVehicleService(): Observable<any> {
         const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+        console.log("localHttpOptions: "+localHttpOptions);
         return this.http.get(ADMIN_API + "all", localHttpOptions);
     }
 
