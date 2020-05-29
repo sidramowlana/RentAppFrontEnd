@@ -11,15 +11,15 @@ import { TokenStorageService } from 'src/app/services/tokenStorage.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm:FormGroup;
-  isLoggedIn:boolean=false;
-  isLoginFailed:boolean= false;
+  loginForm: FormGroup;
+  isLoggedIn: boolean = false;
+  isLoginFailed: boolean = false;
 
-  errorMessage:String;
-  constructor(private authenticationService:AuthenticationService,
-    private router:Router,
-    private activatedRoute:ActivatedRoute,
-    private tokenStorageService:TokenStorageService) { }
+  errorMessage: String;
+  constructor(private authenticationService: AuthenticationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
     this.initForm();
@@ -30,21 +30,21 @@ export class LoginComponent implements OnInit {
       'password': new FormControl(null, Validators.required)
     });
   }
-  onLogin(){
-this.authenticationService.onLoginService(this.loginForm).subscribe(data=>{
-  this.tokenStorageService.saveToken(data.token);
-  this.tokenStorageService.saveUser(data);
-  this.isLoginFailed = false;
-      this.isLoggedIn = true; 
-        // this.router.navigateByUrl('/login', { skipLocationChange: false }).then(() => {   
-    this.router.navigate(['/home']);
-  // });
-  console.log(data);
-},
-  err => {
-    console.log(err);
-    this.errorMessage = err.error.message;
-    this.isLoginFailed = true;
-  });
+  onLogin() {
+    this.authenticationService.onLoginService(this.loginForm).subscribe(data => {
+      this.tokenStorageService.saveToken(data.token);
+      this.tokenStorageService.saveUser(data);
+      this.isLoginFailed = false;
+      this.isLoggedIn = true;
+      // this.router.navigateByUrl('/login', { skipLocationChange: false }).then(() => {   
+      this.router.navigate(['/home']);
+      // });
+      console.log(data);
+    },
+      err => {
+        console.log(err);
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      });
   }
 }

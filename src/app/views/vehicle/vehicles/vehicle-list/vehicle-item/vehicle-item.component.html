@@ -6,6 +6,9 @@
         <h5 class="card-title">{{vehicleElement.vehicleName}}</h5>
         <p class="card-text">{{vehicleElement.plateNo}}</p>
         <p class="card-text">{{vehicleElement.vehicleId}}</p>
-        <a [routerLink]="[index]" class="btn btn-primary">Detail</a>
+        <a (click)="onDetails(index)" class="btn btn-primary">Detail</a>
     </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="isLogged===false">
+        <br>{{message}} </div>
 </div>

@@ -1,3 +1,58 @@
 .row {
     width: 100%;
 }
+
+.body {
+    height: 100%;
+    margin-top: 0;
+}
+
+.pimg1 {
+    background-image: url(https://cache.desktopnexus.com/cropped-wallpapers/2508/2508757-1366x768-[DesktopNexus.com].jpg?st=egaPEudgsVnACgt6z86tSw&e=1590763105);
+    min-height: 100%;
+}
+
+
+/* .pimg2 {
+    background-image: url(https://images.pexels.com/photos/4101746/pexels-photo-4101746.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+    min-height: 400px;
+} */
+
+.pimg1 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.section {
+    text-align: center;
+    padding: 50px 80px;
+}
+
+.section-light {
+    background-color: #f4f4f4;
+    color: #666;
+}
+
+.ptext {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 27px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.ptext2 {
+    position: absolute;
+    top: 60%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 27px;
+    font-family: serif, Times, Times New Roman, serif;
+}

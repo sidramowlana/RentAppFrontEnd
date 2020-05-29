@@ -46,8 +46,6 @@ export class AuthenticationService {
   }
 
   isAuthenticated() {
-    // console.log("is logged in: "+this.loggedIn());
-
     if (this.loggedIn() === true) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;

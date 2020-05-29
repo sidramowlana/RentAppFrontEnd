@@ -21,6 +21,7 @@ const getHttpOptions = (token: String) => {
 @Injectable()
 export class VehicleTypeService {
   edit = new Subject<VehicleType>();
+add = new Subject<VehicleType>();
   userToken;
   
   constructor(private http: HttpClient,

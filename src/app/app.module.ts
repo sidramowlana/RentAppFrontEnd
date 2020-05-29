@@ -35,7 +35,6 @@ import { VehicleListComponent } from './views/vehicle/vehicles/vehicle-list/vehi
 import { VehicleItemComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-item/vehicle-item.component';
 import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-details/vehicle-details.component';
 import { ResetPasswordComponent } from './views/profile/reset-password/reset-password.component';
-import { CustVehicleListComponent } from './views/home/cust-vehicle-list/cust-vehicle-list.component';
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
 import { CustomerComponent } from './customer/customer.component';
 import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
@@ -70,7 +69,6 @@ import { ExtendRentFormComponent } from './views/customer-rent/extend-rent-form/
     VehicleItemComponent,
     VehicleDetailsComponent,
     ResetPasswordComponent,
-    CustVehicleListComponent,
     CustVehicleDetailsComponent,
     CustomerComponent,
     FilterVehiclePipe,

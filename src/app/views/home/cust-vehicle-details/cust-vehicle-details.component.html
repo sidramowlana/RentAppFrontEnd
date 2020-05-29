@@ -23,13 +23,11 @@
                             </div>
                         </div>
                     </div>
-                    <br>
                     <hr>
-                    <br>
                     <div class="row">
                         <!-- <div class="col-md-8">
                         </div> -->
-                        <div class="col-md-4 ml-auto mr-3">
+                        <div class="col-md-5 ml-auto">
                             <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
                             <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" (click)="onNext()" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
                         </div>
@@ -41,18 +39,19 @@
             <div class="carousel-item" style="border: 1px #ede9e9 solid;">
                 <div class="row mx-auto m-3 justify-content-center">
                     <div class="col-md-7 " style="padding:2%;height: 50vh; ">
-                        <h2>Select any equipment you want</h2>
                         <hr>
                         <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindLabel="equipmentName" bindValue="equipmentId" [multiple]="true" placeholder=" select ">
                         </ng-select>
+
                     </div>
                 </div>
                 <br>
+                <h2>Select any equipment you want</h2>
                 <hr>
 
                 <br>
                 <div class="col-md-4" style="float:right;margin-bottom: 2%;">
-                    <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()" style="background-color: #3f9c90;border:1px solid #3f9c90">Prev</button>
+                    <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()">Prev</button>
                     <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" (click)="onNext()" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
                 </div>
 
@@ -72,12 +71,22 @@
                         <owl-date-time [disabled]="rentForm.value.dateFrom == null ? true:false" [pickerMode]="'dialog'" #dt2></owl-date-time>
                     </div>
                 </div>
+
                 <div class="form-row m  x-auto m-3 d-flex justify-content-center">
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
-                        <input formControlName="drivingLicenceImagefile" id="file1" type="file" multiple (change)="onFileChange($event)">
+                        <input formControlName="drivingLicenceImagefile" id="file1" type="file" multiple (change)="onFileChange($event)" style="font-size: 20px;">
                     </div>
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
-                        <input formControlName="utilityBillImagefile" id="file2" type="file" multiple (change)="onFileChange($event)">
+                        <input formControlName="utilityBillImagefile" id="file2" type="file" multiple (change)="onFileChange($event)" style="font-size: 20px;">
+                    </div>
+                </div>
+                <div class="form-row m  x-auto m-3 d-flex justify-content-center">
+                    <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
+                        <p style="color: black;font-size: 14px;margin-top: 20%;">Please upload an image of your driving license</p>
+
+                    </div>
+                    <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
+                        <p style="color: black;font-size: 14px;margin-top: 20%">Please upload any image of your utility bill</p>
                     </div>
                 </div>
                 <div class="form-row mx-auto m-3 d-flex justify-content-center">
@@ -96,14 +105,12 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
-                <hr style="margin-top:5rem">
+                <hr style="margin-top:4rem">
                 <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="formDisabled===false">{{message}} </div>
 
                 <div class="col-md-4" style="float:right;margin-bottom: 2%;">
-                    <button type="submit " class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()" style="background-color: #3f9c90;border:1px solid #3f9c90">Prev</button>
-                    <button type="submit " class="btn btn-success">Submit</button>
+                    <button type="submit " class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()">Prev</button>
+                    <button type="submit " class="btn btn-success" style="background-color: #3f9c90;border:1px solid #3f9c90">Submit</button>
                 </div>
 
             </div>

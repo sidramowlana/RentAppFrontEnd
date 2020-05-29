@@ -25,11 +25,14 @@ export class TableComponent implements OnInit {
       console.log(data);
       this.vehicleTypeList = data;
     });
-    
-    setInterval(() => {
-      this.vehicleTypeService.onGetAllVehicleTypes().subscribe(data => {
-        this.vehicleTypeList = data;
-      });
+    this.vehicleTypeService.add.subscribe(data1 => {
+      console.log(data1);
+      this.vehicleTypeService.onGetAllVehicleTypes().subscribe(typeList => {
+        console.log(typeList);
+        this.vehicleTypeList = typeList;
+        console.log(this.vehicleTypeList);
+
+        });
     });
   }
 

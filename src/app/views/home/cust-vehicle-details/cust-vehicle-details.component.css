@@ -1,3 +1,9 @@
+form {
+    margin-bottom: 50px;
+    /* background-color: white;
+    opacity: 1; */
+}
+
 button {
     margin: 2%;
 }
@@ -13,6 +19,19 @@ button {
 .dateFromID,
 .dateToID {
     width: 50%;
+}
+
+.img-fluid {
+    padding: 5%;
+}
+
+.btn-success,
+.btn-secondary,
+.btn-primary {
+    width: 40%;
+    background-color: #fff;
+    border: 3px solid #3f9c90;
+    color: black;
 }
 
 @media screen and (max-width: 992px) {

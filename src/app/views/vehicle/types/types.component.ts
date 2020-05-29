@@ -14,7 +14,7 @@ export class TypesComponent implements OnInit {
   vehicleTypeForm: FormGroup;
   isError: boolean = false;
   errorMessage: String;
-  vehicleTypeList: VehicleType[];
+  vehicleTypeList;
   editTypem: VehicleType;
   edit = false;
   id;
@@ -32,6 +32,7 @@ export class TypesComponent implements OnInit {
       console.log(typeList);
       this.vehicleTypeList = typeList;
     });
+   
     this.vehicleTypeService.edit.subscribe(updateList => {
       this.edit = true;
       this.id = updateList.vehicleTypeId;
@@ -40,11 +41,12 @@ export class TypesComponent implements OnInit {
             });
     });
   }
-
-
+vehicleData;
   onAddVehicleType() {
     this.vehicleTypeService.onAddVehicleTypeService(this.vehicleTypeForm).subscribe(data => {
       console.log(data);
+      this.vehicleData = data;
+      this.vehicleTypeService.add.next(this.vehicleData);
       this.vehicleTypeList = data;
       this.isError = false;
       this.vehicleTypeForm.reset();
@@ -57,7 +59,6 @@ export class TypesComponent implements OnInit {
   }
 
   onUpdateVehicleType() {
-    console.log("update");
     this.vehicleTypeService.onUpdateVehicleTypseService(this.vehicleTypeForm, this.id).subscribe(data => {
       this.isError = false
       this.edit = false;
@@ -75,7 +76,6 @@ export class TypesComponent implements OnInit {
   }
 
   onEditVehicleType(index) {
-    console.log("hey")
     this.editTypem = this.vehicleTypeList[index];
     this.vehicleTypeService.edit.next(this.editTypem);
     this.vehicleTypeService.edit.subscribe(data => {

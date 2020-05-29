@@ -17,7 +17,9 @@ const getHttpOptions = (token: String) => {
         })
     }
 }
-
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 @Injectable()
 export class VehicleService {
     vehicleChange = new Subject<Vehicle[]>();
@@ -41,9 +43,7 @@ export class VehicleService {
     }
 
     onGetAllVehicleService(): Observable<any> {
-        const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-        console.log("localHttpOptions: "+localHttpOptions);
-        return this.http.get(ADMIN_API + "all", localHttpOptions);
+        return this.http.get(ADMIN_API + "all");
     }
 
     onGetVehicleById(id): Observable<any> {

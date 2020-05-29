@@ -20,15 +20,15 @@ import { VehicleFormComponent } from './views/vehicle/vehicles/vehicle-form/vehi
 import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-details/vehicle-details.component';
 import { VehicleListComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-list.component';
 import { ResetPasswordComponent } from './views/profile/reset-password/reset-password.component';
-import { CustVehicleListComponent } from './views/home/cust-vehicle-list/cust-vehicle-list.component';
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
 
 const appRoutes: Routes =
     [
-        { path: '', redirectTo: '/login', pathMatch: 'full' },
-        { path: 'http://localhost:4200/null', redirectTo: '/login', pathMatch: 'full' },
-        { path: 'home', component: HomeComponent, children:[
-            {path:'',component:CustVehicleListComponent},
+        { path: '', redirectTo: '/home', pathMatch: 'full' },
+        // { path: 'http://localhost:4200/null', redirectTo: '/home', pathMatch: 'full' },
+        { path: 'home', component: HomeComponent,
+         children:[
+            {path:'',component:VehicleListComponent},
             {path:':id',component:CustVehicleDetailsComponent}
         ] },
         { path: 'register', component: RegisterComponent },
