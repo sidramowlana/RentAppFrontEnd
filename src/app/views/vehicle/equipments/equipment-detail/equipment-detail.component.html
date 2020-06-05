@@ -21,7 +21,7 @@
         </div>
     </div>
     <br>
-    <div class="dropdown">
+    <div class="dropdown" *ngIf="authService.isAuthenticated()">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       Manage</button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -29,7 +29,6 @@ export class TypesComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.vehicleTypeService.onGetAllVehicleTypes().subscribe(typeList => {
-      console.log(typeList);
       this.vehicleTypeList = typeList;
     });
    

@@ -10,6 +10,7 @@ export class User {
     public drivingLicence:String;
     public username:String;
     public password:String;
+    public blackListed:boolean
 
     constructor(name:String,nic:String,dob:String,email:String,mobileNo:String,drivingLicence:String,username:String,password:String){
         this.name = name;

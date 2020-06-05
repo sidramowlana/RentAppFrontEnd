@@ -36,12 +36,17 @@ import { VehicleItemComponent } from './views/vehicle/vehicles/vehicle-list/vehi
 import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-details/vehicle-details.component';
 import { ResetPasswordComponent } from './views/profile/reset-password/reset-password.component';
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
-import { CustomerComponent } from './customer/customer.component';
 import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RentService } from './services/rent.service';
 import { ExtendRentFormComponent } from './views/customer-rent/extend-rent-form/extend-rent-form.component';
+import { ViewAllRentComponent } from './views/view-all-rent/view-all-rent.component';
+import { BlackListService } from './services/blackList.service';
+import { ViewAllBlacklistedComponent } from './views/view-all-blacklisted/view-all-blacklisted.component';
+import { CustEquipmentDetailsComponent } from './views/home/cust-equipment-details/cust-equipment-details.component';
+import { ContactUsComponent } from './views/contact-us/contact-us.component';
+import { FilterEquipmentPipe } from './pipes/filterEquipment.pipe';
 
 @NgModule({
   declarations: [
@@ -70,9 +75,13 @@ import { ExtendRentFormComponent } from './views/customer-rent/extend-rent-form/
     VehicleDetailsComponent,
     ResetPasswordComponent,
     CustVehicleDetailsComponent,
-    CustomerComponent,
     FilterVehiclePipe,
+    FilterEquipmentPipe,
     ExtendRentFormComponent,
+    ViewAllRentComponent,
+    ViewAllBlacklistedComponent,
+    CustEquipmentDetailsComponent,
+    ContactUsComponent,
   ],
 
   imports: [
@@ -93,7 +102,8 @@ import { ExtendRentFormComponent } from './views/customer-rent/extend-rent-form/
     AuthGuardService,
     EquipmentService,
     VehicleService,
-    RentService],
+    RentService,
+    BlackListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

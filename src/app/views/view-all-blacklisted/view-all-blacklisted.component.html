@@ -1,0 +1,65 @@
+<div class="body">
+    <div class="pimg1">
+        <div class="ptext">
+            <span class="border"> Black Lists History</span>
+        </div>
+    </div>
+    <div class="pimg2">
+        <div class="ptext2">
+            <div class="row">
+                <div class="col">
+                    <div class="container-sm">
+                        <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isError===true">{{message}} </div>
+                        <div class="alert alert-success" role="alert" id="successMessage" *ngIf="isError===false">{{message}} </div>
+
+                        <table class="table table-responsive table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Rent Id</th>
+                                    <th>User Name</th>
+                                    <th>NIC</th>
+                                    <th>Email</th>
+                                    <th>Mobile No</th>
+                                    <th>Date Booked</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Vehicle Name</th>
+                                    <th>Vehicle No</th>
+                                    <th>Vehicle Type</th>
+                                    <th>Equipments</th>
+                                    <th>Total Rental Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let rent of blackListUserRents; let i = index">
+                                    <td>{{rent.rentId}}</td>
+                                    <td>{{rent.user.username}}</td>
+                                    <td>{{rent.user.nic}}</td>
+                                    <td>{{rent.user.email}}</td>
+                                    <td>{{rent.user.mobileNo}}</td>
+                                    <td>{{rent.currentDateTime | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.dateTimeFrom | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.dateTimeTo | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.vehicle.vehicleName}}</td>
+                                    <td>{{rent.vehicle.plateNo}}</td>
+                                    <td>{{rent.vehicle.vehicleType.name}}</td>
+                                    <td>
+                                        <div *ngFor="let equipments of rent.vehicleRentEquipments">
+                                            <p> {{equipments.equipment.equipmentName}}</p>
+                                        </div>
+                                    </td>
+                                    <td>£ {{rent.totalRentalAmount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="fail" class="alert alert-danger" role="alert" *ngIf="isTime ===false">
+                            {{ message }} </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>

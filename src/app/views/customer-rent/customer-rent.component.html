@@ -1,50 +1,63 @@
-<br>
-<br>
-<div class="row">
-    <div class="col">
-        <div class="container-sm">
-            <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isError===true">{{message}} </div>
-            <div class="alert alert-success" role="alert" id="successMessage" *ngIf="isError===false">{{message}} </div>
-
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>Rent Id</th>
-                        <th>Date Booked</th>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Vehicle Name</th>
-                        <th>Vehicle No</th>
-                        <th>Vehicle Type</th>
-                        <th>Equipments</th>
-                        <th>Extend Booking</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let rent of rentList; let i = index">
-                        <td>{{rent.rentId}}</td>
-                        <td>{{rent.currentDateTime | date:'MM/dd/yyyy, h:mm a'}}</td>
-                        <td>{{rent.dateTimeFrom | date:'MM/dd/yyyy, h:mm a'}}</td>
-                        <td>{{rent.dateTimeTo | date:'MM/dd/yyyy, h:mm a'}}</td>
-                        <td>{{rent.vehicle.vehicleName}}</td>
-                        <td>{{rent.vehicle.plateNo}}</td>
-                        <td>{{rent.vehicle.vehicleType.name}}</td>
-                        <td>
-                            <div *ngFor="let equipments of rent.vehicleRentEquipments">
-                                <p> {{equipments.equipment.equipmentName}}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-success" type="button" (click)="onExtend(i,rent.rentId)" [disabled]="(greaterThan(currentDate, rent.dateTimeTo)) ? true : false || disablebutton[i]">
-                                <span class="fa fa-clock-o "></span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="body">
+    <div class="pimg1">
+        <div class="ptext">
+            <span class="border"> YOUR RENT HISTORY</span>
         </div>
     </div>
+    <div class="pimg2">
+        <div class="ptext2">
+            <div class="row">
+                <div class="col">
+                    <div class="container-sm">
+                        <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isError===true">{{message}} </div>
+                        <div class="alert alert-success" role="alert" id="successMessage" *ngIf="isError===false">{{message}} </div>
 
+                        <table class="table table-responsive table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Rent Id</th>
+                                    <th>Date Booked</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Vehicle Name</th>
+                                    <th>Vehicle No</th>
+                                    <th>Vehicle Type</th>
+                                    <th>Equipments</th>
+                                    <th>Total Rental Amount</th>
+                                    <th>Extend Booking</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let rent of rentList; let i = index">
+                                    <td>{{rent.rentId}}</td>
+                                    <td>{{rent.currentDateTime | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.dateTimeFrom | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.dateTimeTo | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.vehicle.vehicleName}}</td>
+                                    <td>{{rent.vehicle.plateNo}}</td>
+                                    <td>{{rent.vehicle.vehicleType.name}}</td>
+                                    <td>
+                                        <div *ngFor="let equipments of rent.vehicleRentEquipments">
+                                            <p> {{equipments.equipment.equipmentName}}</p>
+                                        </div>
+                                    </td>
+                                    <td>£ {{rent.totalRentalAmount}}</td>
+                                    <td>
+                                        <!-- <button class="btn btn-success" type="button" (click)="onExtend(i,rent.rentId)" [disabled]="(greaterThan(currentDate, rent.dateTimeTo)) ? true : false || disablebutton[i]"> -->
+                                        <button class="btn btn-success" type="button" (click)="onExtend(i,rent.rentId)" [disabled]="rent.rentExtended === true">
+                                                <span class="fa fa-clock-o "></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
-<!--   -->
+<br>
+<br>

@@ -10,29 +10,24 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class VehicleItemComponent implements OnInit {
 
-  @Input() vehicleElement:Vehicle;
-  @Input() index:number;
-  message:String;
+  @Input() vehicleElement: Vehicle;
+  @Input() index: number;
+  message: String;
   isLogged;
-  constructor(private authService:AuthenticationService,
-    private router:Router,
-    private activatedRoute:ActivatedRoute) { }
+  constructor(private authService: AuthenticationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
-  onDetails(index){
-    console.log('hey there '+index);
-    if(this.authService.loggedIn())
-    {
-      console.log(this.authService.loggedIn())
+  onDetails(index) {
+    if (this.authService.loggedIn()) {
       this.isLogged = true;
-      this.router.navigate([index],{relativeTo:this.activatedRoute});
+      this.router.navigate([index], { relativeTo: this.activatedRoute });
     }
-    else{
-this.isLogged = false;
+    else {
+      this.isLogged = false;
       this.message = "Log in to view the details"
-      console.log(this.message);
-
     }
   }
 }

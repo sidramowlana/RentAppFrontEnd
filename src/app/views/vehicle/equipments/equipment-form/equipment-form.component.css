@@ -4,6 +4,22 @@
     padding: 0;
 }
 
+.btn-primary {
+    width: 40%;
+    background-color: #3f9c90;
+    border: 3px solid #3f9c90;
+    color: black;
+    margin: 1%;
+}
+
+.btn-danger {
+    width: 40%;
+    background-color: #fff;
+    border: 3px solid red;
+    color: black;
+    margin: 1%;
+}
+
 @media screen and (max-width: 992px) {
     .container-sm {
         margin: 0;

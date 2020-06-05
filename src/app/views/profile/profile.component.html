@@ -1,104 +1,114 @@
-<div class="container-sm mx-auto m-4">
-    <div class="card col">
-        <div class="card-body">
-            <form>
-
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="nameID">Name</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
+<div class="body">
+    <div class="pimg1">
+        <div class="ptext">
+            <span class="border"> My Profile </span>
+        </div>
+        <div class="container-sm mx-auto">
+            <div class="card col">
+                <div class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="nameID">Name</label>
+                                <div class="input-group">
+                                    <p class="form-control" id="nameID" type="text">{{name}}</p>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                             <i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="form-control" id="nameID" type="text">{{name}}</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="nicID">NIC</label>
+                                <div class="input-group">
+                                    <p class="form-control" id="nicID" type="text">{{nic}}</p>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="dobID">DOB</label>
+                                <div class="input-group">
+                                    <p class="form-control" id="dobID" type="text">{{dob}}</p>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="emailID">Email</label>
+                                <div class="input-group">
+                                    <p class="form-control" id="emailID">{{email}}</p>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="mobileNoID">Mobile Number</label>
+                                <div class="input-group">
+                                    <p class="form-control" id="mobileNoID" type="text">{{mobileNo}}</p>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                             <i class="fa fa-mobile"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="drivingLicenceNoId">Driving Licence No</label>
+                                <div class="input-group">
+                                    <p class="form-control" id="drivingLicenceNoId">{{drivingLicence}}</p>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-car"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="usernameID">UserName</label>
+                                <div class="input-group">
+                                    <p class="form-control" id="usernameID" type="text">{{username}}</p>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                             <i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#editProfile" (click)="onEdit()">Update User Profile</button>
+                            <app-edit-profile class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfilemodal" aria-hidden="true"></app-edit-profile>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#resetPassword" (click)="onResetPassword()">Reset Password</button>
+                            <app-reset-password class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-labelledby="resetPasswordmodal" aria-hidden="true"></app-reset-password>
                         </div>
                     </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="nicID">NIC</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
-                            </div>
-                            <p class="form-control" id="nicID" type="text">{{nic}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="dobID">DOB</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
-                            </div>
-                            <p class="form-control" id="dobID" type="text">{{dob}}</p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="emailID">Email</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">@</span>
-                            </div>
-                            <p class="form-control" id="emailID">{{email}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="mobileNoID">Mobile Number</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
-                            </div>
-                            <p class="form-control" id="mobileNoID" type="text">{{mobileNo}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="drivingLicenceNoId">Driving Licence No</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-car"></i></span>
-                            </div>
-                            <p class="form-control" id="drivingLicenceNoId">{{drivingLicence}}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col form-group">
-                        <label for="usernameID">UserName</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"> <i class="fa fa-user"></i></span>
-                            </div>
-                            <p class="form-control" id="usernameID" type="text">{{username}}</p>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#editProfile" (click)="onEdit()">Update User Profile</button>
-                    <app-edit-profile class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfilemodal" aria-hidden="true"></app-edit-profile>
 
                 </div>
-                <!-- <div class="col">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#resetPassword" (click)="onResetPassword()">Reset Password</button>
-                    <app-reset-password class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-labelledby="resetPasswordmodal" aria-hidden="true"></app-reset-password>
-                </div> -->
             </div>
-
         </div>
     </div>
 </div>

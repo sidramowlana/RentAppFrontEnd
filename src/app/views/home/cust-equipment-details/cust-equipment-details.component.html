@@ -1,0 +1,43 @@
+<!-- <app-equipment-detail></app-equipment-detail> -->
+<div class="modal fade" id="detailEquipment" tabindex="-1" role="dialog" aria-labelledby="detailEquipmentmodal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col mx-auto m-3 d-flex justify-content-center">
+                    <h1 class="modal-title" id="detailEquipmentmodal">Details</h1>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <img [src]="imageUrl" class="img-thumbnail" alt="{{equipmentName}}">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1>{{equipmentName}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1>{{amount}}</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{description}}
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

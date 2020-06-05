@@ -25,11 +25,9 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <!-- <div class="col-md-8">
-                        </div> -->
                         <div class="col-md-5 ml-auto">
                             <button type="button" class="btn btn-secondary" (click)="onCloseDetail()">Close</button>
-                            <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" (click)="onNext()" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
+                            <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
                         </div>
                     </div>
                 </div>
@@ -37,22 +35,27 @@
 
             <!-- VehicleAddons Selecting -->
             <div class="carousel-item" style="border: 1px #ede9e9 solid;">
+                <h2>
+                    <span class="border">Select any equipment you want</span></h2>
                 <div class="row mx-auto m-3 justify-content-center">
-                    <div class="col-md-7 " style="padding:2%;height: 50vh; ">
+                    <div class="col-md-7 " style="padding:2%;height: 60vh;">
                         <hr>
-                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindLabel="equipmentName" bindValue="equipmentId" [multiple]="true" placeholder=" select ">
+                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindValue="equipmentId" bindLabel="equipmentName" [multiple]="true" placeholder=" select " [searchable]="true">
                         </ng-select>
-
+                        <div class="row equipments">
+                            <p>View the Equipments</p>
+                            <div class="container-sm" *ngFor="let item of equipmentList">
+                                <img src="{{item.imageUrl}}" class="img-thumbnail" style="border-color:black;width:20%;float:left;margin:2%;cursor: pointer;" data-toggle="modal" data-target="#detailEquipment" (click)="onEquipmentDetail(item.equipmentId)">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
-                <h2>Select any equipment you want</h2>
                 <hr>
-
                 <br>
                 <div class="col-md-4" style="float:right;margin-bottom: 2%;">
                     <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()">Prev</button>
-                    <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" (click)="onNext()" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
+                    <button type="submit" class="btn btn-primary" href="#carouselExampleControls" data-slide="next" style="background-color: #3f9c90;border:1px solid #3f9c90">Next</button>
                 </div>
 
             </div>
@@ -82,23 +85,23 @@
                 </div>
                 <div class="form-row m  x-auto m-3 d-flex justify-content-center">
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
-                        <p style="color: black;font-size: 14px;margin-top: 20%;">Please upload an image of your driving license</p>
+                        <p style="color: black;font-size: 14px;margin-top: 15%;">Please upload an image of your driving license</p>
 
                     </div>
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
-                        <p style="color: black;font-size: 14px;margin-top: 20%">Please upload any image of your utility bill</p>
+                        <p style="color: black;font-size: 14px;margin-top: 15%">Please upload any image of your utility bill</p>
                     </div>
                 </div>
-                <div class="form-row mx-auto m-3 d-flex justify-content-center">
-                    <div class="col-md-9 form-group mx-auto m-3 d-flex justify-content-center">
+                <div class="form-row mx-auto d-flex justify-content-center">
+                    <div class="col-md-9 form-group mx-auto d-flex justify-content-center">
                         <div class="container-sm" style="display: flex;">
-                            <a *ngFor='let url of images;let i = index' style="padding: 4%;">
+                            <a *ngFor='let url of images;let i = index'>
                                 <div class="row">
                                     <div class="col-md-12" style="margin:0;padding:0">
                                         <button type="button" class="btn btn-danger" (click)="onRemove(i)">Remove</button>
                                     </div>
                                     <div class="col-md-12" style="margin:0;padding:0">
-                                        <img [src]="url" class="ol-md-12 img-thumbnail" style="margin:0;padding:0;position: absolute;">
+                                        <img [src]="url" class="ol-md-12 img-thumbnail" id="utilityId">
                                     </div>
                                 </div>
                             </a>
@@ -107,6 +110,7 @@
                 </div>
                 <hr style="margin-top:4rem">
                 <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="formDisabled===false">{{message}} </div>
+                <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="bookingMessage!=null">{{bookingMessage}} </div>
 
                 <div class="col-md-4" style="float:right;margin-bottom: 2%;">
                     <button type="submit " class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()">Prev</button>

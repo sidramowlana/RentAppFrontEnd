@@ -55,7 +55,6 @@ export class VehicleFormComponent implements OnInit {
 
   onAddVehicle(){
     this.vehicleService.onAddVehicleService(this.vehicleForm).subscribe(data=>{
-      console.log(this.vehicleForm);
       this.vehicleService.onGetAllVehicleService().subscribe(data => {
         this.vehicleList = data;
         this.vehicleService.vehicleChange.next(this.vehicleList);

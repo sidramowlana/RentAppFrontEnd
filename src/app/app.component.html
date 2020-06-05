@@ -1,21 +1,9 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
 
+<!-- <app-header *ngIf="resetPassword===false"></app-header>
+<div class="div" *ngIf="resetPassword===false">
+    <router-outlet></router-outlet>
+</div>
 
-<!-- <form [formGroup]="myForm" (ngSubmit)="submit()">
-    <div class="form-row mx-auto m-3 d-flex justify-content-center">
-        <div class="col-md-9 form-group mx-auto m-3 d-flex justify-content-center">
-            <input formControlName="file" id="file" type="file" multiple (change)="onFileChange($event)">
-            <a *ngFor='let url of images;let i = index' style="padding: 4%;">
-                <div class="row">
-                    <div class="col-md-12" style="margin:0;padding:0">
-                        <button type="button" class="btn btn-danger" (click)="onRemove(i)">Remove</button>
-                    </div>
-                    <div class="col-md-12" style="margin:0;padding:0">
-                        <img [src]="url" class="ol-md-12 img-thumbnail" style="margin:0;padding:0;position: absolute;">
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</form> -->
+<app-reset-password *ngIf="resetPassword===true"></app-reset-password> -->

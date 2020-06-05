@@ -19,6 +19,7 @@ export class RentService {
 
   userId;
   rentTimeChanged = new Subject<Rent>();
+  rentListChange = new Subject<Rent[]>();
 
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService,
@@ -28,7 +29,9 @@ export class RentService {
 
   onCreateRentService(id, rentFormData): Observable<any> {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
+    console.log(localHttpOptions);
+    console.log(id);
+    console.log(rentFormData);
     return this.http.post(AUTH_API + "createRent/" + id, {
       dateTimeFrom: rentFormData.value.dateFrom,
       dateTimeTo: rentFormData.value.dateTo,
@@ -40,21 +43,41 @@ export class RentService {
 
   onGetAllRents() {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    console.log(localHttpOptions);
     const user = this.tokenStorageService.getUser();
     this.userId = user.id;
-    console.log('[LOCALHTTPOPTIONS]' + localHttpOptions);
     return this.http.get(AUTH_API + "all/user/" + this.userId, localHttpOptions);
   }
 
   onGetRent(id) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    const user = this.tokenStorageService.getUser();
-    console.log('[LOCALHTTPOPTIONS]' + localHttpOptions);
     return this.http.get(AUTH_API + "all/rent/" + id, localHttpOptions);
   }
 
-  onExtendRentById(id,rentId) {
+  onExtendRentById(id, rentId) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-      return this.http.put(AUTH_API + "extendRent/" + id,rentId, localHttpOptions);
-    }
+    return this.http.put(AUTH_API + "extendRent/" + id, rentId, localHttpOptions);
+  }
+
+  onTakenRentById(rentId, rent) {
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    return this.http.put(AUTH_API + "rentIsTaken/" + rentId, rent, localHttpOptions);
+  }
+  ongetAllNotBlacklistUsersRent() {
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    return this.http.get(AUTH_API + "allNotBlacklist", localHttpOptions);
+  }
+  onDeleteRentByRentId(rentId) {
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    return this.http.get(AUTH_API + "deleteRent/" + rentId, localHttpOptions);
+  }
+  onBlackListUser(rentId,rent){
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    return this.http.put(AUTH_API + "blacklistUser/" + rentId, rent,localHttpOptions);
+  }
+
+  ongetAllBlacklistUsersRent() {
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    return this.http.get(AUTH_API + "allBlacklist", localHttpOptions);
+  }
 }

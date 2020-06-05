@@ -1,0 +1,68 @@
+<div class="body">
+    <div class="pimg1">
+        <div class="ptext">
+            <span class="border"> ALL HISTORY</span>
+        </div>
+    </div>
+    <div class="pimg2">
+        <div class="ptext2">
+            <div class="row">
+                <div class="col">
+                    <div class="container-sm">
+                        <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isError===true">{{message}} </div>
+                        <div class="alert alert-success" role="alert" id="successMessage" *ngIf="isError===false">{{message}} </div>
+
+                        <table class="table table-responsive table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Rent Id</th>
+                                    <th>Date Booked</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Vehicle Name</th>
+                                    <th>Vehicle No</th>
+                                    <th>Vehicle Type</th>
+                                    <th>Equipments</th>
+                                    <th>Total Rental Amount</th>
+                                    <!-- <th>Extend Booking</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let rent of allRentList; let i = index">
+                                    <td>{{rent.rentId}}</td>
+                                    <td>{{rent.currentDateTime | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.dateTimeFrom | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.dateTimeTo | date:'MM/dd/yyyy, h:mm a'}}</td>
+                                    <td>{{rent.vehicle.vehicleName}}</td>
+                                    <td>{{rent.vehicle.plateNo}}</td>
+                                    <td>{{rent.vehicle.vehicleType.name}}</td>
+                                    <td>
+                                        <div *ngFor="let equipments of rent.vehicleRentEquipments">
+                                            <p> {{equipments.equipment.equipmentName}}</p>
+                                        </div>
+                                    </td>
+                                    <td>£ {{rent.totalRentalAmount}}</td>
+                                    <td>
+                                        <button class="btn btn-success" type="button" (click)="onTaken(rent.rentId,rent.dateTimeTo)" [disabled]="rent.taken === true || ((rent.dateTimeTo|date:'MM/dd/yyyy, h:mm a')==(currentDate|date:'MM/dd/yyyy, h:mm a'))">
+                                        Taken
+                                      </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" type="button" (click)="onCancel(rent.rentId)" [disabled]="rent.taken === true">
+                                        Fail
+                                      </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="fail" class="alert alert-danger" role="alert" *ngIf="isTime ===false">
+                            {{ message }} </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>

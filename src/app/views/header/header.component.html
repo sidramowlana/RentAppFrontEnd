@@ -7,11 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="nav navbar-nav mr-auto">
             <li class="nav-item" routerLinkActive="active">
-                <!-- <a class="nav-link" routerLink="/home" *ngIf="authService.loggedIn()"> Home </a> -->
                 <a class="nav-link" routerLink="/home"> Home </a>
             </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>
-                <a class="nav-link" routerLink="/rent" *ngIf="authService.loggedIn()"> Rent Vehicle</a>
+                <a class="nav-link" routerLink="/rent" *ngIf="authService.loggedIn()"> My Rent History</a>
             </li>
             <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"> Admin Panel </a>
@@ -21,15 +20,18 @@
                     <a class="dropdown-item" routerLink="/vehicle/equipments">Equipments</a>
                 </div>
             </li>
-            <!-- <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="/history"> History </a>
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>
+                <a class="nav-link" routerLink="/viewAllRent" *ngIf="authService.isAuthenticated()"> All Rents History</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="authService.isAuthenticated()">
+                <a class="nav-link" routerLink="/blackListUserRents"> Black Lists </a>
             </li>
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" class="nav-link" routerLink="/contactUs"> Contact Us </a>
             </li>
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" class="nav-link" routerLink="/aboutUs"> About Us </a>
-            </li> -->
+            </li>
 
         </ul>
         <ul class="nav navbar-nav justify-content-end">
@@ -51,22 +53,3 @@
     </div>
 
 </nav>
-
-
-
-
-
-<!--
-      *************** User***************
-    Rent Vehicle
-    History
-    Profile
-    About Us
-    Contact Us
-    
-      *************** Admin***************
-      
-    Vehicle(uNDER VEHICLE TAB)
-      Equipments
-      Vehicle Type
-     -->

@@ -11,13 +11,14 @@ import { UserService } from 'src/app/services/user.service';
 export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm: FormGroup;
-  isSubmitted=false;
+  isSubmitted:boolean;
   message;
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private userService:UserService) { }
 
   ngOnInit() {
+    console.log("startinghrere");
     this.forgotPasswordForm = new FormGroup({
       'email': new FormControl(null, Validators.required),
     });
@@ -26,7 +27,6 @@ export class ForgotPasswordComponent implements OnInit {
   onSendEmail(){
     this.userService.onSendEmailService(this.forgotPasswordForm.value.email)
     .subscribe(data=>{
-      console.log(data);  
       this.isSubmitted = true;
       this.forgotPasswordForm.reset();
       this.message = "Email has been sent successfully!";
@@ -34,7 +34,11 @@ export class ForgotPasswordComponent implements OnInit {
     err=>{
       this.isSubmitted = false;
       console.log(err);
-      this.message = err.error.message;
+      this.message = "There is an error on sending the mail. Please try again with proper email";
     });
+  }
+  onClose()
+  {
+    this.router.navigate(['/login']);
   }
 }

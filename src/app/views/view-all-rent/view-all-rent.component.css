@@ -1,0 +1,40 @@
+.row,
+.col {
+    padding: 0;
+    margin: 0;
+    width: inherit;
+}
+
+.body {
+    height: 100%;
+    margin-top: 0;
+}
+
+.pimg1 {
+    background-image: url(https://images.pexels.com/photos/1030766/pexels-photo-1030766.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+    min-height: 100%;
+}
+
+.pimg1 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.ptext {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    color: black;
+    text-align: center;
+    opacity: 0.80;
+    font-size: 30px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.border {
+    background-color: #ffffffc7;
+}

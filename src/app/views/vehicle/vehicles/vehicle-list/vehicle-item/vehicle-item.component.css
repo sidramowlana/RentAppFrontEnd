@@ -19,6 +19,13 @@
     height: 100%;
 }
 
+.btn-primary {
+    width: 40%;
+    background-color: #fff;
+    border: 3px solid #3f9c90;
+    color: black;
+}
+
 img {
     width: 100%;
     object-fit: contain;

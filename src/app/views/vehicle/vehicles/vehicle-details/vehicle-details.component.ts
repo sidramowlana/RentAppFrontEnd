@@ -61,7 +61,6 @@ export class VehicleDetailsComponent implements OnInit {
       }
     );
     this.vehicleService.vehicleEditChange.subscribe(updateData=> {
-      // console.log(updateData);
       this.name = updateData.vehicleName;
       this.vehicleplateNo = updateData.plateNo;
       this.price = updateData.amount;

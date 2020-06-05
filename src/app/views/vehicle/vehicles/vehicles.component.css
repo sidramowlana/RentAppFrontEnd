@@ -7,3 +7,66 @@
 .row {
     width: 100%;
 }
+
+.btn-primary {
+    width: 40%;
+    background-color: #fff;
+    border: 3px solid #3f9c90;
+    color: black;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.body {
+    height: 100%;
+    margin-top: 0;
+}
+
+.pimg1 {
+    background-image: url(https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+    min-height: 100%;
+}
+
+.pimg1 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.section {
+    text-align: center;
+    padding: 50px 80px;
+}
+
+.section-light {
+    background-color: #f4f4f4;
+    color: #666;
+}
+
+.border {
+    background-color: white;
+}
+
+.ptext {
+    opacity: 0.70;
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 27px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.ptext2 {
+    position: absolute;
+    top: 60%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 27px;
+    font-family: serif, Times, Times New Roman, serif;
+}

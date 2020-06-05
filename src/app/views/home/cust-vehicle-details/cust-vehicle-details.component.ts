@@ -10,6 +10,9 @@ import { VehicleTypeService } from 'src/app/services/vehicleType.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { RentService } from 'src/app/services/rent.service';
+import { TokenStorageService } from 'src/app/services/tokenStorage.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-cust-vehicle-details',
@@ -39,11 +42,18 @@ export class CustVehicleDetailsComponent implements OnInit {
   rentForm: FormGroup;
   formDisabled = true;
   message;
+  dob: String;
+  userYear: number;
+  currentYear: number;
+  userId: number;
+  bookingMessage: String;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private vehicleService: VehicleService,
     private equipmentService: EquipmentService,
+    private tokenStorageService: TokenStorageService,
+    private userService: UserService,
     private router: Router,
     private rentService: RentService) { }
 
@@ -51,6 +61,8 @@ export class CustVehicleDetailsComponent implements OnInit {
     this.initForm();
     this.equipmentService.onGetAllEquipmentService().subscribe(data => {
       this.equipmentList = data;
+      console.log(this.equipmentList);
+    
     });
 
     this.activatedRoute.params.subscribe(
@@ -79,8 +91,8 @@ export class CustVehicleDetailsComponent implements OnInit {
       'drivingLicenceImagefile': new FormControl(null, Validators.required),
       'utilityBillImagefile': new FormControl(null, Validators.required)
     });
-   }
-   
+  }
+
   onClose() {
     this.router.navigate(['./'], { relativeTo: this.activatedRoute });
   }
@@ -88,32 +100,72 @@ export class CustVehicleDetailsComponent implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
   onPrev() {
-    console.log("previosing");
     this.formDisabled = true;
   }
-  onNext() {
-    console.log("nexting");
-  }
-  onSubmit() {
-    if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
-      console.log(this.rentForm.value.dateFrom);
-      console.log("Cant submit");
-      this.formDisabled = false;
-      this.message = "Please Enter Your Date"
-    }
-    else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
-      console.log(this.rentForm.value.dateFrom);
-      console.log(this.id, this.rentForm);
-      this.formDisabled = true;
-      this.addNewRent(this.id, this.rentForm);
-    }
-  }
+  userAge: number;
+  isBlackListed: boolean;
 
-  addNewRent(id, formData) {
-    console.log(id,formData);
-    this.rentService.onCreateRentService(id, formData).subscribe(data => {
-      console.log(data+" working");
+  onSubmit() {
+    this.currentYear = new Date().getFullYear();
+    const user = this.tokenStorageService.getUser();
+    this.userId = user.id;
+    this.userService.onGetUserById(this.userId).subscribe((data: User) => {
+      this.dob = data.dob;
+      this.isBlackListed = data.blackListed;
+      console.log(this.isBlackListed);
+
+      this.userYear = +this.dob.substring(0, 4);
+      this.userAge = this.currentYear - this.userYear;
+      //check if the user is black listed
+      console.log(this.isBlackListed+" herer");
+      if (this.isBlackListed == false) {
+        if (this.images.length === 0) {
+          this.formDisabled = false;
+          this.message = "Please upload the required documents image";
+        } else {
+          if (this.userAge < 25) {
+            if (this.name.includes("Small town")) {
+              if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
+                this.formDisabled = false;
+                this.message = "Please Enter Your Date"
+              }
+              else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
+                this.formDisabled = true;
+                this.addNewRent(this.id, this.rentForm);
+                this.router.navigate(['/rent']);
+              }
+            } else if (!this.name.includes("Small town")) {
+              this.formDisabled = false;
+              this.message = "user aged below 25 is allowed only to rent small town cars";
+            }
+          } else if (this.userAge > 25) {
+            if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
+              this.formDisabled = false;
+              this.message = "Please Enter Your Date"
+            }
+            else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
+              this.formDisabled = true;
+              this.addNewRent(this.id, this.rentForm);
+            }
+          }
+        }
+      } else if (!this.isBlackListed == false) {
+        this.formDisabled = false;
+        this.message = "User is black listed and not allowed to rent any vehicles from Bangers"
+      }
     });
+
+  }
+  addNewRent(id, formData) {
+    this.rentService.onCreateRentService(id, formData).subscribe(data => {
+      this.bookingMessage = data.message;
+      if ((!this.bookingMessage.includes("Time slots are taken already")) && (!this.bookingMessage.includes("equipments are already booked"))) {
+        this.router.navigate(['/rent']);
+      }
+    },
+      err => {
+        this.message = err.error.message;
+      });
   }
 
   onFileChange(event) {
@@ -123,7 +175,6 @@ export class CustVehicleDetailsComponent implements OnInit {
         var reader = new FileReader();
 
         reader.onload = (event: any) => {
-          console.log(event.target);
           this.images.push(event.target.result);
         }
         reader.readAsDataURL(event.target.files[i]);
@@ -138,5 +189,8 @@ export class CustVehicleDetailsComponent implements OnInit {
   onRemove(index) {
     this.images.splice(index, 1);
   }
-
+  onEquipmentDetail(equipmentId)
+  {
+    this.router.navigate(['equipment/',equipmentId], { relativeTo: this.activatedRoute });
+  }
 }

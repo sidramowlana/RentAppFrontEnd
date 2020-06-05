@@ -1,3 +1,28 @@
 #nextId {
     margin: 2%;
 }
+
+.btn-primary {
+    width: 30%;
+    background-color: #fff;
+    border: 3px solid #3f9c90;
+    color: black;
+}
+
+.btn-secondary {
+    width: 30%;
+    background-color: #fff;
+    border: 3px solid #6c6e6e;
+    color: black;
+}
+
+.btn-danger {
+    width: 30%;
+    background-color: #fff;
+    border: 3px solid red;
+    color: black;
+}
+
+img {
+    padding: 2%;
+}

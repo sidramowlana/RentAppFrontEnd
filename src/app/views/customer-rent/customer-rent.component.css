@@ -5,6 +5,60 @@
     width: inherit;
 }
 
+.body {
+    height: 100%;
+    margin-top: 0;
+}
+
+.pimg1 {
+    background-image: url(https://images.pexels.com/photos/35967/mini-cooper-auto-model-vehicle.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    min-height: 100%;
+}
+
+.pimg1 {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.section {
+    text-align: center;
+    padding: 50px 50px;
+}
+
+.section-light {
+    background-color: #f4f4f4;
+    color: #666;
+}
+
+.ptext {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    color: black;
+    text-align: left;
+    opacity: 0.90;
+    font-size: 30px;
+    margin-top: 23%;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+.border {
+    margin-left: 3%;
+}
+
+.ptext2 {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 17px;
+    font-family: serif, Times, Times New Roman, serif;
+}
+
 @media screen and (max-width: 992px) {
     .container-sm {
         margin: 0;

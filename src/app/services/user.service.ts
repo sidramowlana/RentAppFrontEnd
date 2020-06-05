@@ -20,42 +20,45 @@ const getHttpOptions = (token: String) => {
   }
 }
 
+
 @Injectable()
 export class UserService {
-  users;
-  userId;
   userChanged = new Subject<User>();
-
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService,
     private activatedRoute: ActivatedRoute) { }
 
   onSendEmailService(personalEmail) {
-    return this.http.post(AUTH_API + "forgotPassword", personalEmail);
+    return this.http.post(AUTH_API + "forgotPassword", personalEmail, httpOptions);
   }
 
-  onResetPasswordService(newPassword) {
-    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-   const userNameToken = this.tokenStorageService.getUser();
+  onResetPasswordService(newPassword) {    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+
+    const userNameToken = this.tokenStorageService.getUser();
     console.log(userNameToken.token);
-    return this.http.put<String>(AUTH_API + "updatePassword/" + userNameToken.token, newPassword,localHttpOptions);
+    return this.http.put<String>(AUTH_API + "updatePassword/" + userNameToken.token, newPassword, localHttpOptions);
+  }
+
+  onResetPasswordWithTokenService(newPassword, token) {
+    return this.http.put<String>(AUTH_API + "updatePassword/" + token, newPassword, httpOptions);
   }
   onGetUserById(id) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     return this.http.get<any>(AUTH_API + "all/" + id, localHttpOptions);
   }
-  onUpdateProfileById(updateProfileForm,id){
-    console.log(id);
-    console.log(updateProfileForm);
+
+  onUpdateProfileById(updateProfileForm, id) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    return this.http.put<any>(AUTH_API + "updateUser/" + id,  {
+    return this.http.put<any>(AUTH_API + "updateUser/" + id, {
       name: updateProfileForm.value.name,
       nic: updateProfileForm.value.nic,
       dob: updateProfileForm.value.dob,
-      email: updateProfileForm.value.email,        
+      email: updateProfileForm.value.email,
       mobileNo: updateProfileForm.value.mobileNo,
       drivingLicence: updateProfileForm.value.drivingLicence,
-      username : updateProfileForm.value.username
-        }, localHttpOptions);
+      username: updateProfileForm.value.username
+    }, localHttpOptions);
   }
 }
+
+

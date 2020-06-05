@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       'nic': new FormControl(null, Validators.required),
       'dob': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'mobileNo': new FormControl(null, Validators.required),
+      'mobileNo': new FormControl(null, [Validators.required,  Validators.pattern("^[0-9]*$")]),
       'drivingLicence': new FormControl(null, Validators.required),
       'username': new FormControl(null, Validators.required),
       'passwords': new FormGroup({
@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
 
     },
     err => {
-      this.errorMessage = err.error.message;
+      this.errorMessage = "The system failed to register please try again";
       this.isSubmitted = false;
       this.isFailed = true;      
     });

@@ -4,6 +4,18 @@
     padding: 0;
 }
 
+.btn-secondary,
+.btn-primary {
+    width: 40%;
+    background-color: #fff;
+    border: 3px solid #3f9c90;
+    color: black;
+}
+
+.btn-primary {
+    background-color: #3f9c90;
+}
+
 @media screen and (max-width: 992px) {
     .container-sm {
         margin: 0;

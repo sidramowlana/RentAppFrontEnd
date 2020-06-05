@@ -1,9 +1,36 @@
+.pimg1 {
+    margin-top: 12%;
+}
+
 .container-sm {
     width: 50%;
+    background-image: url(https://images.pexels.com/photos/315938/pexels-photo-315938.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 button {
     width: 50%;
+}
+
+.card {
+    background-color: #13121200;
+}
+
+.btn-primary {
+    width: 40%;
+    background-color: #fff;
+    border: 2px solid #3f9c90;
+    color: black;
+}
+
+.btn-danger {
+    width: 40%;
+    background-color: #fff;
+    border: 2px solid red;
+    color: black;
 }
 
 .container {

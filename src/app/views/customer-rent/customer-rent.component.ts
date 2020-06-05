@@ -17,19 +17,26 @@ export class CustomerRentComponent implements OnInit {
   constructor(private rentService: RentService) { }
 
   ngOnInit() {
-    console.log("hii")
     this.rentService.onGetAllRents().subscribe(data => {
       this.rentList = data;
-      console.log(data);
     });
     this.rentService.rentTimeChanged.subscribe(() => {
       this.rentService.onGetAllRents().subscribe(data => {
         this.rentList = data;
-        console.log(data);
       });
     });
   }
 
+  ngAfterContentInit(){
+    this.rentService.onGetAllRents().subscribe(data => {
+      this.rentList = data;
+    });
+    this.rentService.rentTimeChanged.subscribe(() => {
+      this.rentService.onGetAllRents().subscribe(data => {
+        this.rentList = data;
+      });
+    });
+  }
   greaterThan(current, to) {
     this.newDate = new Date(to)
     return current > this.newDate;
@@ -37,11 +44,11 @@ export class CustomerRentComponent implements OnInit {
   rent;
   message: string;
   isError: boolean;
-  isDisabled=false;
+  isDisabled = false;
   disablebutton = [false, false]
 
-  @ViewChild('mybutton(i)') button:ElementRef;
-  onExtend(index,rentId) {
+  @ViewChild('mybutton(i)') button: ElementRef;
+  onExtend(index, rentId) {
     this.rentService.onGetRent(rentId).subscribe(rent => {
       this.rent = rent;
       this.rentService.onExtendRentById(rentId, this.rent).subscribe(data => {
@@ -49,7 +56,6 @@ export class CustomerRentComponent implements OnInit {
         this.message = "Booking successfully extended";
         this.isError = false;
         this.disablebutton[index] = true;
-
       },
         err => {
           this.disablebutton[index] = false;

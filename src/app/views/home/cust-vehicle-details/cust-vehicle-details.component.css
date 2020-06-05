@@ -8,6 +8,22 @@ button {
     margin: 2%;
 }
 
+.equipments {
+    height: 55%;
+    overflow-y: scroll;
+    margin-top: 15%;
+    display: inline-block;
+    scroll-behavior: smooth;
+    border: 1px solid black;
+}
+
+#utilityId {
+    width: 20%;
+    margin: 0;
+    padding: 0;
+    /* position: absolute; */
+}
+
 .carousel-item {
     border: 1px #ede9e9 solid;
 }
@@ -23,6 +39,21 @@ button {
 
 .img-fluid {
     padding: 5%;
+}
+
+.border {
+    background-color: white;
+}
+
+h2 {
+    opacity: 0.70;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 27px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
 }
 
 .btn-success,

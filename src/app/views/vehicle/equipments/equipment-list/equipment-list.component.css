@@ -7,6 +7,15 @@
     width: 100%;
 }
 
+.btn-success {
+    width: 40%;
+    background-color: #fff;
+    border: 3px solid #3f9c90;
+    color: black;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
 @media screen and (max-width: 992px) {
     .container-sm {
         margin: 0;

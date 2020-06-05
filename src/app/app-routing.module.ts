@@ -21,35 +21,44 @@ import { VehicleDetailsComponent } from './views/vehicle/vehicles/vehicle-detail
 import { VehicleListComponent } from './views/vehicle/vehicles/vehicle-list/vehicle-list.component';
 import { ResetPasswordComponent } from './views/profile/reset-password/reset-password.component';
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
+import { ViewAllRentComponent } from './views/view-all-rent/view-all-rent.component';
+import { ViewAllBlacklistedComponent } from './views/view-all-blacklisted/view-all-blacklisted.component';
+import { CustEquipmentDetailsComponent } from './views/home/cust-equipment-details/cust-equipment-details.component';
+import { ContactUsComponent } from './views/contact-us/contact-us.component';
 
 const appRoutes: Routes =
     [
         { path: '', redirectTo: '/home', pathMatch: 'full' },
-        // { path: 'http://localhost:4200/null', redirectTo: '/home', pathMatch: 'full' },
-        { path: 'home', component: HomeComponent,
-         children:[
-            {path:'',component:VehicleListComponent},
-            {path:':id',component:CustVehicleDetailsComponent}
-        ] },
+        {
+            path: 'home', component: HomeComponent,
+            children: [
+                { path: '', component: VehicleListComponent },
+                { path: ':id', component: CustVehicleDetailsComponent },
+                { path: ':id/equipment/:id', component: CustEquipmentDetailsComponent },
+
+            ]
+        },
         { path: 'register', component: RegisterComponent },
         { path: 'login', component: LoginComponent },
         { path: 'forgotPassword', component: ForgotPasswordComponent },
-
+        { path: 'viewAllRent', component: ViewAllRentComponent, canActivate: [AuthGuardService] },
+        { path: 'blackListUserRents', component: ViewAllBlacklistedComponent },
+        { path: 'contactUs', component: ContactUsComponent },
         { path: 'vehicle', redirectTo: 'vehicle/vehicles', pathMatch: 'full' },
+
         {
-            path: 'vehicle', component: VehiclesComponent, canActivate:[AuthGuardService],children:
+            path: 'vehicle', component: VehiclesComponent, canActivate: [AuthGuardService], children:
                 [
                     {
                         path: 'vehicles', component: VehicleComponent, children:
                             [
-                                {path: 'new', component: VehicleComponent},
+                                { path: 'new', component: VehicleComponent },
                                 { path: '', component: VehicleListComponent },
                                 { path: ':id', component: VehicleDetailsComponent },
                                 { path: ':id/editVehicle', component: VehicleDetailsComponent },
                             ]
                     },
                     { path: 'types', component: TypesComponent },
-
                     {
                         path: 'equipments', component: EquipmentsComponent, children:
                             [
@@ -61,16 +70,14 @@ const appRoutes: Routes =
                     }
                 ]
         },
-        { path: 'profile/:id',  component:ProfileComponent,children:[
-            {path:'edit',component:EditProfileComponent},
-            {path:'reset-password',component:ResetPasswordComponent}
-        ]},
-        // {            
-        //     path: 'profile', component: ProfileComponent, children: [
-        //         { path: ':id', component: ProfileComponent },
-        //         // { path: ':id', component: EditProfileComponent }
-        //     ]
-        // },
+
+        {
+            path: 'profile/:id', component: ProfileComponent, children: [
+                { path: 'edit', component: EditProfileComponent },
+                { path: 'reset-password', component: ResetPasswordComponent }
+            ]
+        },
+        {path:'reset-password',component:ResetPasswordComponent},
         { path: 'rent', component: CustomerRentComponent },
         { path: '**', redirectTo: '/' }
     ];

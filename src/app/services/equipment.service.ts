@@ -8,13 +8,6 @@ const ADMIN_API = 'http://localhost:8080/api/equipment/';
 
 const TOKEN = localStorage.getItem('auth_user');
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${TOKEN}`
-  })
-};
-
 const getHttpOptions = (token: String) => {
   return {
     headers: new HttpHeaders({
@@ -34,6 +27,7 @@ export class EquipmentService {
 
   onAddEquipmentService(equipmentForm): Observable<any> {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    console.log(localHttpOptions);
     return this.http.post(ADMIN_API + "createEquipment", {
       equipmentName: equipmentForm.value.equipmentName,
       amount: equipmentForm.value.amount,

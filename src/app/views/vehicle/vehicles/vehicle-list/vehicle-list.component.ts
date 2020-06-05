@@ -15,9 +15,9 @@ export class VehicleListComponent implements OnInit {
     this.vehicleService.onGetAllVehicleService().subscribe(data => {
       this.vehicleList = data;
     });
-    // this.vehicleService.vehicleChange.subscribe(updateData => {
-    //   this.vehicleList = updateData;
-    // });
+    this.vehicleService.vehicleChange.subscribe(updateData => {
+      this.vehicleList = updateData;
+    });
   }
 
 }

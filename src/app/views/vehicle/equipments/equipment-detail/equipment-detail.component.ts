@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-equipment-detail',
@@ -22,7 +23,8 @@ export class EquipmentDetailComponent implements OnInit {
 
   constructor(private equipmentService: EquipmentService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private authService:AuthenticationService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(

@@ -43,8 +43,12 @@ export class LoginComponent implements OnInit {
     },
       err => {
         console.log(err);
-        this.errorMessage = err.error.message;
+        this.errorMessage = "Login credentials invalid please try again";
         this.isLoginFailed = true;
       });
+  }
+  onForgotPassword(){
+    this.router.navigate(['forgotPassword']);
+    // ,{relativeTo:this.activatedRoute});
   }
 }

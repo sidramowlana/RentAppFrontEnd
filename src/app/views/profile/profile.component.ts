@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['edit'],{relativeTo:this.activatedRoute});
   }
 
-  // onResetPassword(){
-  //   this.router.navigate(['reset-password'],{relativeTo:this.activatedRoute});
-  // }
+  onResetPassword(){
+    this.router.navigate(['reset-password'],{relativeTo:this.activatedRoute});
+  }
 }
