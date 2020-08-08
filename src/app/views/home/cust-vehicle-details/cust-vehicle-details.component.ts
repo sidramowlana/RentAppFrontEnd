@@ -13,6 +13,7 @@ import { RentService } from 'src/app/services/rent.service';
 import { TokenStorageService } from 'src/app/services/tokenStorage.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cust-vehicle-details',
@@ -47,6 +48,8 @@ export class CustVehicleDetailsComponent implements OnInit {
   currentYear: number;
   userId: number;
   bookingMessage: String;
+  userAge: number;
+  isBlackListed: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -54,7 +57,7 @@ export class CustVehicleDetailsComponent implements OnInit {
     private equipmentService: EquipmentService,
     private tokenStorageService: TokenStorageService,
     private userService: UserService,
-    private router: Router,
+    private router: Router,private toastr:ToastrService,
     private rentService: RentService) { }
 
   ngOnInit() {
@@ -100,10 +103,9 @@ export class CustVehicleDetailsComponent implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
   onPrev() {
-    this.formDisabled = true;
+    // this.formDisabled = true;
   }
-  userAge: number;
-  isBlackListed: boolean;
+
 
   onSubmit() {
     this.currentYear = new Date().getFullYear();
@@ -120,38 +122,32 @@ export class CustVehicleDetailsComponent implements OnInit {
       console.log(this.isBlackListed+" herer");
       if (this.isBlackListed == false) {
         if (this.images.length === 0) {
-          this.formDisabled = false;
-          this.message = "Please upload the required documents image";
+          this.toastr.warning("Please upload the required documents image");
         } else {
           if (this.userAge < 25) {
             if (this.name.includes("Small town")) {
-              if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
-                this.formDisabled = false;
-                this.message = "Please Enter Your Date"
+              if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {              
+                this.toastr.warning("Please Enter Your Booking Date");
+
               }
               else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
-                this.formDisabled = true;
                 this.addNewRent(this.id, this.rentForm);
                 this.router.navigate(['/rent']);
               }
             } else if (!this.name.includes("Small town")) {
-              this.formDisabled = false;
-              this.message = "user aged below 25 is allowed only to rent small town cars";
+              this.toastr.warning("User aged below 25 is allowed only to rent small town cars");
             }
           } else if (this.userAge > 25) {
             if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
-              this.formDisabled = false;
-              this.message = "Please Enter Your Date"
+              this.toastr.warning("Please Enter Your Booking Date");
             }
             else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
-              this.formDisabled = true;
               this.addNewRent(this.id, this.rentForm);
             }
           }
         }
       } else if (!this.isBlackListed == false) {
-        this.formDisabled = false;
-        this.message = "User is black listed and not allowed to rent any vehicles from Bangers"
+        this.toastr.error("User is black listed and not allowed to rent any vehicles from Bangers");
       }
     });
 
@@ -164,7 +160,7 @@ export class CustVehicleDetailsComponent implements OnInit {
       }
     },
       err => {
-        this.message = err.error.message;
+        this.toastr.error(err.error.message);
       });
   }
 
@@ -173,7 +169,6 @@ export class CustVehicleDetailsComponent implements OnInit {
       var filesAmount = event.target.files.length;
       for (let i = 0; i < filesAmount; i++) {
         var reader = new FileReader();
-
         reader.onload = (event: any) => {
           this.images.push(event.target.result);
         }

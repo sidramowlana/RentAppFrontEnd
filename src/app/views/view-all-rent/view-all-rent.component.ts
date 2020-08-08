@@ -3,6 +3,7 @@ import { RentService } from 'src/app/services/rent.service';
 import { Rent } from 'src/app/models/rent.model';
 import { DatePipe } from '@angular/common';
 import { BlackListService } from 'src/app/services/blackList.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-all-rent',
@@ -21,7 +22,7 @@ export class ViewAllRentComponent implements OnInit {
   message: String;
   list;
   constructor(private rentService: RentService,
-    private datePipe: DatePipe,
+    private datePipe: DatePipe,private toastr:ToastrService,
     private blackListService: BlackListService) { }
 
   ngOnInit() {
@@ -42,6 +43,8 @@ export class ViewAllRentComponent implements OnInit {
           this.list = data;
           this.rentService.rentListChange.next(this.list)
           this.message = "User is added to the black lists";
+          this.toastr.info("User is added to the black lists");
+
           this.rentService.onDeleteRentByRentId(rentId).subscribe(data => {
             console.log("deleted");
           });

@@ -25,6 +25,9 @@ import { ViewAllRentComponent } from './views/view-all-rent/view-all-rent.compon
 import { ViewAllBlacklistedComponent } from './views/view-all-blacklisted/view-all-blacklisted.component';
 import { CustEquipmentDetailsComponent } from './views/home/cust-equipment-details/cust-equipment-details.component';
 import { ContactUsComponent } from './views/contact-us/contact-us.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { CompetitorsPriceComponent } from './admin-home/competitors-price/competitors-price.component';
+import { FraudLicenseComponent } from './admin-home/fraud-license/fraud-license.component';
 
 const appRoutes: Routes =
     [
@@ -34,10 +37,16 @@ const appRoutes: Routes =
             children: [
                 { path: '', component: VehicleListComponent },
                 { path: ':id', component: CustVehicleDetailsComponent },
-                { path: ':id/equipment/:id', component: CustEquipmentDetailsComponent },
+                { path: ':id/equipment/:id', component: CustEquipmentDetailsComponent }
 
             ]
         },
+        {path:"adminHome",component:AdminHomeComponent,canActivate: [AuthGuardService],children:[
+            {path:'',component:CompetitorsPriceComponent},
+            {path:"competitve-price",component:CompetitorsPriceComponent},
+            {path:"fraud-license",component:FraudLicenseComponent}
+        ]},
+
         { path: 'register', component: RegisterComponent },
         { path: 'login', component: LoginComponent },
         { path: 'forgotPassword', component: ForgotPasswordComponent },
@@ -78,8 +87,10 @@ const appRoutes: Routes =
             ]
         },
         {path:'reset-password',component:ResetPasswordComponent},
+        {path:'reset-password/:token',component:ResetPasswordComponent},
         { path: 'rent', component: CustomerRentComponent },
-        { path: '**', redirectTo: '/' }
+        { path: '**', redirectTo: '/' },
+       
     ];
 
 @NgModule({

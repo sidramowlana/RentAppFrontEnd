@@ -12,13 +12,12 @@
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name: {{name}}</h5>
-                                    <p class="card-text">Plate No: {{vehicleplateNo}}</p>
-                                    <p class="card-text">Price per rent: {{price}}</p>
-                                    <p class="card-text">Quantity: {{vehicleQuantity}}</p>
-                                    <p class="card-text">Description: {{vehicleDescription}}</p>
-                                    <p class="card-text">Vehicle Type: {{vehicleTypeName}}</p>
+                                <div class="cardcontainer">
+                                    <h3 class="card-title">Name: {{name}}</h3>
+                                    <p>Plate No: {{vehicleplateNo}}</p>
+                                    <p>Price per rent: {{price}}</p>
+                                    <p>Description: {{vehicleDescription}}</p>
+                                    <p>Vehicle Type: {{vehicleTypeName}}</p>
                                 </div>
                             </div>
                         </div>
@@ -35,17 +34,15 @@
 
             <!-- VehicleAddons Selecting -->
             <div class="carousel-item" style="border: 1px #ede9e9 solid;">
-                <h2>
-                    <span class="border">Select any equipment you want</span></h2>
                 <div class="row mx-auto m-3 justify-content-center">
                     <div class="col-md-7 " style="padding:2%;height: 60vh;">
                         <hr>
-                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindValue="equipmentId" bindLabel="equipmentName" [multiple]="true" placeholder=" select " [searchable]="true">
+                        <ng-select formControlName="selectedEquipments" [items]="equipmentList" bindValue="equipmentId" bindLabel="equipmentName" [multiple]="true" placeholder="Select any equipment you want" [searchable]="true">
                         </ng-select>
                         <div class="row equipments">
                             <p>View the Equipments</p>
-                            <div class="container-sm" *ngFor="let item of equipmentList">
-                                <img src="{{item.imageUrl}}" class="img-thumbnail" style="border-color:black;width:20%;float:left;margin:2%;cursor: pointer;" data-toggle="modal" data-target="#detailEquipment" (click)="onEquipmentDetail(item.equipmentId)">
+                            <div class="containersequip" *ngFor="let item of equipmentList">
+                                <img src="{{item.imageUrl}}" class="img-thumbnail equipmentimg" style="border-color:black;width:20%;float:left;margin:2%;cursor: pointer;" data-toggle="modal" data-target="#detailEquipment" (click)="onEquipmentDetail(item.equipmentId)">
                             </div>
                         </div>
                     </div>
@@ -77,10 +74,10 @@
 
                 <div class="form-row m  x-auto m-3 d-flex justify-content-center">
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
-                        <input formControlName="drivingLicenceImagefile" id="file1" type="file" multiple (change)="onFileChange($event)" style="font-size: 20px;">
+                        <input formControlName="drivingLicenceImagefile" id="file1" type="file" (change)="onFileChange($event)" style="font-size: 20px;">
                     </div>
                     <div class="col-md-6 form-group mx-auto m-3 d-flex justify-content-center">
-                        <input formControlName="utilityBillImagefile" id="file2" type="file" multiple (change)="onFileChange($event)" style="font-size: 20px;">
+                        <input formControlName="utilityBillImagefile" id="file2" type="file" (change)="onFileChange($event)" style="font-size: 20px;">
                     </div>
                 </div>
                 <div class="form-row m  x-auto m-3 d-flex justify-content-center">
@@ -97,10 +94,8 @@
                         <div class="container-sm" style="display: flex;">
                             <a *ngFor='let url of images;let i = index'>
                                 <div class="row">
-                                    <div class="col-md-12" style="margin:0;padding:0">
+                                    <div class="mine" style="margin:0;padding:0">
                                         <button type="button" class="btn btn-danger" (click)="onRemove(i)">Remove</button>
-                                    </div>
-                                    <div class="col-md-12" style="margin:0;padding:0">
                                         <img [src]="url" class="ol-md-12 img-thumbnail" id="utilityId">
                                     </div>
                                 </div>
@@ -109,9 +104,6 @@
                     </div>
                 </div>
                 <hr style="margin-top:4rem">
-                <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="formDisabled===false">{{message}} </div>
-                <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="bookingMessage!=null">{{bookingMessage}} </div>
-
                 <div class="col-md-4" style="float:right;margin-bottom: 2%;">
                     <button type="submit " class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()">Prev</button>
                     <button type="submit " class="btn btn-success" style="background-color: #3f9c90;border:1px solid #3f9c90">Submit</button>

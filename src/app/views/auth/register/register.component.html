@@ -116,8 +116,6 @@
                         <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Sign Up</button>
                     </form>
                     <br>
-                    <div id="fail" class="alert alert-danger" role="alert" *ngIf="isFailed">
-                        Registration failed!<br/>{{ errorMessage }} </div>
                     <hr>
                     <a routerLink="/login" id="loginLink">Sign In  &nbsp; 
                        <i class="fa fa-sign-in"></i>

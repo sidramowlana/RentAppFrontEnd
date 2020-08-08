@@ -1,0 +1,16 @@
+<table class="table table-hover table-dark table-responsive">
+    <thead>
+        <tr>
+            <th scope="col">Insurer Id</th>
+            <th scope="col">User Id</th>
+            <th scope="col">Driving License No</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of insurerLicenseList; let i = index">
+            <th scope="row">{{data.userId}}</th>
+            <th scope="row">{{data.insurerId}}</th>
+            <td id="td">{{data.drivingLicence}}</td>
+        </tr>
+    </tbody>
+</table>

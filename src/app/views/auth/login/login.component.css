@@ -119,6 +119,15 @@ a {
     color: white;
 }
 
+input:focus,
+input.form-control:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
 @media screen and (max-width: 992px) {
     .container-sm {
         margin: 0;

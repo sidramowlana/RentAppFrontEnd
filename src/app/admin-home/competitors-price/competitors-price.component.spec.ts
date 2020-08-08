@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExtendRentFormComponent } from './extend-rent-form.component';
+import { CompetitorsPriceComponent } from './competitors-price.component';
 
-describe('ExtendRentFormComponent', () => {
-  let component: ExtendRentFormComponent;
-  let fixture: ComponentFixture<ExtendRentFormComponent>;
+describe('CompetitorsPriceComponent', () => {
+  let component: CompetitorsPriceComponent;
+  let fixture: ComponentFixture<CompetitorsPriceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExtendRentFormComponent ]
+      declarations: [ CompetitorsPriceComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExtendRentFormComponent);
+    fixture = TestBed.createComponent(CompetitorsPriceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

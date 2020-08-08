@@ -1,9 +1,2 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-
-<!-- <app-header *ngIf="resetPassword===false"></app-header>
-<div class="div" *ngIf="resetPassword===false">
-    <router-outlet></router-outlet>
-</div>
-
-<app-reset-password *ngIf="resetPassword===true"></app-reset-password> -->
+<app-header *ngIf="resetPassword===false && !router.url.includes('adminHome')"></app-header>
+<router-outlet *ngIf="resetPassword===false"></router-outlet>

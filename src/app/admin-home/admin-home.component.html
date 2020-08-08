@@ -1,0 +1,21 @@
+<div class="body">
+    <div class="row">
+        <div class="heading">
+            <h2 class="border"> ADMIN HOME PAGE </h2>
+        </div>
+    </div>
+    <div class="container-sm">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="containerButton">
+                    <button class="btn btn-primary border" (click)="onHomePage()">Home Page</button>
+                    <button class="btn btn-primary border" routerLink="competitve-price">Competitors Price</button>
+                    <button class="btn btn-primary border" routerLink="fraud-license">Fraud License</button>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

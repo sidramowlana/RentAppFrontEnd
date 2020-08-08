@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
 import { TokenStorageService } from 'src/app/services/tokenStorage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-profile',
@@ -31,7 +32,7 @@ export class EditProfileComponent implements OnInit {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService,
+    private userService: UserService,private toastr:ToastrService,
     private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
@@ -63,15 +64,11 @@ export class EditProfileComponent implements OnInit {
     console.log("working");
     this.userService.onUpdateProfileById(this.updateProfileForm, this.id).subscribe(data => {
       console.log(data);
-      this.isSubmitted = true;
-      this.isError = false;
-      this.message = "Successfully Updated";
+      this.toastr.success("Successfully Updated");
       this.userService.userChanged.next(this.id);
     },
       err => {
-        this.isSubmitted = false;
-        this.isError = true;
-        this.message = "Could not update"
+        this.toastr.error("Could not update");
       });
   }
   onClose() {

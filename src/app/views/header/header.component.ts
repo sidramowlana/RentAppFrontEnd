@@ -26,10 +26,12 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.tokenStorageService.signOut();
-    this.router.navigate(['/']);
-    // window.location.reload();
+    this.router.navigate(['/login']);
   }
   onProfile() {
+    const user = this.tokenStorageService.getUser();
+    this.id = user.id;
+    console.log(this.id)
     this.router.navigate(['profile/', this.id]);
   }
 }

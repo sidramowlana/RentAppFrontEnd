@@ -1,7 +1,9 @@
+.equipmentimg {
+    display: inline-block;
+}
+
 form {
     margin-bottom: 50px;
-    /* background-color: white;
-    opacity: 1; */
 }
 
 button {
@@ -9,9 +11,9 @@ button {
 }
 
 .equipments {
-    height: 55%;
+    height: 72%;
     overflow-y: scroll;
-    margin-top: 15%;
+    margin-top: 9%;
     display: inline-block;
     scroll-behavior: smooth;
     border: 1px solid black;
@@ -38,22 +40,17 @@ button {
 }
 
 .img-fluid {
-    padding: 5%;
+    /* padding: 5%; */
 }
 
 .border {
     background-color: white;
 }
 
-h2 {
-    opacity: 0.70;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    color: black;
-    font-size: 27px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
+p {
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .btn-success,

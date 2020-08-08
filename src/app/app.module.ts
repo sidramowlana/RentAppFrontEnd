@@ -2,7 +2,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,15 +40,20 @@ import { ResetPasswordComponent } from './views/profile/reset-password/reset-pas
 import { CustVehicleDetailsComponent } from './views/home/cust-vehicle-details/cust-vehicle-details.component';
 import { FilterVehiclePipe } from './pipes/filterVehicle.pipe';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RentService } from './services/rent.service';
-import { ExtendRentFormComponent } from './views/customer-rent/extend-rent-form/extend-rent-form.component';
 import { ViewAllRentComponent } from './views/view-all-rent/view-all-rent.component';
 import { BlackListService } from './services/blackList.service';
 import { ViewAllBlacklistedComponent } from './views/view-all-blacklisted/view-all-blacklisted.component';
 import { CustEquipmentDetailsComponent } from './views/home/cust-equipment-details/cust-equipment-details.component';
 import { ContactUsComponent } from './views/contact-us/contact-us.component';
 import { FilterEquipmentPipe } from './pipes/filterEquipment.pipe';
+import { AuthInterceptorProviders, AuthInterceptor } from './helper/authInterceptorProviders';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { CompetitorsPriceComponent } from './admin-home/competitors-price/competitors-price.component';
+import { Webscraping } from './services/webscraping.service';
+import { FraudLicenseComponent } from './admin-home/fraud-license/fraud-license.component';
+import { InsurerService } from './services/insurer.service';
 
 @NgModule({
   declarations: [
@@ -77,11 +84,13 @@ import { FilterEquipmentPipe } from './pipes/filterEquipment.pipe';
     CustVehicleDetailsComponent,
     FilterVehiclePipe,
     FilterEquipmentPipe,
-    ExtendRentFormComponent,
     ViewAllRentComponent,
     ViewAllBlacklistedComponent,
     CustEquipmentDetailsComponent,
     ContactUsComponent,
+    AdminHomeComponent,
+    CompetitorsPriceComponent,
+    FraudLicenseComponent,
   ],
 
   imports: [
@@ -93,9 +102,10 @@ import { FilterEquipmentPipe } from './pipes/filterEquipment.pipe';
     AppRoutingModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot()
   ],
-  providers: [AuthenticationService,
+  providers: [AuthenticationService,AuthInterceptorProviders,
     TokenStorageService,
     UserService,
     VehicleTypeService,
@@ -103,7 +113,15 @@ import { FilterEquipmentPipe } from './pipes/filterEquipment.pipe';
     EquipmentService,
     VehicleService,
     RentService,
-    BlackListService],
+    BlackListService,Webscraping,InsurerService,
+  {
+    provide:HTTP_INTERCEPTORS, 
+    useClass:AuthInterceptor, 
+    multi:true
+  },{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

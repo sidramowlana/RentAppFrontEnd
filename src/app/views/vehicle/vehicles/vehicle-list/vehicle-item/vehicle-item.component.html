@@ -1,14 +1,13 @@
 <div class="card" style="width: 18rem;">
-    <div class="container">
-        <img [src]="vehicleElement.imageUrl" alt="{{vehicleElement.vehicleName}}" class="img-fluid">
+    <div class="container-main">
+        <img [src]="vehicleElement.imageUrl" alt="{{vehicleElement.vehicleName}}" class="imageView">
     </div>
     <div class="card-body">
         <h5 class="card-title">{{vehicleElement.vehicleName}}</h5>
-        <p class="card-text">{{vehicleElement.plateNo}}</p>
-        <p class="card-text">ID: {{vehicleElement.vehicleId}}</p>
+        <div class="descContainer">
+            <p class="card-text descriptionText">{{vehicleElement.description}}</p>
+        </div>
+        <p class="card-text">$ {{vehicleElement.amount}}</p>
         <a (click)="onDetails(index)" class="btn btn-primary">Detail</a>
     </div>
-
-    <div class="alert alert-danger" role="alert" *ngIf="isLogged===false">
-        <br>{{message}} </div>
 </div>

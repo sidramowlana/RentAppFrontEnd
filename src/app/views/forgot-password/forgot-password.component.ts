@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgot-password',
@@ -15,7 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   message;
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userService:UserService) { }
+    private userService:UserService,private toastr:ToastrService) { }
 
   ngOnInit() {
     console.log("startinghrere");
@@ -27,14 +28,11 @@ export class ForgotPasswordComponent implements OnInit {
   onSendEmail(){
     this.userService.onSendEmailService(this.forgotPasswordForm.value.email)
     .subscribe(data=>{
-      this.isSubmitted = true;
       this.forgotPasswordForm.reset();
-      this.message = "Email has been sent successfully!";
-    },
+      this.toastr.success("Email has been sent successfully!");
+        },
     err=>{
-      this.isSubmitted = false;
-      console.log(err);
-      this.message = "There is an error on sending the mail. Please try again with proper email";
+      this.toastr.error("There is an error on sending the mail. Please try again with a working email");
     });
   }
   onClose()

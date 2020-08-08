@@ -13,58 +13,66 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-
   resetPassword: boolean = false;
   rp;
   url: String;
   helper = new JwtHelperService();
+  time: Date;
+
+  expireTime: any;
+  reducetime: any;
 
   constructor(private tokenStorageService: TokenStorageService,
     private router: Router) { }
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    // if (this.tokenStorageService.getToken() != null) {
+    //   this.tokenStorageService.signOut();
+    //   this.router.navigate(["login"]);
+    // }
+    this.url = window.location.href;
+    this.rp = "/resetPassword";
+    if (this.url.includes(this.rp)) {
+      console.log(window.location.href);
+      this.resetPassword = true;
+    }
+    else {
+      // console.log(window.location.href);
+      this.resetPassword = false;
+    }
+
+  }
+
+  onChanges() {
+
+  }
+
+  // get the token expire time
+  // reduce the expire time
+  //
+  ngDoCheck() {
+    // this.time = new Date();
+    // let t = this.tokenStorageService.getToken();
+    // if (t != null) {
+    //   this.expireTime = this.helper.decodeToken(t).exp;
+    //   console.log(this.expireTime);
+    //   console.log((Date.now() / 1000));
+    //   console.log(this.reducetime);
+    //   if (this.reducetime && ((Date.now() / 1000) > this.reducetime)) {
+    //     console.log("worked");
+    //     this.tokenStorageService.signOut();
+    //     this.router.navigate(["/login"]);
+    //   }
+    // }
+    if (this.tokenStorageService.getToken() != null) {
+      if (this.helper.isTokenExpired(this.tokenStorageService.getToken())) {
+        console.log("token is expires")
+        this.tokenStorageService.signOut();
+        this.router.navigate(['/login']);
+      } else {
+        console.log("token can be still used");
+      }
+    }
+  }
 }
-//     if (this.tokenStorageService.getToken() != null) {
-//       this.tokenStorageService.signOut();
-//       this.router.navigate(["login"]);
-//     }
-//     this.url = window.location.href;
-//     this.rp = "/resetPassword";
-//     if (this.url.includes(this.rp)) {
-//       console.log(window.location.href);
-//       this.resetPassword = true;
-//     }
-//     else {
-//       // console.log(window.location.href);
-//       this.resetPassword = false;
-//     }
-
-//   }
-//   time: Date;
-
-//   expireTime: any;
-//   reducetime: any;
-//   onChanges() {
-
-//   }
-
-//   // get the token expire time
-//   // reduce the expire time
-//   //
-//   ngDoCheck() {
-//     setTimeout(() => {
-//       this.time = new Date();
-//       let t = this.tokenStorageService.getToken();
-//       if (t != null) {
-//         this.expireTime = this.helper.decodeToken(t).exp;
-//         if (this.reducetime && ((Date.now() / 1000) > this.reducetime)) {
-//           console.log("worked");
-//           this.tokenStorageService.signOut();
-//           this.router.navigate(["/login"]);
-//         }
-//       }
-//     }, 0);
-
-//   }
-// }

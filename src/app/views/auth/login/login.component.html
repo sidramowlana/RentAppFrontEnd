@@ -22,8 +22,6 @@
                         <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Sign In</button>
                     </form>
                     <br>
-                    <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
-                        Invalid User Credentials !!!<br>{{errorMessage}} </div>
                     <hr>
                     <app-forgot-password></app-forgot-password>
                     <!-- <a data-toggle="modal" data-target="#forgotPassword" (click)="onForgotPassword()">Forgot Password &nbsp;<i class="fa fa-question"></i></a> -->

@@ -6,17 +6,17 @@
     background: rgb(216, 235, 231);
 }
 
-.container {
-    width: 100%;
-    height: 230px;
-    display: inline-block;
-    border: 2px solid #ccc;
+.descriptionText {
+    font-size: 0.95rem;
 }
 
-.container img {
+.descContainer {
     width: 100%;
-    display: block;
-    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .btn-primary {
@@ -27,6 +27,7 @@
 }
 
 img {
+    /* object-fit: contain; */
+    height: 200px;
     width: 100%;
-    object-fit: contain;
 }

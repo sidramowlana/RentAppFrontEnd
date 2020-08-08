@@ -9,6 +9,9 @@
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="/home"> Home </a>
             </li>
+            <li class="nav-item" routerLinkActive="active" *ngIf="authService.isAuthenticated()">
+                <a class="nav-link" routerLink="/adminHome"> Admin </a>
+            </li>
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]={exact:true}>
                 <a class="nav-link" routerLink="/rent" *ngIf="authService.loggedIn()"> My Rent History</a>
             </li>
@@ -40,12 +43,12 @@
                     <span class="fa fa-bars"></span> </a>
                 <div class="dropdown-menu">
                     <ng-template [ngIf]="!authService.loggedIn()">
-                        <a class="dropdown-item" routerLink="/login">Login</a>
-                        <a class="dropdown-item" routerLink="/register">Register</a>
+                        <a class="dropdown-item" routerLink="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp; Login</a>
+                        <a class="dropdown-item" routerLink="/register"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Register</a>
                     </ng-template>
                     <ng-template [ngIf]="authService.loggedIn()">
-                        <a class="dropdown-item" (click)="onProfile()">Profile</a>
-                        <a class="dropdown-item" style="cursor: pointer" (click)="onLogout()">Logout</a>
+                        <a class="dropdown-item" (click)="onProfile()"><i class="fa fa-user" aria-hidden="true"></i>&nbsp; Profile</a>
+                        <a class="dropdown-item" style="cursor: pointer" (click)="onLogout()"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp; Logout</a>
                     </ng-template>
                 </div>
             </li>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,12 +12,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  errorMessage: String;
   isSubmitted: boolean = false;
-  isFailed:boolean = false;      
 
   constructor(private authenticationService:AuthenticationService,
-    private router:Router,
+    private router:Router,private toastr:ToastrService,
     private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
@@ -42,14 +41,13 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.onRegisterService(this.registerForm).subscribe(data=>{
       console.log(data);
       this.isSubmitted = true;
-      this.isFailed = true;      
+      this.toastr.success("Successfully registered");
       this.router.navigate(['/login'], {relativeTo:this.activatedRoute});
 
     },
     err => {
-      this.errorMessage = "The system failed to register please try again";
-      this.isSubmitted = false;
-      this.isFailed = true;      
+      this.toastr.error("Failed to register","Please try again")
+      this.isSubmitted = false;    
     });
 
   }

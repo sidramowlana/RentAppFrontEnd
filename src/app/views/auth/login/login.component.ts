@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TokenStorageService } from 'src/app/services/tokenStorage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,10 @@ import { TokenStorageService } from 'src/app/services/tokenStorage.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  isLoggedIn: boolean = false;
-  isLoginFailed: boolean = false;
-
-  errorMessage: String;
+  user;
+  roles;
   constructor(private authenticationService: AuthenticationService,
-    private router: Router,
+    private router: Router,private toastr:ToastrService,
     private activatedRoute: ActivatedRoute,
     private tokenStorageService: TokenStorageService) { }
 
@@ -31,21 +30,26 @@ export class LoginComponent implements OnInit {
     });
   }
   onLogin() {
+    // window.location.reload();
     this.authenticationService.onLoginService(this.loginForm).subscribe(data => {
       this.tokenStorageService.saveToken(data.token);
       this.tokenStorageService.saveUser(data);
-      this.isLoginFailed = false;
-      this.isLoggedIn = true;
-      // this.router.navigateByUrl('/login', { skipLocationChange: false }).then(() => {   
-      this.router.navigate(['/home']);
-      // });
-      console.log(data);
+      this.user = this.tokenStorageService.getUser();
+     
+      this.roles = this.user.roles;
+      if (this.roles.includes("ROLE_ADMIN")) {
+        this.toastr.success("Successfully Logged in as Admin");
+        this.router.navigate(['/adminHome']);
+
+      }else{
+        this.toastr.success("Successfully Logged in");
+        this.router.navigate(['/home']);
+      }
     },
       err => {
-        console.log(err);
-        this.errorMessage = "Login credentials invalid please try again";
-        this.isLoginFailed = true;
+        this.toastr.error("Login credentials invalid","please try again");
       });
+
   }
   onForgotPassword(){
     this.router.navigate(['forgotPassword']);
