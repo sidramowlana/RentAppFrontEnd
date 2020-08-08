@@ -20,6 +20,7 @@ export class RentService {
   userId;
   rentTimeChanged = new Subject<Rent>();
   rentListChange = new Subject<Rent[]>();
+  cancelRent = new Subject<Rent>();
 
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService,
@@ -67,9 +68,9 @@ export class RentService {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
     return this.http.get(AUTH_API + "allNotBlacklist", localHttpOptions);
   }
-  onDeleteRentByRentId(rentId) {
+  onCancelRentByRentId(rentId) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    return this.http.get(AUTH_API + "deleteRent/" + rentId, localHttpOptions);
+    return this.http.put(AUTH_API + "cancelRent/" + rentId, localHttpOptions);
   }
   onBlackListUser(rentId,rent){
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());

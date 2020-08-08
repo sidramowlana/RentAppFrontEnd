@@ -9,9 +9,6 @@
             <div class="row">
                 <div class="col">
                     <div class="container-sm">
-                        <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isError===true">{{message}} </div>
-                        <div class="alert alert-success" role="alert" id="successMessage" *ngIf="isError===false">{{message}} </div>
-
                         <table class="table table-responsive table-hover">
                             <thead>
                                 <tr>
@@ -43,8 +40,7 @@
                                     </td>
                                     <td>£ {{rent.totalRentalAmount}}</td>
                                     <td>
-                                        <!-- <button class="btn btn-success" type="button" (click)="onExtend(i,rent.rentId)" [disabled]="(greaterThan(currentDate, rent.dateTimeTo)) ? true : false || disablebutton[i]"> -->
-                                        <button class="btn btn-success" type="button" (click)="onExtend(i,rent.rentId)" [disabled]="rent.rentExtended === true">
+                                        <button class="btn btn-success" type="button" (click)="onExtend(rent.rentId)" [disabled]="rent.rentExtended === true || user.blackListed ===true">
                                                 <span class="fa fa-clock-o "></span>
                                         </button>
                                     </td>

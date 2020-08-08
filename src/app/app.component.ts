@@ -34,7 +34,7 @@ export class AppComponent {
     this.url = window.location.href;
     this.rp = "/resetPassword";
     if (this.url.includes(this.rp)) {
-      console.log(window.location.href);
+      // console.log(window.location.href);
       this.resetPassword = true;
     }
     else {
@@ -67,11 +67,11 @@ export class AppComponent {
     // }
     if (this.tokenStorageService.getToken() != null) {
       if (this.helper.isTokenExpired(this.tokenStorageService.getToken())) {
-        console.log("token is expires")
+        // console.log("token is expires")
         this.tokenStorageService.signOut();
         this.router.navigate(['/login']);
       } else {
-        console.log("token can be still used");
+        // console.log("token can be still used");
       }
     }
   }

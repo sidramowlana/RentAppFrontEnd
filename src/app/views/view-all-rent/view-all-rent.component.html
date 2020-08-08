@@ -8,10 +8,7 @@
         <div class="ptext2">
             <div class="row">
                 <div class="col">
-                    <div class="container-sm">
-                        <div class="alert alert-danger" role="alert" id="errorMessage" *ngIf="isError===true">{{message}} </div>
-                        <div class="alert alert-success" role="alert" id="successMessage" *ngIf="isError===false">{{message}} </div>
-
+                    <div class="containersm">
                         <table class="table table-responsive table-hover">
                             <thead>
                                 <tr>
@@ -24,7 +21,6 @@
                                     <th>Vehicle Type</th>
                                     <th>Equipments</th>
                                     <th>Total Rental Amount</th>
-                                    <!-- <th>Extend Booking</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,20 +39,24 @@
                                     </td>
                                     <td>£ {{rent.totalRentalAmount}}</td>
                                     <td>
-                                        <button class="btn btn-success" type="button" (click)="onTaken(rent.rentId,rent.dateTimeTo)" [disabled]="rent.taken === true || ((rent.dateTimeTo|date:'MM/dd/yyyy, h:mm a')==(currentDate|date:'MM/dd/yyyy, h:mm a'))">
+                                        <button class="btn btn-success" type="button" (click)="onTaken(i,rent.rentId,rent.dateTimeTo)" [disabled]="rent.taken === true || ((rent.dateTimeTo|date:'MM/dd/yyyy, h:mm a')==(currentDate|date:'MM/dd/yyyy, h:mm a'))||rent.vehicleIsRented === false">
                                         Taken
                                       </button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger" type="button" (click)="onCancel(rent.rentId)" [disabled]="rent.taken === true">
+                                        <button class="btn btn-danger" type="button" (click)="onFail(i,rent.rentId,rent.dateTimeFrom)" [disabled]="rent.taken === true|| rent.vehicleIsRented === false">
                                         Fail
                                       </button>
                                     </td>
+                                    <!-- <td>
+                                        <button class="btn btn-danger" type="button" (click)="onCancelBooking(i,rent.rentId)" [disabled]="rent.vehicleIsRented === false || vehicleIsRented === false">
+                                        Cancel
+                                      </button>
+                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>
-                        <div id="fail" class="alert alert-danger" role="alert" *ngIf="isTime ===false">
-                            {{ message }} </div>
+
                     </div>
 
                 </div>

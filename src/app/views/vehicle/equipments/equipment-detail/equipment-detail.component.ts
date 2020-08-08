@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-equipment-detail',
@@ -23,7 +24,7 @@ export class EquipmentDetailComponent implements OnInit {
 
   constructor(private equipmentService: EquipmentService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router,private toastr:ToastrService,
     private authService:AuthenticationService) { }
 
   ngOnInit() {
@@ -49,11 +50,14 @@ export class EquipmentDetailComponent implements OnInit {
 
   onDeleteEquipment(id) {
     this.equipmentService.onDeleteEquipmentService(id).subscribe(() => {
-      this.message = "Successfully Deleted";
+      this.toastr.success("Successfully Deleted");
       this.equipmentService.onGetAllEquipmentService().subscribe(data => {
         this.list = data;
         this.equipmentService.equipmentChange.next(this.list);
       });
+    },err=>
+    {
+      this.toastr.error(err.error.message);
     });
     this.router.navigate(['vehicle/equipments']);
   }

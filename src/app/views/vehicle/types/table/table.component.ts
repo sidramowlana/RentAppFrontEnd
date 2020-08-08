@@ -34,6 +34,13 @@ export class TableComponent implements OnInit {
 
         });
     });
+         
+    this.vehicleTypeService.update.subscribe(()=>{
+      this.vehicleTypeService.onGetAllVehicleTypes().subscribe(typeList => {
+        this.vehicleTypeList = typeList;
+        console.log("update") ;    
+      });
+    });
   }
 
   onEditVehicleType(index) {

@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 import { VehicleType } from "../models/vehicleType.model";
 
 const ADMIN_API = 'http://localhost:8080/api/vehicleTypes/';
-                                        
+
 const getHttpOptions = (token: String) => {
   return {
     headers: new HttpHeaders({
@@ -21,9 +21,10 @@ const getHttpOptions = (token: String) => {
 @Injectable()
 export class VehicleTypeService {
   edit = new Subject<VehicleType>();
-add = new Subject<VehicleType>();
+  update = new Subject<any>();
+  add = new Subject<VehicleType>();
   userToken;
-  
+
   constructor(private http: HttpClient,
     private tokenStorageService: TokenStorageService,
     private activatedRoute: ActivatedRoute) {
@@ -35,18 +36,18 @@ add = new Subject<VehicleType>();
     console.log('[LOCALHTTPOPTIONS]', localHttpOptions);
     return this.http.post(ADMIN_API + "createVehicleType", {
       name: vehicleTypeForm.value.name
-        }, localHttpOptions);
+    }, localHttpOptions);
   }
 
-  onGetAllVehicleTypes(): Observable<any>{
+  onGetAllVehicleTypes(): Observable<any> {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    return this.http.get(ADMIN_API +"all",localHttpOptions);
+    return this.http.get(ADMIN_API + "all", localHttpOptions);
   }
- 
-  onUpdateVehicleTypseService(vehicleTypeForm,id):Observable<any>
-  {
+
+  onUpdateVehicleTypseService(vehicleTypeForm, id): Observable<any> {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    return this.http.put(ADMIN_API + "update/"+id, {
-      teamTypeName: vehicleTypeForm.value.teamTypeName  },localHttpOptions);
-}
+    return this.http.put(ADMIN_API + "update/" + id, {
+      name: vehicleTypeForm.value.name
+    }, localHttpOptions);
+  }
 }

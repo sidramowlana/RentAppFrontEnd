@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { VehicleTypeService } from 'src/app/services/vehicleType.service';
 import { VehicleType } from 'src/app/models/vehicleType.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-types',
@@ -18,8 +19,10 @@ export class TypesComponent implements OnInit {
   editTypem: VehicleType;
   edit = false;
   id;
+  vehicleData;
 
-  constructor(private vehicleTypeService: VehicleTypeService) { }
+
+  constructor(private vehicleTypeService: VehicleTypeService,private toastr:ToastrService) { }
 
   private initForm() {
     this.vehicleTypeForm = new FormGroup({
@@ -40,32 +43,29 @@ export class TypesComponent implements OnInit {
             });
     });
   }
-vehicleData;
   onAddVehicleType() {
     this.vehicleTypeService.onAddVehicleTypeService(this.vehicleTypeForm).subscribe(data => {
       console.log(data);
       this.vehicleData = data;
       this.vehicleTypeService.add.next(this.vehicleData);
       this.vehicleTypeList = data;
-      this.isError = false;
       this.vehicleTypeForm.reset();
-      this.errorMessage = "Successfully added";
+      this.toastr.success("Successfully added");
     },
       err => {
-        this.errorMessage = err.error.message;
-        this.isError = true;
+        this.toastr.error(err.error.message);
       });
   }
 
   onUpdateVehicleType() {
     this.vehicleTypeService.onUpdateVehicleTypseService(this.vehicleTypeForm, this.id).subscribe(data => {
-      this.isError = false
       this.edit = false;
+      this.vehicleTypeService.update.next();  
+      this.toastr.success("Successfully updated");  
       this.vehicleTypeForm.reset();
     }),
       err => {
-        this.errorMessage = err.error.message;
-        this.isError = true;
+        this.toastr.error(err.error.message);
       }
     this.vehicleTypeForm.reset();
   }

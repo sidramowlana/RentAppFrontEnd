@@ -13,6 +13,7 @@ export class Rent{
     public equipment:Equipment[];
     public vehicle:Vehicle;
     public vehicleRentEquipement:vehicleRentEquipment;
+    // public vehicleIsRented:boolean;
 
 
     constructor(dateTimeFrom:Date, dateTimeTo:Date, currentDate:Date, user:User,equipment:Equipment[], vehicle:Vehicle,vehicleRentEquipement:vehicleRentEquipment){

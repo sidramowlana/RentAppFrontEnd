@@ -47,7 +47,7 @@ export class CustVehicleDetailsComponent implements OnInit {
   userYear: number;
   currentYear: number;
   userId: number;
-  bookingMessage: String;
+  bookingMessage: string;
   userAge: number;
   isBlackListed: boolean;
 
@@ -57,7 +57,7 @@ export class CustVehicleDetailsComponent implements OnInit {
     private equipmentService: EquipmentService,
     private tokenStorageService: TokenStorageService,
     private userService: UserService,
-    private router: Router,private toastr:ToastrService,
+    private router: Router, private toastr: ToastrService,
     private rentService: RentService) { }
 
   ngOnInit() {
@@ -65,7 +65,7 @@ export class CustVehicleDetailsComponent implements OnInit {
     this.equipmentService.onGetAllEquipmentService().subscribe(data => {
       this.equipmentList = data;
       console.log(this.equipmentList);
-    
+
     });
 
     this.activatedRoute.params.subscribe(
@@ -118,17 +118,14 @@ export class CustVehicleDetailsComponent implements OnInit {
 
       this.userYear = +this.dob.substring(0, 4);
       this.userAge = this.currentYear - this.userYear;
-      //check if the user is black listed
-      console.log(this.isBlackListed+" herer");
       if (this.isBlackListed == false) {
         if (this.images.length === 0) {
           this.toastr.warning("Please upload the required documents image");
         } else {
           if (this.userAge < 25) {
             if (this.name.includes("Small town")) {
-              if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {              
+              if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
                 this.toastr.warning("Please Enter Your Booking Date");
-
               }
               else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
                 this.addNewRent(this.id, this.rentForm);
@@ -155,11 +152,16 @@ export class CustVehicleDetailsComponent implements OnInit {
   addNewRent(id, formData) {
     this.rentService.onCreateRentService(id, formData).subscribe(data => {
       this.bookingMessage = data.message;
-      if ((!this.bookingMessage.includes("Time slots are taken already")) && (!this.bookingMessage.includes("equipments are already booked"))) {
+      if (this.bookingMessage.includes("booking confirmed")) {
+        this.toastr.success(this.bookingMessage);
         this.router.navigate(['/rent']);
       }
+      else {
+        this.toastr.warning(this.bookingMessage);
+      }      
     },
       err => {
+        console.log(err.error.message);
         this.toastr.error(err.error.message);
       });
   }
@@ -184,8 +186,7 @@ export class CustVehicleDetailsComponent implements OnInit {
   onRemove(index) {
     this.images.splice(index, 1);
   }
-  onEquipmentDetail(equipmentId)
-  {
-    this.router.navigate(['equipment/',equipmentId], { relativeTo: this.activatedRoute });
+  onEquipmentDetail(equipmentId) {
+    this.router.navigate(['equipment/', equipmentId], { relativeTo: this.activatedRoute });
   }
 }

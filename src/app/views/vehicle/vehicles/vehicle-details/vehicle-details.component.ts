@@ -5,6 +5,7 @@ import { VehicleService } from 'src/app/services/vehicle.service';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { VehicleTypeService } from 'src/app/services/vehicleType.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-details',
@@ -31,7 +32,7 @@ export class VehicleDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private vehicleService: VehicleService,
+    private vehicleService: VehicleService,private toastr:ToastrService,
     private vehicleTypeService: VehicleTypeService,
     private router: Router,
     private authService:AuthenticationService) { }
@@ -74,7 +75,6 @@ export class VehicleDetailsComponent implements OnInit {
   initForm() {
     if (this.editMode) {
       this.vehicleService.onGetVehicleById(this.id).subscribe(data => {
-        // console.log(data);
         this.vehicleUpdateForm.setValue({
           vehicleName: data.vehicleName,
           plateNo: data.plateNo,
@@ -98,12 +98,10 @@ export class VehicleDetailsComponent implements OnInit {
   }
   onUpdateVehicle() {
     this.vehicleService.onUpdateVehicleService(this.vehicleUpdateForm, this.id).subscribe(data => {
-      console.log("data " + data);
       this.vehicleService.onGetAllVehicleService().subscribe(data => {
         this.vehicleList = data;
         for (let l of this.vehicleList) {
           if (l.vehicleId === this.id) {
-            console.log(l);
             this.vehicleService.vehicleEditChange.next(l);
           }
         }
@@ -118,10 +116,14 @@ export class VehicleDetailsComponent implements OnInit {
   }
   onDeleteVehicle(id){
     this.vehicleService.onDeleteVehicleService(id).subscribe(data=>{
+      this.toastr.success("Successfully deleted");
       this.vehicleService.onGetAllVehicleService().subscribe(data => {
         this.vehicleList = data;
             this.vehicleService.vehicleChange.next(this.vehicleList);
       });this.onCloseDetail();
+    },err=>{
+      this.toastr.error(err.error.message);
+
     });
    
   }
