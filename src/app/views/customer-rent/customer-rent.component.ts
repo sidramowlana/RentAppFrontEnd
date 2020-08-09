@@ -61,7 +61,7 @@ export class CustomerRentComponent implements OnInit {
         this.toastr.success("Booking successfully extended");
       },
         err => {
-          this.toastr.error("Extend booking did not perform. Please try again later!!!");
+          this.toastr.error("Vehicle will not available for extension");
         });
     });
 

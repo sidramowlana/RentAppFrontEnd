@@ -57,12 +57,12 @@ export class RentService {
 
   onExtendRentById(id, rentId) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    return this.http.put(AUTH_API + "extendRent/" + id, rentId, localHttpOptions);
+    return this.http.put(AUTH_API + "extendRent/" + id, {}, localHttpOptions);
   }
 
   onTakenRentById(rentId, rent) {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
-    return this.http.put(AUTH_API + "rentIsTaken/" + rentId, rent, localHttpOptions);
+    return this.http.put(AUTH_API + "rentIsTaken/" + rentId,{}, localHttpOptions);
   }
   ongetAllNotBlacklistUsersRent() {
     const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
