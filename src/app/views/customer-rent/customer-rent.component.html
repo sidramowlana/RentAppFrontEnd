@@ -22,6 +22,7 @@
                                     <th>Equipments</th>
                                     <th>Total Rental Amount</th>
                                     <th>Extend Booking</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,10 +41,11 @@
                                     </td>
                                     <td>£ {{rent.totalRentalAmount}}</td>
                                     <td>
-                                        <button class="btn btn-success" type="button" (click)="onExtend(rent.rentId)" [disabled]="rent.rentExtended === true || user.blackListed ===true">
+                                        <button class="btn btn-success" type="button" (click)="onExtend(rent.rentId)" [disabled]="rent.status === 'Extended' || user.blackListed ===true">
                                                 <span class="fa fa-clock-o "></span>
                                         </button>
                                     </td>
+                                    <td>{{rent.status}}</td>
                                 </tr>
                             </tbody>
                         </table>

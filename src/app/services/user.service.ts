@@ -25,8 +25,7 @@ const getHttpOptions = (token: String) => {
 export class UserService {
   userChanged = new Subject<User>();
   constructor(private http: HttpClient,
-    private tokenStorageService: TokenStorageService,
-    private activatedRoute: ActivatedRoute) { }
+    private tokenStorageService: TokenStorageService) { }
 
   onSendEmailService(personalEmail) {
     return this.http.post(AUTH_API + "forgotPassword", personalEmail, httpOptions);
@@ -57,6 +56,12 @@ export class UserService {
       mobileNo: updateProfileForm.value.mobileNo,
       drivingLicence: updateProfileForm.value.drivingLicence,
       username: updateProfileForm.value.username
+    }, localHttpOptions);
+  }
+  onContactUsSendEmail(contactForm):Observable<any>{
+    const localHttpOptions = getHttpOptions(this.tokenStorageService.getToken());
+    return this.http.post<any>(AUTH_API + "contact" , {
+      text: contactForm.value.text
     }, localHttpOptions);
   }
 }

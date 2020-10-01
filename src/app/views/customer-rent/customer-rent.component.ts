@@ -54,16 +54,27 @@ export class CustomerRentComponent implements OnInit {
   }
 
   onExtend(rentId) {
-    this.rentService.onGetRent(rentId).subscribe(rent => {
-      this.rent = rent;
-      this.rentService.onExtendRentById(rentId, this.rent).subscribe(data => {
+        this.rentService.onUpdateStatusRentId(rentId, "Extended").subscribe(data => {
+          this.rent=data;
         this.rentService.rentTimeChanged.next(this.rent);
         this.toastr.success("Booking successfully extended");
       },
         err => {
           this.toastr.error("Vehicle will not available for extension");
         });
-    });
-
   }
+
+  // onExtend(rentId) {
+  //   this.rentService.onGetRent(rentId).subscribe(rent => {
+  //     this.rent = rent;
+  //     this.rentService.onExtendRentById(rentId, this.rent).subscribe(data => {
+  //       this.rentService.rentTimeChanged.next(this.rent);
+  //       this.toastr.success("Booking successfully extended");
+  //     },
+  //       err => {
+  //         this.toastr.error("Vehicle will not available for extension");
+  //       });
+  //   });
+
+  // }
 }

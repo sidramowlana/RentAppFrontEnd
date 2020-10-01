@@ -1,61 +1,34 @@
 <div class="row">
-    <div class="col-md-8" id="box1">
+    <div class="col-md-7" id="box1">
         <h1><span class="border">Contact Us</span></h1>
     </div>
-    <div class="col-md-4">
-        <div class="container-sm  mx-auto">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="div1">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png">
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="div1">
-                        <p>077-9292747</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="div1">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRJQdATD1GAtYLRCCSNL7e6gyZyyvDrbONoFfz4TK_5XrM_WCF8&usqp=CAU">
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="div1">
-                        <p>@Bangers_rent</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="div1">
-                        <img src="https://cdn.freebiesupply.com/logos/large/2x/facebook-icon-white-logo-png-transparent.png">
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="div1">
-                        <p>@Bangers_rent</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="div1">
-                        <img src="https://www.pngitem.com/pimgs/m/509-5095199_twitter-social-media-icon-png-transparent-png.png">
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="div1">
-                        <p>@Bangers_rent</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="div1">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSjtsp_r-tH1lYaAuFkIlnl-lugthssIs0J7ercsG-zIPyKNOFq&usqp=CAU">
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="div1">
-                        <p>011-1234567</p>
+    <div class="col-md-5">
+        <div class="myDiv1">
+            <button type="button" class="btn btn-primary" id="sendEmail" data-toggle="modal" data-target="#contactUsModel"> Send us an Email
+            </button>
+            <div class="modal fade" id="contactUsModel" tabindex="-1" role="dialog" aria-labelledby="contactUsModelTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="contactUsModelTitle">How can we help you?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="contactForm" (ngSubmit)="onSend()">
+                                <textarea id="textId" class="form-control" type="text" rows="6" formControlName="text"></textarea>
+                                <div class="modal-footer">
+                                    <button type="button" id="closeEmail" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="submitEmail" class="btn btn-primary" [disabled]="!contactForm.valid">Send Email</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>

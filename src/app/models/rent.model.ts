@@ -13,7 +13,7 @@ export class Rent{
     public equipment:Equipment[];
     public vehicle:Vehicle;
     public vehicleRentEquipement:vehicleRentEquipment;
-    // public vehicleIsRented:boolean;
+    public status:String;
 
 
     constructor(dateTimeFrom:Date, dateTimeTo:Date, currentDate:Date, user:User,equipment:Equipment[], vehicle:Vehicle,vehicleRentEquipement:vehicleRentEquipment){

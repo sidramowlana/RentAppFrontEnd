@@ -3,7 +3,7 @@
 }
 
 .card-body {
-    background: rgb(216, 235, 231);
+    background: rgb(236 247 245);
 }
 
 .descriptionText {
@@ -27,7 +27,6 @@
 }
 
 img {
-    /* object-fit: contain; */
     height: 200px;
     width: 100%;
 }

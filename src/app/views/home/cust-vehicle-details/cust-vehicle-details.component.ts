@@ -102,10 +102,6 @@ export class CustVehicleDetailsComponent implements OnInit {
   onCloseDetail() {
     this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
-  onPrev() {
-    // this.formDisabled = true;
-  }
-
 
   onSubmit() {
     this.currentYear = new Date().getFullYear();
@@ -114,51 +110,46 @@ export class CustVehicleDetailsComponent implements OnInit {
     this.userService.onGetUserById(this.userId).subscribe((data: User) => {
       this.dob = data.dob;
       this.isBlackListed = data.blackListed;
-      console.log(this.isBlackListed);
-
       this.userYear = +this.dob.substring(0, 4);
       this.userAge = this.currentYear - this.userYear;
-      if (this.isBlackListed == false) {
-        if (this.images.length === 0) {
-          this.toastr.warning("Please upload the required documents image");
-        } else {
-          if (this.userAge < 25) {
-            if (this.name.includes("Small town")) {
-              if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
-                this.toastr.warning("Please Enter Your Booking Date");
-              }
-              else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
-                this.addNewRent(this.id, this.rentForm);
-                this.router.navigate(['/rent']);
-              }
-            } else if (!this.name.includes("Small town")) {
-              this.toastr.warning("User aged below 25 is allowed only to rent small town cars");
-            }
-          } else if (this.userAge > 25) {
-            if ((this.rentForm.value.dateFrom === null) || (this.rentForm.value.dateTo === null)) {
-              this.toastr.warning("Please Enter Your Booking Date");
-            }
-            else if ((this.rentForm.value.dateFrom !== null) && (this.rentForm.value.dateTo !== null)) {
-              this.addNewRent(this.id, this.rentForm);
-            }
+      console.log(this.userYear)
+      console.log(this.currentYear)
+      console.log(this.userAge)
+      if ((this.rentForm.value.dateFrom !== null) || (this.rentForm.value.dateTo !== null) || this.images.length !== 0) {
+     if (this.isBlackListed == false) {
+        if (this.userAge < 25) {
+          console.log("age is less")
+          if (this.name.includes("Small town")) {
+            this.addNewRent(this.id, this.rentForm);
+            this.router.navigate(['/rent']);
+          } else if (!this.name.includes("Small town")) {
+            this.toastr.warning("User aged below 25 is allowed only to rent small town cars");
           }
+        } else if (this.userAge >= 25) {
+          console.log("age is >-25")
+          this.addNewRent(this.id, this.rentForm);
         }
       } else if (!this.isBlackListed == false) {
         this.toastr.error("User is black listed and not allowed to rent any vehicles from Bangers");
       }
-    });
-
+    }else
+    {        this.toastr.warning("Please give the required details. Enter your booking date and upload the required documents image");      
   }
+    });
+  }
+  
   addNewRent(id, formData) {
     this.rentService.onCreateRentService(id, formData).subscribe(data => {
       this.bookingMessage = data.message;
+      console.log(data)
       if (this.bookingMessage.includes("booking confirmed")) {
         this.toastr.success(this.bookingMessage);
         this.router.navigate(['/rent']);
       }
       else {
+        console.log(data)
         this.toastr.warning(this.bookingMessage);
-      }      
+      }
     },
       err => {
         console.log(err.error.message);

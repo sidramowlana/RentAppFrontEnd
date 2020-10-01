@@ -44,34 +44,13 @@ export class AppComponent {
 
   }
 
-  onChanges() {
-
-  }
-
-  // get the token expire time
-  // reduce the expire time
-  //
   ngDoCheck() {
-    // this.time = new Date();
-    // let t = this.tokenStorageService.getToken();
-    // if (t != null) {
-    //   this.expireTime = this.helper.decodeToken(t).exp;
-    //   console.log(this.expireTime);
-    //   console.log((Date.now() / 1000));
-    //   console.log(this.reducetime);
-    //   if (this.reducetime && ((Date.now() / 1000) > this.reducetime)) {
-    //     console.log("worked");
-    //     this.tokenStorageService.signOut();
-    //     this.router.navigate(["/login"]);
-    //   }
-    // }
     if (this.tokenStorageService.getToken() != null) {
       if (this.helper.isTokenExpired(this.tokenStorageService.getToken())) {
-        // console.log("token is expires")
         this.tokenStorageService.signOut();
         this.router.navigate(['/login']);
       } else {
-        // console.log("token can be still used");
+        console.log("token can be still used");
       }
     }
   }

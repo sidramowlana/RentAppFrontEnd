@@ -1,7 +1,8 @@
 <div class="body">
     <div class="pimg1">
         <div class="ptext">
-            <span class="border"> ALL HISTORY</span>
+            <span class="border"> ALL HISTORY </span>
+            <span class="border"> - CONFIRMED BOOKING  </span>
         </div>
     </div>
     <div class="pimg2">
@@ -39,20 +40,15 @@
                                     </td>
                                     <td>£ {{rent.totalRentalAmount}}</td>
                                     <td>
-                                        <button class="btn btn-success" type="button" (click)="onTaken(i,rent.rentId,rent.dateTimeTo)" [disabled]="rent.taken === true || ((rent.dateTimeTo|date:'MM/dd/yyyy, h:mm a')==(currentDate|date:'MM/dd/yyyy, h:mm a'))||rent.vehicleIsRented === false">
+                                        <button class="btn btn-success" type="button" (click)="onTaken(rent.rentId,rent.dateTimeFrom)" [disabled]="rent.status==='Taken' || rent.status==='Cancelled'">
                                         Taken
                                       </button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger" type="button" (click)="onFail(i,rent.rentId,rent.dateTimeFrom)" [disabled]="rent.taken === true|| rent.vehicleIsRented === false">
+                                        <button class="btn btn-danger" type="button" (click)="onFail(rent.rentId,rent.dateTimeFrom)" [disabled]="rent.status==='Taken' || rent.status==='Cancelled'">
                                         Fail
                                       </button>
                                     </td>
-                                    <!-- <td>
-                                        <button class="btn btn-danger" type="button" (click)="onCancelBooking(i,rent.rentId)" [disabled]="rent.vehicleIsRented === false || vehicleIsRented === false">
-                                        Cancel
-                                      </button>
-                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>
