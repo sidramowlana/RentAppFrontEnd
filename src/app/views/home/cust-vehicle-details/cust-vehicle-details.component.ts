@@ -88,7 +88,7 @@ export class CustVehicleDetailsComponent implements OnInit {
 
   initForm() {
     this.rentForm = new FormGroup({
-      'selectedEquipments': new FormControl(null, Validators.required),
+      'selectedEquipments': new FormControl(null),
       'dateFrom': new FormControl(null, Validators.required),
       'dateTo': new FormControl(null, Validators.required),
       'drivingLicenceImagefile': new FormControl(null, Validators.required),
@@ -156,7 +156,7 @@ export class CustVehicleDetailsComponent implements OnInit {
         this.toastr.error(err.error.message);
       });
   }
-
+disable;
   onFileChange(event) {
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;

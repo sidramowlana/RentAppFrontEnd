@@ -106,7 +106,7 @@
                 <hr style="margin-top:4rem">
                 <div class="col-md-4" style="float:right;margin-bottom: 2%;">
                     <button type="submit " class="btn btn-primary" href="#carouselExampleControls" data-slide="prev" (click)="onPrev()">Prev</button>
-                    <button type="submit " class="btn btn-success" style="background-color: #3f9c90;border:1px solid #3f9c90">Submit</button>
+                    <button type="submit " class="btn btn-success" style="background-color: #3f9c90;border:1px solid #3f9c90" [disabled]="!rentForm.valid">Submit</button>
                 </div>
 
             </div>
